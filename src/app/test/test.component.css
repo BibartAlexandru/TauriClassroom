@@ -1,0 +1,54 @@
+:app-test {
+  height: 100%;
+}
+
+:host {
+  flex-grow: 1;
+  display: flex;
+}
+
+.test {
+  margin: auto;
+  height: 30rem;
+  width: max(20rem, 50%);
+  background-color: var(--bs-light);
+  filter: drop-shadow(0 0rem 0.5rem rgba(0, 0, 0, 0.425));
+  border-radius: 1rem;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 40% 40%;
+  grid-template-rows: 40% 40%;
+}
+
+.explanation {
+  grid-area: 1 / 1 / 2 / 3;
+  text-align: center;
+  margin: 0;
+}
+
+.test button {
+  grid-area: 2 / 1 / 3 / 2;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+}
+
+.answer-container {
+  grid-area: 2 / 2 / 3 / 3;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  display: grid;
+  place-content: center;
+}
+
+.rock-answer {
+  font-size: 1rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.btn-outline-dark:focus {
+  box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 0.25);
+  border-color: #333;
+}

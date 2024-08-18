@@ -1,0 +1,13 @@
+.header {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.logo-img {
+  height: 5rem;
+  object-fit: contain;
+}
+
+.nav-item {
+  font-size: 1rem;
+  font-weight: 500;
+}
