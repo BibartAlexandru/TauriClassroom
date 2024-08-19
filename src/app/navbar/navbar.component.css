@@ -1,5 +1,19 @@
 .header {
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  z-index: 1;
+  padding: var(--PADDING-HALF-TOP);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--bs-light);
+  height: 4rem;
+  display: grid;
+  place-content: center;
+  grid-template-columns: min(25%, 7rem) min(25%, 7rem) min(25%, 7rem) min(
+      25%,
+      7rem
+    );
+  grid-template-rows: 100%;
+  filter: drop-shadow(0 0.1rem 0.3rem rgba(0, 0, 0, 0.37));
 }
 
 .logo-img {
@@ -10,4 +24,31 @@
 .nav-item {
   font-size: 1rem;
   font-weight: 500;
+}
+
+.navbar-image {
+  height: 2rem;
+  object-fit: contain;
+}
+
+.header:nth-child(1) {
+  grid-area: 1/1/2/2;
+}
+.header:nth-child(2) {
+  grid-area: 1/2/2/3;
+}
+.header:nth-child(3) {
+  grid-area: 1/3/2/4;
+}
+.header:nth-child(4) {
+  grid-area: 1/4/2/5;
+}
+
+nav a:last-of-type > img {
+  border-radius: 100%;
+}
+
+.navbar-icon-anchor {
+  display: grid;
+  place-content: center;
 }

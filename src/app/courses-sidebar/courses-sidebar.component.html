@@ -1,0 +1,33 @@
+<div
+  [ngClass]="isDocked ? 'courses-sidebar docked' : 'courses-sidebar not-docked'"
+>
+  <div *ngIf="!isDocked; else selectedCourse" class="icons-contianer">
+    <a
+      href="#"
+      class="course-anchor"
+      *ngFor="let course of courses; let i = index"
+      [ngStyle]="getRandomColorStyle()"
+      (click)="onCourseIconClick(i)"
+    >
+      <h2 class="course-name-letter">{{ course.charAt(0) }}</h2></a
+    >
+  </div>
+  <ng-template #selectedCourse>
+    <div class="icons-contianer">
+      <a
+        href="#"
+        class="course-anchor"
+        [ngStyle]="getRandomColorStyle()"
+        (click)="onCourseIconClick(0)"
+      >
+        <h2 class="course-name-letter">{{ courses[0].charAt(0) }}</h2></a
+      >
+    </div>
+  </ng-template>
+  <img
+    [src]="isDocked === false ? 'assets/up_arrow.svg' : 'assets/down_arrow.svg'"
+    [ngClass]="isDocked ? 'up-arrow-docked' : 'up-arrow-not-docked'"
+    alt="dock courses arrow"
+    (click)="dockSelf()"
+  />
+</div>

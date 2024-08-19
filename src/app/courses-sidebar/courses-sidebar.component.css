@@ -1,0 +1,73 @@
+:host {
+  min-height: 100vh;
+  width: max(15%, 6rem);
+  max-width: 6rem;
+  /* margin-right: var(--NORMAL-GAP); */
+  /* position: fixed; */
+  /* left: 0; */
+}
+
+.courses-sidebar {
+  width: 100%;
+  background-color: var(--bs-light);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  /* padding: var(--NORMAL-PADDING-X); */
+}
+
+.courses-sidebar.not-docked {
+  height: 100vh;
+  border-radius: 0;
+  gap: var(--NORMAL-GAP);
+}
+
+.courses-sidebar.docked {
+  height: max-content;
+  border-radius: 0 0 2.5rem 0;
+  filter: drop-shadow(0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.37));
+}
+
+.courses-sidebar .icons-contianer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: var(--NORMAL-GAP);
+  padding: var(--NORMAL-PADDING-X);
+}
+
+.course-anchor {
+  height: var(--LARGE-ICON-SIZE);
+  width: var(--LARGE-ICON-SIZE);
+  background-color: green;
+  filter: hue-rotate(160deg);
+  border-radius: 100%;
+  display: grid;
+  place-content: center;
+  /* cursor: pointer; */
+}
+
+a {
+  text-decoration: none;
+}
+
+.course-anchor h2 {
+  color: white;
+  margin: 0;
+  display: block;
+}
+
+.courses-sidebar .up-arrow-not-docked {
+  position: absolute;
+  bottom: 5rem;
+  height: 2rem;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.courses-sidebar .up-arrow-docked {
+  height: 2rem;
+  object-fit: contain;
+  cursor: pointer;
+  transform: translateY(-0.5rem);
+}

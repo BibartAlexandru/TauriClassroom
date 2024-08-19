@@ -5,3 +5,14 @@
   box-sizing: border-box;
   padding: 0;
 }
+
+:root {
+  --NORMAL-PADDING-X: 1rem;
+  --NORMAL-PADDING-Y: 1rem;
+  --PADDING-HALF-TOP: calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X)
+    calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X);
+  --NORMAL-GAP: 1rem;
+  --NORMAL-ICON-SIZE: 1rem;
+  --MEDIUM-ICON-SIZE: 1.5rem;
+  --LARGE-ICON-SIZE: 3.5rem;
+}
