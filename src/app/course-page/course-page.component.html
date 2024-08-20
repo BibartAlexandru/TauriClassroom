@@ -1,0 +1,19 @@
+<div class="courses-page">
+  <div class="course-post" *ngFor="let post of posts; let i = index">
+    <div class="profile-image-container">
+      <a href="#" class="course-anchor">
+        <img
+          src="assets/default_profile.jpg"
+          alt="profile picture"
+          class="course-anchor"
+      /></a>
+    </div>
+    <div class="post-content">
+      <div class="title-date-row">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <h4 class="post-date">{{ getCurrentDate() }}</h4>
+      </div>
+      <p class="post-text">{{ post.text }}</p>
+    </div>
+  </div>
+</div>

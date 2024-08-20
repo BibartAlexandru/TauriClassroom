@@ -13,6 +13,9 @@
     calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X);
   --NORMAL-GAP: 1rem;
   --NORMAL-ICON-SIZE: 1rem;
-  --MEDIUM-ICON-SIZE: 1.5rem;
-  --LARGE-ICON-SIZE: 3.5rem;
+  --MEDIUM-ICON-SIZE: 1.75rem;
+  --LARGE-ICON-SIZE: 3rem;
+  --NORMAL-BORDER-RADIUS: 0.25rem;
+  --COURSES-SIDEBAR-WIDTH: max(15%, 5.5rem);
+  --COURSES-SIDEBAR-MAX-WIDTH: 5rem;
 }

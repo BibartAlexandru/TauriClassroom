@@ -1,10 +1,11 @@
 :host {
   min-height: 100vh;
-  width: max(15%, 6rem);
-  max-width: 6rem;
+  width: var(--COURSES-SIDEBAR-WIDTH);
+  max-width: var(--COURSES-SIDEBAR-MAX-WIDTH);
   /* margin-right: var(--NORMAL-GAP); */
-  /* position: fixed; */
-  /* left: 0; */
+  position: fixed;
+  left: 0;
+  z-index: 1;
 }
 
 .courses-sidebar {
@@ -30,6 +31,7 @@
 
 .courses-sidebar .icons-contianer {
   display: flex;
+  width: 100%;
   flex-flow: column nowrap;
   align-items: center;
   gap: var(--NORMAL-GAP);
@@ -60,14 +62,18 @@ a {
 .courses-sidebar .up-arrow-not-docked {
   position: absolute;
   bottom: 5rem;
-  height: 2rem;
+  height: var(--NORMAL-ICON-SIZE);
   object-fit: contain;
   cursor: pointer;
 }
 
 .courses-sidebar .up-arrow-docked {
-  height: 2rem;
+  height: var(--NORMAL-ICON-SIZE);
   object-fit: contain;
   cursor: pointer;
   transform: translateY(-0.5rem);
+}
+
+.course-name-letter {
+  font-size: calc(1rem + 0.9vw);
 }

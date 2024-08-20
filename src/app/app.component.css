@@ -6,6 +6,6 @@
 .app-container {
   min-height: 100vh;
   width: 100%;
-  background-color: var(--bs-secondary);
+  background-color: #c5c5c5;
   display: flex;
 }
