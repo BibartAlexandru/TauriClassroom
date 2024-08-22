@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { CoursesService } from "../courses.service";
 import { SharedVariablesService } from "../shared-variables.service";
+import { ICourse } from "../models/course.model";
 
 @Component({
   selector: "app-course-details",
@@ -10,11 +11,15 @@ import { SharedVariablesService } from "../shared-variables.service";
   styleUrl: "./course-details.component.css",
 })
 export class CourseDetailsComponent {
-  currentCourse: string = "NOTHING";
+  currentCourse: ICourse | null = null;
   constructor(
     private coursesService: CoursesService,
     private sharedVariableService: SharedVariablesService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.sharedVariableService.getOpenedCourse().subscribe((course) => {
+      this.currentCourse = course;
+    });
+  }
 }

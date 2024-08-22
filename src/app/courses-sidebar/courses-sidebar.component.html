@@ -9,7 +9,7 @@
       [ngStyle]="getRandomColorStyle()"
       (click)="onCourseIconClick(i)"
     >
-      <h2 class="course-name-letter">{{ course.charAt(0) }}</h2></a
+      <h2 class="course-name-letter">{{ course.name.charAt(0) }}</h2></a
     >
   </div>
   <ng-template #selectedCourse>
@@ -20,7 +20,7 @@
         [ngStyle]="getRandomColorStyle()"
         (click)="onCourseIconClick(0)"
       >
-        <h2 class="course-name-letter">{{ courses[0].charAt(0) }}</h2></a
+        <h2 class="course-name-letter">{{ courses[0].name.charAt(0) }}</h2></a
       >
     </div>
   </ng-template>
