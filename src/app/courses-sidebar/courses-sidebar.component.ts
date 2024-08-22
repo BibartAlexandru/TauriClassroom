@@ -1,6 +1,7 @@
 import { CommonModule, NgFor, NgIf } from "@angular/common";
 import { Component } from "@angular/core";
 import { SharedVariablesService } from "../shared-variables.service";
+import { CoursesService } from "../courses.service";
 
 @Component({
   selector: "app-courses-sidebar",
@@ -10,11 +11,14 @@ import { SharedVariablesService } from "../shared-variables.service";
   styleUrl: "./courses-sidebar.component.css",
 })
 export class CoursesSidebarComponent {
-  courses: string[] = ["Maths", "Physics", "English", "Juggling"];
+  courses: string[] = [];
   openedCourseIndex: number = -1;
   isDocked: boolean = false;
 
-  constructor(private sharedVariablesService: SharedVariablesService) {}
+  constructor(
+    private sharedVariablesService: SharedVariablesService,
+    private coursesService: CoursesService
+  ) {}
 
   ngOnInit() {
     this.sharedVariablesService.getOpenedCourseIndex().subscribe((index) => {
@@ -27,6 +31,9 @@ export class CoursesSidebarComponent {
         this.isDocked = isDocked;
         console.log(isDocked);
       });
+    this.coursesService.getCourses().subscribe((courses) => {
+      this.courses = courses;
+    });
   }
 
   onCourseIconClick(index: number) {

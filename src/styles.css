@@ -18,4 +18,7 @@
   --NORMAL-BORDER-RADIUS: 0.25rem;
   --COURSES-SIDEBAR-WIDTH: max(15%, 5.5rem);
   --COURSES-SIDEBAR-MAX-WIDTH: 5rem;
+  --DROP-SHADOW: drop-shadow(0 0.1rem 0.3rem rgba(0, 0, 0, 0.37));
+  --NAV-BAR-HEIGHT: 3.5rem;
+  background-color: #c5c5c5;
 }

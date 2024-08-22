@@ -8,13 +8,14 @@
   display: flex;
   flex-flow: column nowrap;
   gap: var(--NORMAL-GAP);
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .course-post {
   width: 100%;
-  height: 8.5rem;
   display: flex;
+  gap: var(--NORMAL-GAP);
+  margin-right: var(--NORMAL-GAP);
   overflow: hidden;
 }
 
@@ -48,12 +49,15 @@ a {
 }
 
 .post-content {
-  padding: var(--NORMAL-PADDING-X);
-  background-color: var(--bs-light);
   background-color: var(--bs-light);
   border-radius: var(--NORMAL-BORDER-RADIUS);
   padding: var(--NORMAL-PADDING-X);
-  flex-grow: 1;
+  width: calc(
+    100% - min(var(--COURSES-SIDEBAR-WIDTH), var(--COURSES-SIDEBAR-MAX-WIDTH)) -
+      2 * var(--NORMAL-GAP)
+  );
+  /* flex-grow: 1; */
+  /* flex-shrink: 1; */
 }
 
 .courses-page :first-child .post-content {
@@ -79,6 +83,12 @@ a {
 }
 
 .post-date {
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 5rem;
   font-size: calc(1.1rem + 0.3vw);
   font-weight: 400;
   transform: translateY(-0.2rem);
@@ -90,5 +100,9 @@ a {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  width: 16rem;
+  width: 100%;
+}
+
+p {
+  margin: 0;
 }

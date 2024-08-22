@@ -1,0 +1,16 @@
+.course-details {
+  position: fixed;
+  top: 0;
+  height: var(--NAV-BAR-HEIGHT);
+  width: 100%;
+  background-color: var(--bs-light);
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  margin-left: calc(
+    min(var(--COURSES-SIDEBAR-WIDTH), var(--COURSES-SIDEBAR-MAX-WIDTH)) +
+      var(--NORMAL-GAP)
+  );
+}

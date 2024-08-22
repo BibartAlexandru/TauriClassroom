@@ -1,24 +1,26 @@
 :host {
-  min-height: 100vh;
-  width: var(--COURSES-SIDEBAR-WIDTH);
-  max-width: var(--COURSES-SIDEBAR-MAX-WIDTH);
+  height: 100vh;
+  /* width: 100%; */
   /* margin-right: var(--NORMAL-GAP); */
   position: fixed;
   left: 0;
   z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* filter: var(--DROP-SHADOW); */
 }
 
 .courses-sidebar {
-  width: 100%;
+  width: var(--COURSES-SIDEBAR-WIDTH);
+  max-width: var(--COURSES-SIDEBAR-MAX-WIDTH);
   background-color: var(--bs-light);
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  /* padding: var(--NORMAL-PADDING-X); */
 }
 
 .courses-sidebar.not-docked {
-  height: 100vh;
+  min-height: 100vh;
   border-radius: 0;
   gap: var(--NORMAL-GAP);
 }
@@ -26,7 +28,6 @@
 .courses-sidebar.docked {
   height: max-content;
   border-radius: 0 0 2.5rem 0;
-  filter: drop-shadow(0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.37));
 }
 
 .courses-sidebar .icons-contianer {
@@ -59,15 +60,13 @@ a {
   display: block;
 }
 
-.courses-sidebar .up-arrow-not-docked {
-  position: absolute;
-  bottom: 5rem;
+.courses-sidebar .arrow-not-docked {
   height: var(--NORMAL-ICON-SIZE);
   object-fit: contain;
   cursor: pointer;
 }
 
-.courses-sidebar .up-arrow-docked {
+.courses-sidebar .arrow-docked {
   height: var(--NORMAL-ICON-SIZE);
   object-fit: contain;
   cursor: pointer;
@@ -75,5 +74,20 @@ a {
 }
 
 .course-name-letter {
-  font-size: calc(1rem + 0.9vw);
+  font-size: 1.25rem;
+}
+
+.shadow-arrow-container {
+  position: fixed;
+  bottom: var(--NAV-BAR-HEIGHT);
+  height: 3rem;
+  width: min(var(--COURSES-SIDEBAR-WIDTH), var(--COURSES-SIDEBAR-MAX-WIDTH));
+  display: grid;
+  place-content: center;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.445) 0%,
+    rgba(0, 0, 0, 0.267) 20%,
+    rgba(0, 212, 255, 0) 100%
+  );
 }

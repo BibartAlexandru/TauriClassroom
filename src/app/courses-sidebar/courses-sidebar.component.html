@@ -24,10 +24,20 @@
       >
     </div>
   </ng-template>
-  <img
-    [src]="isDocked === false ? 'assets/up_arrow.svg' : 'assets/down_arrow.svg'"
-    [ngClass]="isDocked ? 'up-arrow-docked' : 'up-arrow-not-docked'"
-    alt="dock courses arrow"
-    (click)="dockSelf()"
-  />
+  <div class="shadow-arrow-container" *ngIf="isDocked === false; else docked">
+    <img
+      src="assets/up_arrow.svg"
+      class="arrow-not-docked"
+      alt="expand courses arrow"
+      (click)="dockSelf()"
+    />
+  </div>
+  <ng-template #docked>
+    <img
+      src="assets/down_arrow.svg"
+      class="arrow-docked"
+      alt="dock courses arrow"
+      (click)="dockSelf()"
+    />
+  </ng-template>
 </div>
