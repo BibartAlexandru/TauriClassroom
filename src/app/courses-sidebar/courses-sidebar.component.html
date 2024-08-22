@@ -24,7 +24,10 @@
       >
     </div>
   </ng-template>
-  <div class="shadow-arrow-container" *ngIf="isDocked === false; else docked">
+  <div
+    class="not-docked-arrow-container"
+    *ngIf="isDocked === false; else docked"
+  >
     <img
       src="assets/up_arrow.svg"
       class="arrow-not-docked"

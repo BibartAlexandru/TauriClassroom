@@ -4,7 +4,7 @@
   /* margin-right: var(--NORMAL-GAP); */
   position: fixed;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   overflow-y: auto;
   overflow-x: hidden;
   /* filter: var(--DROP-SHADOW); */
@@ -23,11 +23,13 @@
   min-height: 100vh;
   border-radius: 0;
   gap: var(--NORMAL-GAP);
+  border-right: var(--NORMAL-BORDER);
 }
 
 .courses-sidebar.docked {
   height: max-content;
   border-radius: 0 0 2.5rem 2.5rem;
+  filter: var(--DROP-SHADOW);
 }
 
 .courses-sidebar .icons-contianer {
@@ -40,6 +42,7 @@
 }
 
 .course-anchor {
+  z-index: 1;
   height: var(--LARGE-ICON-SIZE);
   width: var(--LARGE-ICON-SIZE);
   background-color: green;
@@ -77,17 +80,23 @@ a {
   font-size: 1.25rem;
 }
 
-.shadow-arrow-container {
+.not-docked-arrow-container {
+  filter: var(--DROP-SHADOW);
   position: fixed;
-  bottom: var(--NAV-BAR-HEIGHT);
-  height: 3rem;
-  width: min(var(--COURSES-SIDEBAR-WIDTH), var(--COURSES-SIDEBAR-MAX-WIDTH));
+  z-index: 1;
+  bottom: calc(var(--NAV-BAR-HEIGHT) + 0.5rem);
+  height: 2.5rem;
+  width: calc(
+    min(var(--COURSES-SIDEBAR-WIDTH), var(--COURSES-SIDEBAR-MAX-WIDTH)) - 1rem
+  );
   display: grid;
   place-content: center;
-  background: linear-gradient(
+  /* background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.445) 0%,
     rgba(0, 0, 0, 0.267) 20%,
     rgba(0, 212, 255, 0) 100%
-  );
+  ); */
+  background-color: var(--BACKGROUND-PRIMARY);
+  border: var(--NORMAL-BORDER);
 }

@@ -1,11 +1,13 @@
 .course-details {
   position: fixed;
+  z-index: 1;
   top: 0;
   height: var(--NAV-BAR-HEIGHT);
   width: 100%;
   background-color: var(--bs-light);
   display: flex;
   align-items: center;
+  filter: var(--DROP-SHADOW);
 }
 
 h1 {

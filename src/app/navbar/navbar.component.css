@@ -1,5 +1,5 @@
 .header {
-  z-index: 2;
+  z-index: 3;
   padding: var(--PADDING-HALF-TOP);
   position: fixed;
   bottom: 0;

@@ -20,5 +20,9 @@
   --COURSES-SIDEBAR-MAX-WIDTH: 5rem;
   --DROP-SHADOW: drop-shadow(0 0.1rem 0.3rem rgba(0, 0, 0, 0.37));
   --NAV-BAR-HEIGHT: 3.5rem;
-  background-color: #c5c5c5;
+  --NORMAL-BORDER-WIDTH: 0.15rem;
+  --NORMAL-BORDER: var(--NORMAL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
+  --BACKGROUND-PRIMARY: var(--bs-light);
+  --BACKGROUND-SECONDARY: rgb(192, 192, 192);
+  background-color: var(--bs-light);
 }
