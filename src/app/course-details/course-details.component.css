@@ -7,7 +7,25 @@
   background-color: var(--bs-light);
   display: flex;
   align-items: center;
-  filter: var(--DROP-SHADOW);
+  border-bottom: var(--NORMAL-BORDER);
+}
+
+.course-details h1 {
+  flex-grow: 1;
+  /* flex-shrink: 0; */
+  flex-basis: 50%;
+  /* background-color: green; */
+}
+
+.course-details > .options {
+  flex-grow: 1;
+  flex-basis: 50%;
+}
+
+.options {
+  display: flex;
+  gap: var(--SMALL-GAP);
+  padding: var(--NORMAL-PADDING-X);
 }
 
 h1 {
@@ -15,4 +33,12 @@ h1 {
     min(var(--COURSES-SIDEBAR-WIDTH), var(--COURSES-SIDEBAR-MAX-WIDTH)) +
       var(--NORMAL-GAP)
   );
+  margin-bottom: 0;
+  font-size: calc(1.2rem + 0.3vw);
+}
+
+h2 {
+  font-size: calc(0.8rem);
+  margin: 0;
+  transform: translateY(0.17rem);
 }

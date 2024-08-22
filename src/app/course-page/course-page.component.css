@@ -23,8 +23,10 @@
   width: var(--COURSES-SIDEBAR-WIDTH);
   max-width: var(--COURSES-SIDEBAR-MAX-WIDTH);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: var(--NORMAL-PADDING-Y) 0;
+  gap: var(--EXTRA-SMALL-GAP);
 }
 
 .course-anchor {
@@ -49,21 +51,21 @@ a {
 }
 
 .post-content {
-  background-color: var(--bs-light);
+  background-color: var(--BACKGROUND-PRIMARY);
   border-radius: var(--NORMAL-BORDER-RADIUS);
   padding: var(--NORMAL-PADDING-X);
   width: calc(
     100% - min(var(--COURSES-SIDEBAR-WIDTH), var(--COURSES-SIDEBAR-MAX-WIDTH)) -
       2 * var(--NORMAL-GAP)
   );
-  /* flex-grow: 1; */
-  /* flex-shrink: 1; */
+  border: var(--NORMAL-BORDER);
 }
 
-.courses-page :first-child .post-content {
+/*TODO: VEZI DACA-TI PLACE ASTA*/
+/* .courses-page :first-child .post-content {
   border-radius: 2.5rem var(--NORMAL-BORDER-RADIUS) var(--NORMAL-BORDER-RADIUS)
     var(--NORMAL-BORDER-RADIUS);
-}
+} */
 
 .title-date-row {
   display: flex;
@@ -79,7 +81,7 @@ a {
   overflow: hidden;
   width: 8rem;
   font-weight: 500;
-  font-size: calc(1.2rem + 1.5vw);
+  font-size: calc(1.1rem + 0.3vw);
 }
 
 .post-date {
@@ -89,20 +91,89 @@ a {
   -webkit-box-orient: vertical;
   overflow: hidden;
   width: 5rem;
-  font-size: calc(1.1rem + 0.3vw);
+  font-size: calc(1rem + 0.3vw);
   font-weight: 400;
   transform: translateY(-0.2rem);
 }
 
 .post-text {
-  display: -webkit-box;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   width: 100%;
+  font-size: 0.9rem;
 }
 
 p {
   margin: 0;
+}
+
+.author-name {
+  /* white-space: nowrap */
+  font-size: 0.8rem;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 80%;
+  text-align: center;
+}
+
+/* FORM DE ADAUGAT COMENTARII*/
+
+.comment-row-form {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 3rem;
+  /* background-color: violet; */
+  grid-template-columns:
+    15% var(--SMALL-GAP) calc(100% - 30% - 2 * var(--SMALL-GAP))
+    var(--SMALL-GAP) 15%;
+  grid-template-rows: 100%;
+}
+
+.comment-profile-pic-anchor {
+  grid-area: 1/1/2/2;
+  display: grid;
+  place-content: center;
+}
+
+.small-profile-icon {
+  height: var(--MEDIUM-ICON-SIZE);
+  width: var(--MEDIUM-ICON-SIZE);
+  border-radius: 100%;
+}
+
+.comment-input {
+  align-self: center;
+  grid-area: 1/3/2/4;
+  border-radius: 1rem;
+  border: var(--THIN-BORDER);
+  font-size: var(--SMALL-FONT-SIZE);
+  height: 2rem;
+}
+
+.comment-input:focus {
+  outline: 0;
+  padding: 0 var(--NORMAL-PADDING-X);
+}
+
+button {
+  align-self: center;
+  justify-self: center;
+  grid-area: 1/5/2/6;
+  display: grid;
+  place-content: center;
+  height: var(--MEDIUM-ICON-SIZE);
+  width: var(--MEDIUM-ICON-SIZE);
+  display: grid;
+  place-content: center;
+  border: 0;
+  border-radius: 100%;
+  background-color: var(--BACKGROUND-PRIMARY);
+  padding: 0;
+}
+
+button:active {
+  border: var(--THIN-BORDER);
 }

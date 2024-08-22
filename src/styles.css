@@ -7,11 +7,15 @@
 }
 
 :root {
+  --SMALL-FONT-SIZE: 0.8rem;
+  --NORMAL-FONT-SIZE: 1rem;
   --NORMAL-PADDING-X: 1rem;
   --NORMAL-PADDING-Y: 1rem;
   --PADDING-HALF-TOP: calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X)
     calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X);
   --NORMAL-GAP: 1rem;
+  --SMALL-GAP: 0.5rem;
+  --EXTRA-SMALL-GAP: 0.25rem;
   --NORMAL-ICON-SIZE: 1rem;
   --MEDIUM-ICON-SIZE: 1.75rem;
   --LARGE-ICON-SIZE: 3rem;
@@ -20,9 +24,16 @@
   --COURSES-SIDEBAR-MAX-WIDTH: 5rem;
   --DROP-SHADOW: drop-shadow(0 0.1rem 0.3rem rgba(0, 0, 0, 0.37));
   --NAV-BAR-HEIGHT: 3.5rem;
+  --SMALL-BORDER-WIDTH: 0.1rem;
   --NORMAL-BORDER-WIDTH: 0.15rem;
   --NORMAL-BORDER: var(--NORMAL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
+  --THIN-BORDER: var(--SMALL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
   --BACKGROUND-PRIMARY: var(--bs-light);
   --BACKGROUND-SECONDARY: rgb(192, 192, 192);
   background-color: var(--bs-light);
+}
+
+.small-icon {
+  height: 1rem;
+  object-fit: contain;
 }

@@ -1,6 +1,7 @@
 <div class="app-container">
   <app-navbar></app-navbar>
   <app-courses-sidebar></app-courses-sidebar>
-  <app-course-details></app-course-details>
+
+  <app-course-details *ngIf="selectedCourse !== null"></app-course-details>
   <router-outlet></router-outlet>
 </div>

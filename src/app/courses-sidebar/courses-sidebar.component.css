@@ -29,7 +29,8 @@
 .courses-sidebar.docked {
   height: max-content;
   border-radius: 0 0 2.5rem 2.5rem;
-  filter: var(--DROP-SHADOW);
+  border: var(--NORMAL-BORDER);
+  /* filter: var(--DROP-SHADOW); */
 }
 
 .courses-sidebar .icons-contianer {

@@ -7,6 +7,7 @@
           alt="profile picture"
           class="course-anchor"
       /></a>
+      <h4 class="author-name">{{ post.author }}</h4>
     </div>
     <div class="post-content">
       <div class="title-date-row">
@@ -14,6 +15,23 @@
         <h4 class="post-date">{{ getCurrentDate() }}</h4>
       </div>
       <p class="post-text">{{ post.text }}</p>
+      <hr />
+      <form action="" class="comment-row-form">
+        <a href="#" class="comment-profile-pic-anchor">
+          <img
+            src="assets/default_profile.jpg"
+            alt="profile picture"
+            class="small-profile-icon"
+        /></a>
+        <input type="text" class="comment-input" />
+        <button class="submit" type="submit">
+          <img
+            src="assets/send_message.svg"
+            class="small-icon"
+            alt="upload comment button"
+          />
+        </button>
+      </form>
     </div>
   </div>
 </div>
