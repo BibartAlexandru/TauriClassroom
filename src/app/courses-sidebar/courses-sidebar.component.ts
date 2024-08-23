@@ -1,8 +1,8 @@
 import { CommonModule, NgFor, NgIf } from "@angular/common";
 import { Component } from "@angular/core";
-import { SharedVariablesService } from "../shared-variables.service";
-import { CoursesService } from "../courses.service";
 import { ICourse } from "../models/course.model";
+import { SharedVariablesService } from "../services/shared-variables.service";
+import { CoursesService } from "../services/courses.service";
 
 @Component({
   selector: "app-courses-sidebar",

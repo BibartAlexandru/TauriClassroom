@@ -24,12 +24,14 @@
   border-radius: 0;
   gap: var(--NORMAL-GAP);
   border-right: var(--NORMAL-BORDER);
+  padding-bottom: calc(var(--NORMAL-PADDING-X) + 2 * var(--LARGE-ICON-SIZE));
 }
 
 .courses-sidebar.docked {
   height: max-content;
   border-radius: 0 0 2.5rem 2.5rem;
   border: var(--NORMAL-BORDER);
+  border-top: 0;
   /* filter: var(--DROP-SHADOW); */
 }
 
@@ -82,6 +84,7 @@ a {
 }
 
 .not-docked-arrow-container {
+  cursor: pointer;
   filter: var(--DROP-SHADOW);
   position: fixed;
   z-index: 1;

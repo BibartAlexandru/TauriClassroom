@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { ICoursePagePost } from "./models/course-post.model";
 import { Observable, of } from "rxjs";
+import { ICoursePagePost } from "../models/course-post.model";
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +13,17 @@ export class CoursePagePostsService {
       title: "Autism should be illegal",
       text: "This is some post..",
       courseID: 0,
-      comments: [],
+      comments: [
+        {
+          author: "mama ta",
+          text: "Acesta este un comentariu foarte lung pe care l-am scris doar ca sa vedem cum se vor afisa comentarile lungi.",
+        },
+        { author: "tatal tau", text: "CEAU!" },
+        {
+          author: "bunica",
+          text: "BAAA!",
+        },
+      ],
     },
     {
       id: 1,

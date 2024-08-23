@@ -1,9 +1,9 @@
+import { CoursePagePostsService } from "./../services/course-page-posts.service";
 import { CommonModule, NgFor } from "@angular/common";
 import { Component } from "@angular/core";
 import { ICoursePagePost } from "../models/course-post.model";
-import { CoursePagePostsService } from "../course-page-posts.service";
 import { ICourse } from "../models/course.model";
-import { SharedVariablesService } from "../shared-variables.service";
+import { SharedVariablesService } from "../services/shared-variables.service";
 @Component({
   selector: "app-course-page",
   standalone: true,

@@ -16,6 +16,34 @@
       </div>
       <p class="post-text">{{ post.text }}</p>
       <hr />
+      <h2 class="nr-comments" *ngIf="post.comments.length > 1">
+        {{
+          (post.comments.length - 1).toString() +
+            (post.comments.length == 2 ? " more comment" : " more comments")
+        }}
+      </h2>
+      <!--THE COLUMN WITH THE COMMENTS-->
+      <div class="comments-wrapper">
+        <div
+          class="comment-row"
+          *ngFor="let comment of post.comments; let j = index"
+        >
+          <a href="#" class="comment-profile-pic-anchor">
+            <img
+              src="assets/default_profile.jpg"
+              alt="profile picture"
+              class="small-profile-icon"
+          /></a>
+          <div class="comment-contents">
+            <div class="author-name-row">
+              <h3 class="comment-author">{{ comment.author }}</h3>
+              <h4 class="comment-date">2 July</h4>
+            </div>
+            <p class="comment-text">{{ comment.text }}</p>
+          </div>
+        </div>
+      </div>
+      <!--FORM FOR POSTING A COMMENT-->
       <form action="" class="comment-row-form">
         <a href="#" class="comment-profile-pic-anchor">
           <img

@@ -26,13 +26,13 @@
   </ng-template>
   <div
     class="not-docked-arrow-container"
+    (click)="dockSelf()"
     *ngIf="isDocked === false; else docked"
   >
     <img
       src="assets/up_arrow.svg"
       class="arrow-not-docked"
       alt="expand courses arrow"
-      (click)="dockSelf()"
     />
   </div>
   <ng-template #docked>

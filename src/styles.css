@@ -7,10 +7,13 @@
 }
 
 :root {
+  --EXTRA-SMALL-FONT-SIZE: 0.6rem;
   --SMALL-FONT-SIZE: 0.8rem;
   --NORMAL-FONT-SIZE: 1rem;
+  --SMALL-PADDING-X: 0.5rem;
   --NORMAL-PADDING-X: 1rem;
   --NORMAL-PADDING-Y: 1rem;
+  --LARGE-PADDING-Y: 2rem;
   --PADDING-HALF-TOP: calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X)
     calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X);
   --NORMAL-GAP: 1rem;
@@ -25,7 +28,7 @@
   --DROP-SHADOW: drop-shadow(0 0.1rem 0.3rem rgba(0, 0, 0, 0.37));
   --NAV-BAR-HEIGHT: 3.5rem;
   --SMALL-BORDER-WIDTH: 0.1rem;
-  --NORMAL-BORDER-WIDTH: 0.15rem;
+  --NORMAL-BORDER-WIDTH: 0.1rem;
   --NORMAL-BORDER: var(--NORMAL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
   --THIN-BORDER: var(--SMALL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
   --BACKGROUND-PRIMARY: var(--bs-light);
