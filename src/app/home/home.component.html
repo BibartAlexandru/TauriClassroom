@@ -20,5 +20,9 @@
       "
     ></div>
   </div>
-  <app-post-template></app-post-template>
+  <app-post-template
+    [hasComments]="false"
+    [nrInitialCommentsShown]="0"
+    [post]="post_for_testing"
+  ></app-post-template>
 </div>

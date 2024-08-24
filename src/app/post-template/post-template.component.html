@@ -14,10 +14,39 @@
       <h4 class="post-date">{{ post.date }}</h4>
     </div>
     <p class="post-text">{{ post.text }}</p>
-    <hr />
-    <!--THE COLUMN WITH THE COMMENTS-->
-    <div class="comments-wrapper">
-      <div class="comment-row" *ngFor="let comment of comments; let i = index">
+    <hr *ngIf="hasComments" />
+    <h2
+      class="nr-comments"
+      (click)="toggleCommentsExpand()"
+      *ngIf="post.comments !== undefined && post.comments.length > 0"
+    >
+      {{
+        nrShownComments > nrInitialCommentsShown
+          ? "show less"
+          : post.comments.length - nrInitialCommentsShown > 0
+          ? (post.comments.length - nrInitialCommentsShown).toString() +
+            (post.comments.length - nrInitialCommentsShown > 1
+              ? " more comments"
+              : " more comment")
+          : ""
+      }}
+    </h2>
+    <!--THE COMMENTS LIST-->
+    <div
+      class="comments-wrapper"
+      *ngIf="
+        post.comments !== undefined &&
+        nrShownComments > 0 &&
+        post.comments.length > 0
+      "
+    >
+      <div
+        class="comment-row"
+        *ngFor="
+          let comment of post.comments?.slice(0, nrShownComments);
+          let i = index
+        "
+      >
         <a href="#" class="comment-profile-pic-anchor">
           <img
             src="assets/default_profile.jpg"
@@ -34,14 +63,24 @@
       </div>
     </div>
     <!--FORM FOR POSTING A COMMENT-->
-    <form action="" class="comment-row-form">
+    <form
+      action=""
+      class="comment-row-form"
+      (ngSubmit)="onCommentSubmit()"
+      *ngIf="hasComments"
+    >
       <a href="#" class="comment-profile-pic-anchor">
         <img
           src="assets/default_profile.jpg"
           alt="profile picture"
           class="small-profile-icon"
       /></a>
-      <input type="text" class="comment-input" />
+      <input
+        [(ngModel)]="newComment"
+        type="text"
+        class="comment-input"
+        name="comment-input"
+      />
       <button class="submit" type="submit">
         <img
           src="assets/send_message.svg"

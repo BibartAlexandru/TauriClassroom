@@ -14,6 +14,13 @@ export class HomeComponent {
   state: HomeComponentStates = HomeComponentStates.TO_DO;
   HomeComponentStates = HomeComponentStates;
 
+  post_for_testing = {
+    author: "ME",
+    date: new Date(Date.now()).toString(),
+    title: "wassup",
+    text: "EYEEEE",
+  };
+
   onStateClick(newState: HomeComponentStates) {
     this.state = newState;
   }

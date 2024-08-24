@@ -5,10 +5,11 @@ import { ICoursePagePost } from "../models/course-post.model";
 import { ICourse } from "../models/course.model";
 import { SharedVariablesService } from "../services/shared-variables.service";
 import { CourseDetailsComponent } from "../course-details/course-details.component";
+import { PostTemplateComponent } from "../post-template/post-template.component";
 @Component({
   selector: "app-course-page",
   standalone: true,
-  imports: [CommonModule, NgFor, CourseDetailsComponent],
+  imports: [CommonModule, NgFor, CourseDetailsComponent, PostTemplateComponent],
   templateUrl: "./course-page.component.html",
   styleUrl: "./course-page.component.css",
 })

@@ -1,66 +1,10 @@
 <div class="courses-page">
   <app-course-details *ngIf="course !== null"></app-course-details>
   <div class="course-post" *ngFor="let post of posts; let i = index">
-    <div class="profile-image-container">
-      <a href="#" class="course-anchor">
-        <img
-          src="assets/default_profile.jpg"
-          alt="profile picture"
-          class="course-anchor"
-      /></a>
-      <h4 class="author-name">{{ post.author }}</h4>
-    </div>
-    <div class="post-content">
-      <div class="title-date-row">
-        <h1 class="post-title">{{ post.title }}</h1>
-        <h4 class="post-date">{{ getCurrentDate() }}</h4>
-      </div>
-      <p class="post-text">{{ post.text }}</p>
-      <hr />
-      <h2 class="nr-comments" *ngIf="post.comments.length > 1">
-        {{
-          (post.comments.length - 1).toString() +
-            (post.comments.length == 2 ? " more comment" : " more comments")
-        }}
-      </h2>
-      <!--THE COLUMN WITH THE COMMENTS-->
-      <div class="comments-wrapper" *ngIf="post.comments.length >= 1">
-        <div
-          class="comment-row"
-          *ngFor="let comment of post.comments; let j = index"
-        >
-          <a href="#" class="comment-profile-pic-anchor">
-            <img
-              src="assets/default_profile.jpg"
-              alt="profile picture"
-              class="small-profile-icon"
-          /></a>
-          <div class="comment-contents">
-            <div class="author-name-row">
-              <h3 class="comment-author">{{ comment.author }}</h3>
-              <h4 class="comment-date">2 July</h4>
-            </div>
-            <p class="comment-text">{{ comment.text }}</p>
-          </div>
-        </div>
-      </div>
-      <!--FORM FOR POSTING A COMMENT-->
-      <form action="" class="comment-row-form">
-        <a href="#" class="comment-profile-pic-anchor">
-          <img
-            src="assets/default_profile.jpg"
-            alt="profile picture"
-            class="small-profile-icon"
-        /></a>
-        <input type="text" class="comment-input" />
-        <button class="submit" type="submit">
-          <img
-            src="assets/send_message.svg"
-            class="small-icon"
-            alt="upload comment button"
-          />
-        </button>
-      </form>
-    </div>
+    <app-post-template
+      [post]="post"
+      [hasComments]="true"
+      [nrInitialCommentsShown]="1"
+    ></app-post-template>
   </div>
 </div>

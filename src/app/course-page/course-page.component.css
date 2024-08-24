@@ -9,7 +9,10 @@
   gap: var(--NORMAL-GAP);
   /* overflow-y: scroll; */
   padding-bottom: calc(var(--NAV-BAR-HEIGHT) + var(--LARGE-PADDING-Y));
-  padding-top: calc(var(--NAV-BAR-HEIGHT) + var(--LARGE-PADDING-Y));
+  /* SCAD NORMAL GAP PENTRU CA ESTE ELEMENTU course-details PRIMUL IN FLEX SI E POS:FIXED, DAR LASA UN GAP*/
+  padding-top: calc(
+    var(--NAV-BAR-HEIGHT) + var(--LARGE-PADDING-Y) - 2 * var(--NORMAL-GAP)
+  );
 }
 
 .course-post {

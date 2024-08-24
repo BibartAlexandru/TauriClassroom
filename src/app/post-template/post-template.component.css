@@ -50,6 +50,7 @@ a {
       2 * var(--NORMAL-GAP)
   );
   border: var(--NORMAL-BORDER);
+  height: min-content;
 }
 
 /*TODO: VEZI DACA-TI PLACE ASTA*/
@@ -121,6 +122,7 @@ p {
     15% var(--SMALL-GAP) calc(100% - 30% - 2 * var(--SMALL-GAP))
     var(--SMALL-GAP) 15%;
   grid-template-rows: 100%;
+  /* margin-top: var(--SMALL-PADDING-Y); */
 }
 
 .comment-profile-pic-anchor {
@@ -179,13 +181,14 @@ button:active {
   font-size: var(--SMALL-FONT-SIZE);
   margin: 0;
   cursor: pointer;
+  margin-bottom: var(--NORMAL-PADDING-Y);
 }
 
 .comments-wrapper {
   display: flex;
   flex-flow: column nowrap;
   gap: var(--SMALL-GAP);
-  padding: var(--SMALL-PADDING-X) 0;
+  padding-bottom: var(--SMALL-PADDING-Y);
 }
 
 .comment-row {
