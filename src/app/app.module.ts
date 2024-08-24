@@ -10,6 +10,8 @@ import { CommonModule } from "@angular/common";
 import { AppComponent } from "./app.component";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule } from "@angular/router";
+import { routes } from "./app.routes";
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     AppComponent,
     BrowserAnimationsModule,
     FormsModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [
     {

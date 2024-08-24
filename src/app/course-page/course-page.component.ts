@@ -4,10 +4,11 @@ import { Component } from "@angular/core";
 import { ICoursePagePost } from "../models/course-post.model";
 import { ICourse } from "../models/course.model";
 import { SharedVariablesService } from "../services/shared-variables.service";
+import { CourseDetailsComponent } from "../course-details/course-details.component";
 @Component({
   selector: "app-course-page",
   standalone: true,
-  imports: [CommonModule, NgFor],
+  imports: [CommonModule, NgFor, CourseDetailsComponent],
   templateUrl: "./course-page.component.html",
   styleUrl: "./course-page.component.css",
 })
@@ -29,6 +30,7 @@ export class CoursePageComponent {
     this.sharedVariablesService.getOpenedCourse().subscribe((course) => {
       if (course == null) return;
       console.log(course);
+      this.course = course;
       this.coursePagePostsService
         .getPostsFromCourse(course.id)
         .subscribe((posts) => {

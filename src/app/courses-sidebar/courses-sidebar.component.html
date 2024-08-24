@@ -3,7 +3,7 @@
 >
   <div *ngIf="!isDocked; else selectedCourse" class="icons-contianer">
     <a
-      href="#"
+      [routerLink]="['/course']"
       class="course-anchor"
       *ngFor="let course of courses; let i = index"
       [ngStyle]="getRandomColorStyle()"
@@ -15,7 +15,7 @@
   <ng-template #selectedCourse>
     <div class="icons-contianer">
       <a
-        href="#"
+        [routerLink]="['/course']"
         class="course-anchor"
         [ngStyle]="getRandomColorStyle()"
         (click)="onCourseIconClick(0)"

@@ -1,0 +1,24 @@
+<div class="home">
+  <div class="header">
+    <div
+      class="states-container"
+      (click)="onStateClick(HomeComponentStates.TO_DO)"
+    >
+      <h1>To do</h1>
+    </div>
+    <div
+      class="states-container"
+      (click)="onStateClick(HomeComponentStates.NEWS)"
+    >
+      <h1>News</h1>
+    </div>
+    <div
+      [ngClass]="
+        state === HomeComponentStates.TO_DO
+          ? 'underscore-left'
+          : 'underscore-right'
+      "
+    ></div>
+  </div>
+  <app-post-template></app-post-template>
+</div>

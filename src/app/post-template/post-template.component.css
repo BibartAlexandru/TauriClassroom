@@ -1,16 +1,6 @@
 :host {
   width: 100%;
 }
-.courses-page {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: var(--NORMAL-GAP);
-  /* overflow-y: scroll; */
-  padding-bottom: calc(var(--NAV-BAR-HEIGHT) + var(--LARGE-PADDING-Y));
-  padding-top: calc(var(--NAV-BAR-HEIGHT) + var(--LARGE-PADDING-Y));
-}
 
 .course-post {
   width: 100%;
@@ -64,9 +54,9 @@ a {
 
 /*TODO: VEZI DACA-TI PLACE ASTA*/
 /* .courses-page :first-child .post-content {
-  border-radius: 2.5rem var(--NORMAL-BORDER-RADIUS) var(--NORMAL-BORDER-RADIUS)
-    var(--NORMAL-BORDER-RADIUS);
-} */
+    border-radius: 2.5rem var(--NORMAL-BORDER-RADIUS) var(--NORMAL-BORDER-RADIUS)
+      var(--NORMAL-BORDER-RADIUS);
+  } */
 
 .title-date-row {
   display: flex;

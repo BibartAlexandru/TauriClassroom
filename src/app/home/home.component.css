@@ -1,0 +1,80 @@
+:host {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  --SIDEBAR-WIDTH: min(
+    var(--COURSES-SIDEBAR-WIDTH),
+    var(--COURSES-SIDEBAR-MAX-WIDTH)
+  );
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.header {
+  height: var(--NAV-BAR-HEIGHT);
+  width: calc(
+    100% - min(var(--COURSES-SIDEBAR-WIDTH), var(--COURSES-SIDEBAR-MAX-WIDTH))
+  );
+  margin-left: min(
+    var(--COURSES-SIDEBAR-WIDTH),
+    var(--COURSES-SIDEBAR-MAX-WIDTH)
+  );
+  background-color: var(--BACKGROUND-PRIMARY);
+  border-bottom: var(--NORMAL-BORDER);
+  padding: var(--NORMAL-PADDING-Y) var(--NORMAL-PADDING-X);
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  position: relative;
+}
+
+.header > * {
+  text-align: center;
+}
+
+.header > :first-child {
+  grid-area: 1/1/2/2;
+}
+
+.header > :last-child {
+  grid-area: 1/2/2/3;
+}
+
+.states-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.underscore-left,
+.underscore-right {
+  position: fixed;
+  top: calc(3 * (var(--NAV-BAR-HEIGHT)) / 4);
+  width: calc(2rem + 0.3vw);
+  height: 0.1rem;
+  background-color: black;
+  border-radius: 10rem;
+}
+
+.underscore-left {
+  left: calc(
+    var(--SIDEBAR-WIDTH) +
+      (100% - var(--SIDEBAR-WIDTH) - 2 * var(--NORMAL-PADDING-X)) / 4
+  );
+  transition: left;
+  transition-duration: 500ms;
+}
+
+.underscore-right {
+  left: calc(
+    var(--SIDEBAR-WIDTH) + 3 *
+      (100% - var(--SIDEBAR-WIDTH) - 2 * var(--NORMAL-PADDING-X)) / 4
+  );
+  transition: left;
+  transition-duration: 500ms;
+}

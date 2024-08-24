@@ -1,4 +1,5 @@
 <div class="courses-page">
+  <app-course-details *ngIf="course !== null"></app-course-details>
   <div class="course-post" *ngFor="let post of posts; let i = index">
     <div class="profile-image-container">
       <a href="#" class="course-anchor">
@@ -23,7 +24,7 @@
         }}
       </h2>
       <!--THE COLUMN WITH THE COMMENTS-->
-      <div class="comments-wrapper">
+      <div class="comments-wrapper" *ngIf="post.comments.length >= 1">
         <div
           class="comment-row"
           *ngFor="let comment of post.comments; let j = index"

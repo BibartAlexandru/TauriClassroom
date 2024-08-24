@@ -33,7 +33,11 @@
   --THIN-BORDER: var(--SMALL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
   --BACKGROUND-PRIMARY: var(--bs-light);
   --BACKGROUND-SECONDARY: rgb(192, 192, 192);
-  background-color: var(--bs-light);
+  background-color: var(--BACKGROUND-PRIMARY);
+}
+
+h1 {
+  font-size: calc(1.2rem + 0.3vw);
 }
 
 .small-icon {

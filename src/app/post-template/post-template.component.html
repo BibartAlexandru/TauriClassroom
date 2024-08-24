@@ -1,0 +1,54 @@
+<div class="course-post">
+  <div class="profile-image-container">
+    <a href="#" class="course-anchor">
+      <img
+        src="assets/default_profile.jpg"
+        alt="profile picture"
+        class="course-anchor"
+    /></a>
+    <h4 class="author-name">{{ post.author }}</h4>
+  </div>
+  <div class="post-content">
+    <div class="title-date-row">
+      <h1 class="post-title">{{ post.title }}</h1>
+      <h4 class="post-date">{{ post.date }}</h4>
+    </div>
+    <p class="post-text">{{ post.text }}</p>
+    <hr />
+    <!--THE COLUMN WITH THE COMMENTS-->
+    <div class="comments-wrapper">
+      <div class="comment-row" *ngFor="let comment of comments; let i = index">
+        <a href="#" class="comment-profile-pic-anchor">
+          <img
+            src="assets/default_profile.jpg"
+            alt="profile picture"
+            class="small-profile-icon"
+        /></a>
+        <div class="comment-contents">
+          <div class="author-name-row">
+            <h3 class="comment-author">{{ comment.author }}</h3>
+            <h4 class="comment-date">2 July</h4>
+          </div>
+          <p class="comment-text">{{ comment.text }}</p>
+        </div>
+      </div>
+    </div>
+    <!--FORM FOR POSTING A COMMENT-->
+    <form action="" class="comment-row-form">
+      <a href="#" class="comment-profile-pic-anchor">
+        <img
+          src="assets/default_profile.jpg"
+          alt="profile picture"
+          class="small-profile-icon"
+      /></a>
+      <input type="text" class="comment-input" />
+      <button class="submit" type="submit">
+        <img
+          src="assets/send_message.svg"
+          class="small-icon"
+          alt="upload comment button"
+        />
+      </button>
+    </form>
+  </div>
+</div>
