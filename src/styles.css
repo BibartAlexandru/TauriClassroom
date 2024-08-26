@@ -41,7 +41,16 @@ h1 {
   font-size: calc(1.2rem + 0.3vw);
 }
 
-.small-icon {
-  height: 1rem;
+.normal-icon {
+  height: var(--NORMAL-ICON-SIZE);
   object-fit: contain;
+}
+
+.medium-icon {
+  height: var(--MEDIUM-ICON-SIZE);
+  object-fit: contain;
+}
+
+.round-border {
+  border-radius: 50%;
 }

@@ -1,12 +1,29 @@
 <div class="course-post">
-  <div class="profile-image-container">
-    <a href="#" class="course-anchor">
+  <div
+    [ngClass]="
+      showTypeIcon === true ? 'images-container-grid' : 'images-container-row'
+    "
+  >
+    <a href="#">
       <img
-        src="assets/default_profile.jpg"
+        src="{{ leftPictureSrc }}"
         alt="profile picture"
-        class="course-anchor"
+        [ngClass]="
+          showTypeIcon === false ? 'course-anchor' : 'medium-icon round-border'
+        "
     /></a>
-    <h4 class="author-name">{{ post.author }}</h4>
+    <img
+      *ngIf="showTypeIcon === true"
+      [src]="getTypeIconSrc()"
+      alt="right picture"
+      class="medium-icon"
+    />
+    <h4 class="author-name" *ngIf="showTypeIcon === false; else courseName">
+      {{ post.author }}
+    </h4>
+    <ng-template #courseName>
+      <h4 class="course-name">{{ post.course?.name }}</h4>
+    </ng-template>
   </div>
   <div class="post-content">
     <div class="title-date-row">
@@ -56,7 +73,7 @@
         <div class="comment-contents">
           <div class="author-name-row">
             <h3 class="comment-author">{{ comment.author }}</h3>
-            <h4 class="comment-date">2 July</h4>
+            <h4 class="comment-date">{{ comment.date }}</h4>
           </div>
           <p class="comment-text">{{ comment.text }}</p>
         </div>
@@ -84,7 +101,7 @@
       <button class="submit" type="submit">
         <img
           src="assets/send_message.svg"
-          class="small-icon"
+          class="normal-icon"
           alt="upload comment button"
         />
       </button>

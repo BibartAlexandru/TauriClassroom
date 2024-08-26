@@ -10,14 +10,31 @@
   overflow: hidden;
 }
 
-.profile-image-container {
+.images-container-row {
   width: var(--COURSES-SIDEBAR-WIDTH);
   max-width: var(--COURSES-SIDEBAR-MAX-WIDTH);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--NORMAL-PADDING-Y) 0;
-  gap: var(--EXTRA-SMALL-GAP);
+  flex-direction: row;
+  /* align-items: center; */
+  padding: var(--NORMAL-PADDING-Y);
+  gap: var(--SMALL-GAP);
+}
+
+.images-container-grid {
+  width: var(--COURSES-SIDEBAR-WIDTH);
+  max-width: var(--COURSES-SIDEBAR-MAX-WIDTH);
+  display: grid;
+  padding: 0 0 0 var(--NORMAL-PADDING-X);
+  place-content: center;
+  column-gap: var(--SMALL-GAP);
+  row-gap: var(--SMALL-GAP);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 25% 25%;
+}
+
+.images-container-grid > * {
+  align-self: center;
+  justify-self: center;
 }
 
 .course-anchor {
@@ -108,6 +125,16 @@ p {
   overflow: hidden;
   width: 80%;
   text-align: center;
+}
+
+.course-name {
+  grid-area: 2/1/3/4;
+  font-size: 0.8rem;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* FORM DE ADAUGAT COMENTARII*/

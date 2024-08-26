@@ -20,9 +20,14 @@
       "
     ></div>
   </div>
-  <app-post-template
-    [hasComments]="false"
-    [nrInitialCommentsShown]="0"
-    [post]="post_for_testing"
-  ></app-post-template>
+  <div class="container">
+    <app-post-template
+      *ngFor="let post of posts"
+      [hasComments]="false"
+      [nrInitialCommentsShown]="0"
+      [post]="post"
+      [leftPictureSrc]="'assets/default_profile.jpg'"
+      [showTypeIcon]="state === HomeComponentStates.TO_DO ? true : false"
+    ></app-post-template>
+  </div>
 </div>

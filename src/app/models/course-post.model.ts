@@ -1,4 +1,6 @@
+import { PostType } from "../enums/post-types";
 import { IComment } from "./comment.model";
+import { ICourse } from "./course.model";
 
 export interface ICoursePagePost {
   author: string;
@@ -6,6 +8,7 @@ export interface ICoursePagePost {
   text: string;
   date: string;
   id: number;
-  courseID: number;
+  course: ICourse;
   comments: IComment[];
+  type: PostType;
 }

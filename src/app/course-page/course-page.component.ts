@@ -1,3 +1,4 @@
+import { PostType } from "./../enums/post-types";
 import { CoursePagePostsService } from "./../services/course-page-posts.service";
 import { CommonModule, NgFor } from "@angular/common";
 import { Component } from "@angular/core";
@@ -16,6 +17,7 @@ import { PostTemplateComponent } from "../post-template/post-template.component"
 export class CoursePageComponent {
   posts: ICoursePagePost[] = [];
   course: ICourse | null = null;
+  PostType = PostType;
 
   constructor(
     private coursePagePostsService: CoursePagePostsService,
