@@ -1,14 +1,17 @@
 <nav class="header">
-  <a href="" class="navbar-icon-anchor"
+  <a [routerLink]="['/']" class="navbar-icon-anchor"
     ><img src="assets/home.svg" alt="home icon" class="navbar-image"
   /></a>
-  <a href="" class="navbar-icon-anchor"
-    ><img src="assets/notification.svg" alt="home icon" class="navbar-image"
+  <a [routerLink]="['/notifications']" class="navbar-icon-anchor"
+    ><img
+      src="assets/notification.svg"
+      alt="notifications icon"
+      class="navbar-image"
   /></a>
-  <a href="" class="navbar-icon-anchor"
+  <a [routerLink]="['search']" class="navbar-icon-anchor"
     ><img src="assets/search.svg" alt="home icon" class="navbar-image"
   /></a>
-  <a href="" class="navbar-icon-anchor"
+  <a [routerLink]="['profile']" class="navbar-icon-anchor"
     ><img src="assets/default_profile.jpg" alt="home icon" class="navbar-image"
   /></a>
 </nav>

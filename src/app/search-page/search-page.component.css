@@ -1,0 +1,28 @@
+:host {
+  width: 100%;
+}
+
+.search-page {
+  padding: var(--LARGE-PADDING-Y) var(--LARGE-PADDING-X);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.gif {
+  width: 100%;
+  height: fit-content;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--NORMAL-GAP);
+  margin-top: auto;
+  margin-bottom: calc(60% + var(--NAV-BAR-HEIGHT));
+}

@@ -1,14 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { ICoursePagePost } from "../models/course-post.model";
-import { PostType } from "../enums/post-types";
-import { ICourse } from "../models/course.model";
-import DateFormatter from "../date-formatting";
+import DateFormatter from "../../date-formatting";
+import { PostType } from "../../enums/post-types";
+import { ICoursePagePost } from "../../models/course-post.model";
+import { ICourse } from "../../models/course.model";
+import { PostTemplate } from "../../models/post.template";
 
 @Injectable({
   providedIn: "root",
 })
-export class CoursePagePostsService {
+export class PostsService {
+  currentDate = new Date(Date.now());
   courses: ICourse[] = [
     { name: "Maths", id: 0 },
     { name: "Physics", id: 1 },
@@ -26,7 +28,7 @@ export class CoursePagePostsService {
     {
       id: 0,
       author: "Joe Mama",
-      title: "Autism should be illegal",
+      title: "Biology should be illegal",
       text: "This is some post..",
       course: this.courses[0],
       date: DateFormatter.formatDate(new Date()),
@@ -66,6 +68,50 @@ export class CoursePagePostsService {
       comments: [],
     },
   ];
+  post_for_testing: PostTemplate = {
+    author: "ME",
+    date: DateFormatter.formatDate(this.currentDate),
+    title: "wassup",
+    text: "EYEEEE",
+    type: PostType.HOMEWORK,
+    course: {
+      name: "Tras cu pusca",
+      id: 99,
+    },
+  };
+
+  post_for_testing2: PostTemplate = {
+    author: "Joe",
+    date: DateFormatter.formatDate(this.currentDate),
+    title: "TEST FULGER!",
+    text: "Aveti 10 minute sa-mi citati toate melodiile lui Bvcovia! Cine copiaza primeste 10!",
+    type: PostType.TEST,
+    course: {
+      name: "Mate",
+      id: 99,
+    },
+  };
+
+  newsPost: PostTemplate = {
+    author: "ADMIN",
+    date: DateFormatter.formatDate(this.currentDate),
+    title: "Artist nou",
+    text: "Bvcovia s-a lansat in industrie!",
+    type: PostType.NEWS,
+  };
+
+  materialPost: PostTemplate = {
+    author: "ADMIN",
+    date: DateFormatter.formatDate(this.currentDate),
+    title: "Ecuatii de gradul 3",
+    text: "V-am atasat lectia. Saptamana viitoare dati test.",
+    type: PostType.MATERIAL,
+    course: {
+      name: "Maths",
+      id: 0,
+    },
+    comments: [],
+  };
   constructor() {}
 
   getPosts(): Observable<ICoursePagePost[]> {
@@ -76,6 +122,23 @@ export class CoursePagePostsService {
     const postsFromCourse = this.posts.filter(
       (post) => post.course.id == courseID
     );
-    return of(postsFromCourse);
+    return of([...postsFromCourse, this.materialPost as ICoursePagePost]);
+  }
+
+  getToDoPosts(): Observable<PostTemplate[]> {
+    return of([this.post_for_testing, this.post_for_testing2]);
+  }
+
+  getNewsPosts(): Observable<PostTemplate[]> {
+    return of([this.newsPost]);
+  }
+
+  getUnseenPosts(): Observable<PostTemplate[]> {
+    return of([
+      this.newsPost,
+      this.post_for_testing,
+      this.post_for_testing2,
+      this.materialPost,
+    ]);
   }
 }

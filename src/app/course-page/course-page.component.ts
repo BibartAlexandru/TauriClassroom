@@ -1,12 +1,12 @@
 import { PostType } from "./../enums/post-types";
-import { CoursePagePostsService } from "./../services/course-page-posts.service";
 import { CommonModule, NgFor } from "@angular/common";
 import { Component } from "@angular/core";
 import { ICoursePagePost } from "../models/course-post.model";
 import { ICourse } from "../models/course.model";
-import { SharedVariablesService } from "../services/shared-variables.service";
+import { SharedVariablesService } from "../services/shared-variables/shared-variables.service";
 import { CourseDetailsComponent } from "../course-details/course-details.component";
 import { PostTemplateComponent } from "../post-template/post-template.component";
+import { PostsService } from "../services/posts/posts.service";
 @Component({
   selector: "app-course-page",
   standalone: true,
@@ -20,7 +20,7 @@ export class CoursePageComponent {
   PostType = PostType;
 
   constructor(
-    private coursePagePostsService: CoursePagePostsService,
+    private postsService: PostsService,
     private sharedVariablesService: SharedVariablesService
   ) {}
 
@@ -32,13 +32,11 @@ export class CoursePageComponent {
   ngOnInit() {
     this.sharedVariablesService.getOpenedCourse().subscribe((course) => {
       if (course == null) return;
-      console.log(course);
+      //console.log(course);
       this.course = course;
-      this.coursePagePostsService
-        .getPostsFromCourse(course.id)
-        .subscribe((posts) => {
-          this.posts = posts;
-        });
+      this.postsService.getPostsFromCourse(course.id).subscribe((posts) => {
+        this.posts = posts;
+      });
     });
   }
 }

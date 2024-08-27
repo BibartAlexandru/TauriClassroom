@@ -6,6 +6,7 @@ import { HomeComponentStates } from "./home.component.state.model";
 import { CommonModule, NgIf } from "@angular/common";
 import { PostTemplateComponent } from "../post-template/post-template.component";
 import DateFormatter from "../date-formatting";
+import { PostsService } from "../services/posts/posts.service";
 
 @Component({
   selector: "app-home",
@@ -19,26 +20,8 @@ export class HomeComponent {
   HomeComponentStates = HomeComponentStates;
   PostType = PostType;
   posts: PostTemplate[] = [];
-  currentDate = new Date(Date.now());
-  post_for_testing: PostTemplate = {
-    author: "ME",
-    date: DateFormatter.formatDate(this.currentDate),
-    title: "wassup",
-    text: "EYEEEE",
-    type: PostType.HOMEWORK,
-    course: {
-      name: "Tras cu pusca",
-      id: 99,
-    },
-  };
 
-  news: PostTemplate = {
-    author: "ADMIN",
-    date: DateFormatter.formatDate(this.currentDate),
-    title: "Artist nou",
-    text: "Bvcovia s-a lansat in industrie!",
-    type: PostType.NEWS,
-  };
+  constructor(private postService: PostsService) {}
 
   onStateClick(newState: HomeComponentStates) {
     this.state = newState;
@@ -53,11 +36,15 @@ export class HomeComponent {
   }
 
   loadToDos() {
-    this.posts = [this.post_for_testing, this.post_for_testing];
+    this.postService.getToDoPosts().subscribe((posts) => {
+      this.posts = posts;
+    });
   }
 
   loadNews() {
-    this.posts = [this.news];
+    this.postService.getNewsPosts().subscribe((posts) => {
+      this.posts = posts;
+    });
   }
 
   ngOnInit() {

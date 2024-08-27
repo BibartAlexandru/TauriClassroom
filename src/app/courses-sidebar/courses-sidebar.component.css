@@ -28,10 +28,13 @@
 }
 
 .courses-sidebar.docked {
-  height: max-content;
+  height: calc(var(--NAV-BAR-HEIGHT) + 2 * (var(--NORMAL-PADDING-Y)));
   border-radius: 0 0 2.5rem 2.5rem;
   border: var(--NORMAL-BORDER);
   border-top: 0;
+  display: flex;
+  cursor: pointer;
+  /* align-items: start; */
   /* filter: var(--DROP-SHADOW); */
 }
 
@@ -41,7 +44,7 @@
   flex-flow: column nowrap;
   align-items: center;
   gap: var(--NORMAL-GAP);
-  padding: var(--NORMAL-PADDING-X);
+  padding: var(--NORMAL-PADDING-Y) var(--NORMAL-PADDING-X);
 }
 
 .course-anchor {
@@ -76,7 +79,7 @@ a {
   height: var(--NORMAL-ICON-SIZE);
   object-fit: contain;
   cursor: pointer;
-  transform: translateY(-0.5rem);
+  transform: translateY(-0.75rem);
 }
 
 .course-name-letter {

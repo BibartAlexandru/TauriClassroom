@@ -1,4 +1,4 @@
-import { ICourse } from "../models/course.model";
+import { ICourse } from "../../models/course.model";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 

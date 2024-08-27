@@ -1,8 +1,8 @@
 import { CommonModule, NgFor, NgIf } from "@angular/common";
 import { Component } from "@angular/core";
 import { ICourse } from "../models/course.model";
-import { SharedVariablesService } from "../services/shared-variables.service";
-import { CoursesService } from "../services/courses.service";
+import { SharedVariablesService } from "../services/shared-variables/shared-variables.service";
+import { CoursesService } from "../services/courses/courses.service";
 import { Router, RouterLink } from "@angular/router";
 
 @Component({
@@ -15,7 +15,7 @@ import { Router, RouterLink } from "@angular/router";
 export class CoursesSidebarComponent {
   courses: ICourse[] = [];
   openedCourse: ICourse | null = null;
-  isDocked: boolean = false;
+  isDocked: boolean = true;
 
   constructor(
     private sharedVariablesService: SharedVariablesService,
@@ -31,7 +31,7 @@ export class CoursesSidebarComponent {
       .getIsCoursesSidebarDocked()
       .subscribe((isDocked) => {
         this.isDocked = isDocked;
-        console.log(isDocked);
+        //console.log(isDocked);
       });
     this.coursesService.getCourses().subscribe((courses) => {
       this.courses = courses;
@@ -56,7 +56,8 @@ export class CoursesSidebarComponent {
     };
   }
 
-  dockSelf() {
+  dockSelf(event: Event) {
+    event.stopPropagation();
     this.sharedVariablesService.setIsCoursesSidebarDocked(!this.isDocked);
   }
 }

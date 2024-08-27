@@ -15,6 +15,7 @@
   --NORMAL-PADDING-X: 1rem;
   --NORMAL-PADDING-Y: 1rem;
   --LARGE-PADDING-Y: 2rem;
+  --LARGE-PADDING-X: 2rem;
   --PADDING-HALF-TOP: calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X)
     calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X);
   --NORMAL-GAP: 1rem;

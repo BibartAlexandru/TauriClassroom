@@ -1,0 +1,26 @@
+<div class="notifications">
+  <div class="column-container" *ngIf="posts.length > 0; else noNotifications">
+    <app-post-template
+      *ngFor="let post of posts"
+      [hasComments]="false"
+      [nrInitialCommentsShown]="0"
+      [post]="post"
+      [leftPictureSrc]="'assets/default_profile.jpg'"
+      [showTypeIcon]="post.type != PostType.NEWS"
+    ></app-post-template>
+  </div>
+  <ng-template #noNotifications>
+    <div class="info">
+      <h1>No notifications!</h1>
+      <iframe
+        src="https://giphy.com/embed/ybatuYwda5P777n8bb"
+        width="480"
+        height="269"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen
+        ngClass="gif"
+      ></iframe>
+    </div>
+  </ng-template>
+</div>

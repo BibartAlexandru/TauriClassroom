@@ -78,7 +78,7 @@
   transition-duration: 500ms;
 }
 
-.container {
+.container-div {
   display: flex;
   flex-direction: column;
   gap: var(--NORMAL-GAP);

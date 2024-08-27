@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ICourse } from "../models/course.model";
-import { CoursesService } from "../services/courses.service";
-import { SharedVariablesService } from "../services/shared-variables.service";
+import { CoursesService } from "../services/courses/courses.service";
+import { SharedVariablesService } from "../services/shared-variables/shared-variables.service";
 
 @Component({
   selector: "app-course-details",

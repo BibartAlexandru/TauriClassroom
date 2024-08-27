@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { SharedVariablesService } from './shared-variables.service';
+import { SharedVariablesService } from "./shared-variables.service";
 
-describe('SharedVariablesService', () => {
+describe("SharedVariablesService", () => {
   let service: SharedVariablesService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('SharedVariablesService', () => {
     service = TestBed.inject(SharedVariablesService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

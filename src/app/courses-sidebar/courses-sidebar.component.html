@@ -1,5 +1,6 @@
 <div
   [ngClass]="isDocked ? 'courses-sidebar docked' : 'courses-sidebar not-docked'"
+  (click)="isDocked ? dockSelf($event) : null"
 >
   <div *ngIf="!isDocked; else selectedCourse" class="icons-contianer">
     <a
@@ -26,7 +27,7 @@
   </ng-template>
   <div
     class="not-docked-arrow-container"
-    (click)="dockSelf()"
+    (click)="dockSelf($event)"
     *ngIf="isDocked === false; else docked"
   >
     <img
@@ -40,7 +41,7 @@
       src="assets/down_arrow.svg"
       class="arrow-docked"
       alt="dock courses arrow"
-      (click)="dockSelf()"
+      (click)="dockSelf($event)"
     />
   </ng-template>
 </div>

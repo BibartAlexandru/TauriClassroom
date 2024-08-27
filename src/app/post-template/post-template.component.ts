@@ -66,10 +66,6 @@ export class PostTemplateComponent {
       throw new Error(
         `Inside the post-template component, hasComments is set to true, but the post object does not have a property named 'comments'.`
       );
-    else if (this.hasComments === false && this.post.comments !== undefined)
-      throw new Error(
-        `Inside the post-template component, hasComments is set to false, but the post object does have a property named 'comments'.`
-      );
     if (
       (this.post.type === PostType.HOMEWORK ||
         this.post.type === PostType.INFO ||
@@ -89,12 +85,12 @@ export class PostTemplateComponent {
     if (this.nrShownComments === this.nrInitialCommentsShown)
       this.nrShownComments = this.post.comments?.length;
     else this.nrShownComments = this.nrInitialCommentsShown;
-    console.log(this.nrShownComments);
+    //console.log(this.nrShownComments);
   }
 
   onCommentSubmit() {
     this.submittedComment.emit(this.newComment);
-    console.log(this.newComment);
+    //console.log(this.newComment);
     this.newComment = "";
   }
 

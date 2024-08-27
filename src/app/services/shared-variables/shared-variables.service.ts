@@ -1,4 +1,4 @@
-import { ICourse } from "../models/course.model";
+import { ICourse } from "../../models/course.model";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 
@@ -9,7 +9,7 @@ export class SharedVariablesService {
   openedCourse: BehaviorSubject<ICourse | null> =
     new BehaviorSubject<ICourse | null>(null);
   isCoursesSidebarDocked: BehaviorSubject<boolean> =
-    new BehaviorSubject<boolean>(false);
+    new BehaviorSubject<boolean>(true);
   constructor() {}
 
   getOpenedCourse(): Observable<ICourse | null> {
