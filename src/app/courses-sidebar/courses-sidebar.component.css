@@ -107,3 +107,16 @@ a {
   background-color: var(--BACKGROUND-PRIMARY);
   border: var(--NORMAL-BORDER);
 }
+
+.bordered ::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  width: calc(100% + var(--SMALL-GAP));
+  height: calc(100% + var(--SMALL-GAP));
+  border-radius: 50%;
+  border: solid black 2px;
+  /* border-style: outset; */
+}

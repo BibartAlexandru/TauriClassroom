@@ -3,6 +3,7 @@ import { CommentTemplate } from "./comment.template";
 import { ICourse } from "./course.model";
 
 export type PostTemplate = {
+  id: number;
   author: string;
   title: string;
   text: string;

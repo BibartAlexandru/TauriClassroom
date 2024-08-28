@@ -23,7 +23,13 @@ export class CoursesService {
   ];
 
   getCourses(): Observable<ICourse[]> {
-    return of(this.courses);
+    return of(
+      this.courses.sort((c1, c2) => {
+        if (c1.name < c2.name) return -1;
+        if (c1.name > c2.name) return 1;
+        return 0;
+      })
+    );
   }
 
   //TODO: This is an example, replace it at some point

@@ -41,4 +41,5 @@ h2 {
   font-size: calc(0.8rem);
   margin: 0;
   transform: translateY(0.17rem);
+  cursor: pointer;
 }

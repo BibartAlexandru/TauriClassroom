@@ -14,6 +14,7 @@ import { FormsModule } from "@angular/forms";
 })
 export class PostTemplateComponent {
   @Input({ required: true }) post: PostTemplate = {
+    id: 0,
     author: "MISSING",
     title: "MISSING",
     date: "MISSING",
@@ -36,8 +37,9 @@ export class PostTemplateComponent {
   @Input({ required: true }) nrInitialCommentsShown: number = 0;
   @Input({ required: true }) leftPictureSrc: string = "";
   @Input({ required: true }) showTypeIcon: boolean = false;
-  @Output()
-  submittedComment: EventEmitter<string> = new EventEmitter<string>();
+  @Input({ required: true }) textClickable: boolean = false;
+  @Output() onTextClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() submittedComment: EventEmitter<string> = new EventEmitter<string>();
 
   nrShownComments: number = 0;
   newComment: string = "";
@@ -80,7 +82,8 @@ export class PostTemplateComponent {
       );
   }
 
-  toggleCommentsExpand() {
+  toggleCommentsExpand(event: Event) {
+    event.stopPropagation();
     if (this.post.comments === undefined) return;
     if (this.nrShownComments === this.nrInitialCommentsShown)
       this.nrShownComments = this.post.comments?.length;
@@ -97,5 +100,9 @@ export class PostTemplateComponent {
   ngOnInit() {
     this.inputErrorCheck();
     this.nrShownComments = this.nrInitialCommentsShown;
+  }
+
+  onText() {
+    this.onTextClick.emit(true);
   }
 }

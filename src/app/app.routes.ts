@@ -11,7 +11,11 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: "course",
+    path: "course/:id",
+    component: CoursePageComponent,
+  },
+  {
+    path: "course/:id/:postid",
     component: CoursePageComponent,
   },
   {

@@ -4,10 +4,11 @@
 >
   <div *ngIf="!isDocked; else selectedCourse" class="icons-contianer">
     <a
-      [routerLink]="['/course']"
       class="course-anchor"
       *ngFor="let course of courses; let i = index"
+      [routerLink]="['/course', course.id]"
       [ngStyle]="getRandomColorStyle()"
+      [ngClass]="course.id === openedCourse?.id ? 'bordered' : ''"
       (click)="onCourseIconClick(i)"
     >
       <h2 class="course-name-letter">{{ course.name.charAt(0) }}</h2></a
@@ -16,12 +17,14 @@
   <ng-template #selectedCourse>
     <div class="icons-contianer">
       <a
-        [routerLink]="['/course']"
+        [routerLink]="['/course', openedCourse?.id]"
         class="course-anchor"
         [ngStyle]="getRandomColorStyle()"
         (click)="onCourseIconClick(0)"
       >
-        <h2 class="course-name-letter">{{ courses[0].name.charAt(0) }}</h2></a
+        <h2 class="course-name-letter">
+          {{ openedCourse?.name?.charAt(0) }}
+        </h2></a
       >
     </div>
   </ng-template>

@@ -3,7 +3,7 @@
 }
 
 .notifications {
-  padding: var(--LARGE-PADDING-Y) var(--LARGE-PADDING-X);
+  padding: var(--LARGE-PADDING-Y) 0;
   height: 100%;
   display: flex;
   flex-direction: column;

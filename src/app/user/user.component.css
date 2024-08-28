@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+}
+
+.user {
+  display: flex;
+  width: 100%;
+  gap: calc(2 * var(--NORMAL-GAP));
+  align-items: center;
+  background-color: var(--BACKGROUND-PRIMARY);
+  padding: var(--NORMAL-PADDING-X);
+}
+
+.profile-pic {
+  object-fit: contain;
+  height: var(--LARGE-ICON-SIZE);
+  border-radius: 50%;
+}

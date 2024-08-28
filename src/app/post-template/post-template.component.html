@@ -25,7 +25,11 @@
       <h4 class="course-name">{{ post.course?.name }}</h4>
     </ng-template>
   </div>
-  <div class="post-content">
+  <div
+    class="post-content"
+    [ngStyle]="textClickable === true ? { cursor: 'pointer' } : {}"
+    (click)="textClickable === true ? onText() : null"
+  >
     <div class="title-date-row">
       <h1 class="post-title">{{ post.title }}</h1>
       <h4 class="post-date">{{ post.date }}</h4>
@@ -34,7 +38,7 @@
     <hr *ngIf="hasComments" />
     <h2
       class="nr-comments"
-      (click)="toggleCommentsExpand()"
+      (click)="toggleCommentsExpand($event)"
       *ngIf="post.comments !== undefined && post.comments.length > 0"
     >
       {{

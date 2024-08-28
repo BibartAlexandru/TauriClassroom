@@ -252,3 +252,10 @@ button:active {
   align-self: self-end;
   margin-bottom: 0.15rem;
 }
+
+.people-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--NORMAL-GAP);
+  align-items: center;
+}

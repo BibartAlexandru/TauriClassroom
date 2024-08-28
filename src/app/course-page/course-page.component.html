@@ -1,12 +1,29 @@
 <div class="courses-page">
-  <app-course-details *ngIf="course !== null"></app-course-details>
-  <div class="course-post" *ngFor="let post of posts; let i = index">
-    <app-post-template
-      [post]="post"
-      [hasComments]="true"
-      [nrInitialCommentsShown]="1"
-      [leftPictureSrc]="'assets/default_profile.jpg'"
-      [showTypeIcon]="false"
-    ></app-post-template>
+  <app-course-details
+    (onOptionsClick)="onOptionsClick($event)"
+  ></app-course-details>
+  <div
+    class="posts-container"
+    *ngIf="
+      dialogState === CoursePageStates.INFO ||
+        dialogState === CoursePageStates.MATERIALS;
+      else peopleContainer
+    "
+  >
+    <div class="course-post" *ngFor="let post of posts; let i = index">
+      <app-post-template
+        [textClickable]="false"
+        [post]="post"
+        [hasComments]="true"
+        [nrInitialCommentsShown]="1"
+        [leftPictureSrc]="'assets/default_profile.jpg'"
+        [showTypeIcon]="false"
+      ></app-post-template>
+    </div>
   </div>
+  <ng-template #peopleContainer>
+    <div class="people-container" *ngFor="let user of students; let i = index">
+      <app-user [user]="user" style="width: 100%"></app-user>
+    </div>
+  </ng-template>
 </div>

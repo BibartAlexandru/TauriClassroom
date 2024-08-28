@@ -1,6 +1,8 @@
 <div class="notifications">
   <div class="column-container" *ngIf="posts.length > 0; else noNotifications">
     <app-post-template
+      (onTextClick)="onNotificationClick($event, post)"
+      [textClickable]="true"
       *ngFor="let post of posts"
       [hasComments]="false"
       [nrInitialCommentsShown]="0"

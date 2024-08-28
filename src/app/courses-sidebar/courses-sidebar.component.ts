@@ -1,5 +1,5 @@
 import { CommonModule, NgFor, NgIf } from "@angular/common";
-import { Component } from "@angular/core";
+import { ChangeDetectorRef, Component } from "@angular/core";
 import { ICourse } from "../models/course.model";
 import { SharedVariablesService } from "../services/shared-variables/shared-variables.service";
 import { CoursesService } from "../services/courses/courses.service";
@@ -20,13 +20,11 @@ export class CoursesSidebarComponent {
   constructor(
     private sharedVariablesService: SharedVariablesService,
     private coursesService: CoursesService,
-    private router: Router
+    private router: Router,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-    this.sharedVariablesService.getOpenedCourse().subscribe((course) => {
-      this.openedCourse = course;
-    });
     this.sharedVariablesService
       .getIsCoursesSidebarDocked()
       .subscribe((isDocked) => {
@@ -36,14 +34,18 @@ export class CoursesSidebarComponent {
     this.coursesService.getCourses().subscribe((courses) => {
       this.courses = courses;
     });
+    this.sharedVariablesService.getOpenedCourse().subscribe((course) => {
+      this.openedCourse = course;
+      this.cdRef.detectChanges();
+    });
   }
 
   onCourseIconClick(index: number) {
     const chosenCourse = this.courses[index];
-    this.courses = [
-      chosenCourse,
-      ...this.courses.filter((courseName) => courseName !== chosenCourse),
-    ];
+    // this.courses = [
+    //   chosenCourse,
+    //   ...this.courses.filter((courseName) => courseName !== chosenCourse),
+    // ];
     this.sharedVariablesService.setOpenedCourse(chosenCourse);
     this.sharedVariablesService.setIsCoursesSidebarDocked(true);
     // this.router.navigate(["/course"]);

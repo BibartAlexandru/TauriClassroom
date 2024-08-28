@@ -22,6 +22,7 @@
   </div>
   <div class="container-div">
     <app-post-template
+      [textClickable]="false"
       *ngFor="let post of posts"
       [hasComments]="false"
       [nrInitialCommentsShown]="0"

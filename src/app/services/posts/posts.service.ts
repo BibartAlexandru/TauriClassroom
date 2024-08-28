@@ -69,30 +69,27 @@ export class PostsService {
     },
   ];
   post_for_testing: PostTemplate = {
+    id: 1,
     author: "ME",
     date: DateFormatter.formatDate(this.currentDate),
     title: "wassup",
     text: "EYEEEE",
     type: PostType.HOMEWORK,
-    course: {
-      name: "Tras cu pusca",
-      id: 99,
-    },
+    course: this.courses[3],
   };
 
   post_for_testing2: PostTemplate = {
+    id: 2,
     author: "Joe",
     date: DateFormatter.formatDate(this.currentDate),
     title: "TEST FULGER!",
     text: "Aveti 10 minute sa-mi citati toate melodiile lui Bvcovia! Cine copiaza primeste 10!",
     type: PostType.TEST,
-    course: {
-      name: "Mate",
-      id: 99,
-    },
+    course: this.courses[0],
   };
 
   newsPost: PostTemplate = {
+    id: 2,
     author: "ADMIN",
     date: DateFormatter.formatDate(this.currentDate),
     title: "Artist nou",
@@ -101,15 +98,13 @@ export class PostsService {
   };
 
   materialPost: PostTemplate = {
+    id: 3,
     author: "ADMIN",
     date: DateFormatter.formatDate(this.currentDate),
     title: "Ecuatii de gradul 3",
     text: "V-am atasat lectia. Saptamana viitoare dati test.",
     type: PostType.MATERIAL,
-    course: {
-      name: "Maths",
-      id: 0,
-    },
+    course: this.courses[3],
     comments: [],
   };
   constructor() {}
@@ -122,7 +117,7 @@ export class PostsService {
     const postsFromCourse = this.posts.filter(
       (post) => post.course.id == courseID
     );
-    return of([...postsFromCourse, this.materialPost as ICoursePagePost]);
+    return of([...postsFromCourse]);
   }
 
   getToDoPosts(): Observable<PostTemplate[]> {
@@ -140,5 +135,10 @@ export class PostsService {
       this.post_for_testing2,
       this.materialPost,
     ]);
+  }
+
+  getCourseInfoPosts(courseID: number): Observable<PostTemplate[]> {
+    //TODO: Call Rust function
+    return of([this.materialPost]);
   }
 }

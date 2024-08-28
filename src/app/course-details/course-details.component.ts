@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { ICourse } from "../models/course.model";
 import { CoursesService } from "../services/courses/courses.service";
 import { SharedVariablesService } from "../services/shared-variables/shared-variables.service";
@@ -12,6 +12,8 @@ import { SharedVariablesService } from "../services/shared-variables/shared-vari
 })
 export class CourseDetailsComponent {
   currentCourse: ICourse | null = null;
+  @Output() onOptionsClick: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(
     private coursesService: CoursesService,
     private sharedVariableService: SharedVariablesService
@@ -21,5 +23,9 @@ export class CourseDetailsComponent {
     this.sharedVariableService.getOpenedCourse().subscribe((course) => {
       this.currentCourse = course;
     });
+  }
+
+  clickedOption(opt: string) {
+    this.onOptionsClick.emit(opt);
   }
 }
