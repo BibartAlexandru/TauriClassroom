@@ -6,10 +6,19 @@
   padding: 0;
 }
 
+body {
+  background-color: var(--BACKGROUND-PRIMARY);
+}
+
 :root {
+  /*FONTS*/
   --EXTRA-SMALL-FONT-SIZE: 0.6rem;
   --SMALL-FONT-SIZE: 0.8rem;
   --NORMAL-FONT-SIZE: 1rem;
+
+  /*PADDINGS*/
+  --EXTRA-SMALL-PADDING-X: 0.25rem;
+  --EXTRA-SMALL-PADDING-Y: 0.25rem;
   --SMALL-PADDING-X: 0.5rem;
   --SMALL-PADDING-Y: 0.5rem;
   --NORMAL-PADDING-X: 1rem;
@@ -18,23 +27,39 @@
   --LARGE-PADDING-X: 2rem;
   --PADDING-HALF-TOP: calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X)
     calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X);
+
+  /*GAPS*/
   --NORMAL-GAP: 1rem;
   --SMALL-GAP: 0.5rem;
   --EXTRA-SMALL-GAP: 0.25rem;
+
+  /*ICONS*/
   --NORMAL-ICON-SIZE: 1rem;
   --MEDIUM-ICON-SIZE: 1.75rem;
   --LARGE-ICON-SIZE: 3rem;
+
+  /*BORDERS*/
   --NORMAL-BORDER-RADIUS: 0.25rem;
+  --NORMAL-BORDER-WIDTH: 0.1rem;
+  --SMALL-BORDER-WIDTH: 0.1rem;
+  --NORMAL-BORDER: var(--NORMAL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
+  --THIN-BORDER: var(--SMALL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
+
+  /*OTHERS*/
   --COURSES-SIDEBAR-WIDTH: max(15%, 5.5rem);
   --COURSES-SIDEBAR-MAX-WIDTH: 5rem;
   --DROP-SHADOW: drop-shadow(0 0.1rem 0.3rem rgba(0, 0, 0, 0.37));
   --NAV-BAR-HEIGHT: 3.5rem;
-  --SMALL-BORDER-WIDTH: 0.1rem;
-  --NORMAL-BORDER-WIDTH: 0.1rem;
-  --NORMAL-BORDER: var(--NORMAL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
-  --THIN-BORDER: var(--SMALL-BORDER-WIDTH) solid var(--BACKGROUND-SECONDARY);
+
+  /*COLORS*/
   --BACKGROUND-PRIMARY: var(--bs-light);
   --BACKGROUND-SECONDARY: rgb(192, 192, 192);
+  --BACKGROUND-SECONDARY-LIGHT: rgb(231, 231, 231);
+  --BACKGROUND-PRIMARY-REVERSE: black;
+  --ACCENT-PRIMARY: rgb(123, 178, 241);
+  --TEXT-COLOR-PRIMARY: black;
+  --TEXT-COLOR-PRIMARY-REVERSE: white;
+
   background-color: var(--BACKGROUND-PRIMARY);
 }
 

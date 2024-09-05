@@ -42,4 +42,32 @@ h2 {
   margin: 0;
   transform: translateY(0.17rem);
   cursor: pointer;
+  position: relative;
+  padding: var(--EXTRA-SMALL-PADDING-Y) var(--SMALL-PADDING-X);
+}
+
+h2:hover {
+  background-color: var(--BACKGROUND-SECONDARY-LIGHT);
+}
+
+.selected-option {
+  border: var(--NORMAL-BORDER);
+  border-radius: var(--NORMAL-BORDER-RADIUS);
+}
+
+@media (hover: hover) {
+  h2:hover {
+    background-color: var(--BACKGROUND-SECONDARY-LIGHT);
+  }
+
+  .selected-option:hover {
+    background-color: var(--BACKGROUND-SECONDARY);
+    /* border-color: var(--ACCENT-PRIMARY); */
+  }
+}
+
+@media (hover: none) {
+  h2:hover {
+    background-color: transparent;
+  }
 }

@@ -1,0 +1,11 @@
+pub mod assignment_model;
+pub mod comment_model;
+pub mod course_model;
+pub mod grade_system;
+pub mod info_model;
+pub mod material_model;
+pub mod post_model;
+pub mod subject_model;
+pub mod upload_model;
+pub mod upload_restrictions;
+pub mod user_model;

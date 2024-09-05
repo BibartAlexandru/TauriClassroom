@@ -1,5 +1,5 @@
 import { CommonModule, NgFor, NgIf } from "@angular/common";
-import { ChangeDetectorRef, Component } from "@angular/core";
+import { ChangeDetectorRef, Component, ElementRef } from "@angular/core";
 import { ICourse } from "../models/course.model";
 import { SharedVariablesService } from "../services/shared-variables/shared-variables.service";
 import { CoursesService } from "../services/courses/courses.service";
@@ -21,10 +21,16 @@ export class CoursesSidebarComponent {
     private sharedVariablesService: SharedVariablesService,
     private coursesService: CoursesService,
     private router: Router,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private elementRef: ElementRef
   ) {}
 
   ngOnInit() {
+    document.addEventListener(
+      "click",
+      this.onOutsideSideBarClick.bind(this, this.elementRef)
+    );
+
     this.sharedVariablesService
       .getIsCoursesSidebarDocked()
       .subscribe((isDocked) => {
@@ -38,6 +44,28 @@ export class CoursesSidebarComponent {
       this.openedCourse = course;
       this.cdRef.detectChanges();
     });
+  }
+
+  ngOnDestroy() {
+    document.removeEventListener(
+      "click",
+      this.onOutsideSideBarClick.bind(this, this.elementRef)
+    );
+  }
+
+  onOutsideSideBarClick(elementRef: ElementRef, event: Event) {
+    const thisElement = this.elementRef.nativeElement;
+    if (event.target === null) return;
+    const clickedElement: HTMLElement = event.target as HTMLElement;
+    if (
+      thisElement.contains(clickedElement) ||
+      clickedElement === thisElement
+    ) {
+      //console.log("ClICKED INSIDE");
+    } else {
+      //console.log("outside");
+      if (this.isDocked === false) this.dockSelf(event);
+    }
   }
 
   onCourseIconClick(index: number) {

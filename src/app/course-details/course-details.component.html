@@ -1,8 +1,23 @@
 <div class="course-details">
   <h1>{{ currentCourse === null ? "" : currentCourse.name }}</h1>
   <div class="options">
-    <h2 (click)="clickedOption('Info')">Info</h2>
-    <h2 (click)="clickedOption('Materials')">Materials</h2>
-    <h2 (click)="clickedOption('People')">People</h2>
+    <h2
+      [ngClass]="getOptionsClass(CoursePageStates.INFO)"
+      (click)="clickedOption('Info')"
+    >
+      Info
+    </h2>
+    <h2
+      [ngClass]="getOptionsClass(CoursePageStates.MATERIALS)"
+      (click)="clickedOption('Materials')"
+    >
+      Materials
+    </h2>
+    <h2
+      [ngClass]="getOptionsClass(CoursePageStates.PEOPLE)"
+      (click)="clickedOption('People')"
+    >
+      People
+    </h2>
   </div>
 </div>

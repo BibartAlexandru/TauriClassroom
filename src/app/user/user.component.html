@@ -1,4 +1,10 @@
 <div class="user">
   <img class="profile-pic" src="{{ user.imageSrc }}" alt="profile picture" />
-  <h1 class="name">{{ user.name }}</h1>
+  <div class="name-row">
+    <h1 class="name">{{ user.name }}</h1>
+    <div class="options-row">
+      <img class="normal-icon" src="assets/message.svg" alt="message user" />
+      <img class="normal-icon" src="assets/flag.svg" alt="report user" />
+    </div>
+  </div>
 </div>

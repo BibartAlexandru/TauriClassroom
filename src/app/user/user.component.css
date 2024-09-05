@@ -15,4 +15,25 @@
   object-fit: contain;
   height: var(--LARGE-ICON-SIZE);
   border-radius: 50%;
+  cursor: pointer;
+}
+
+.name-row {
+  padding: var(--NORMAL-PADDING-X);
+  border: var(--NORMAL-BORDER);
+  border-radius: var(--NORMAL-BORDER-RADIUS);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.options-row {
+  display: flex;
+  gap: var(--NORMAL-GAP);
+}
+
+.options-row > * {
+  align-self: center;
+  justify-self: center;
+  cursor: pointer;
 }

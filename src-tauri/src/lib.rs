@@ -21,3 +21,53 @@ pub fn run() {
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
+
+mod db_models;
+use chrono::DateTime;
+use db_models::*;
+use db_models::{course_model::*, subject_model::*, user_model::*};
+use mongodm::field;
+use mongodm::mongo::{bson::doc, options::ClientOptions, Client};
+use mongodm::prelude::ObjectId;
+use mongodm::{sync_indexes, CollectionConfig, Index, IndexOption, Indexes, Model, ToRepository};
+use serde::{Deserialize, Serialize};
+use std::borrow::Cow;
+
+pub async fn testare_db() {
+    let conn_str =
+        "mongodb+srv://mateciuceduard69:J4CEJ3nPVhLxerUQ@fakeclassroom.x5tz5.mongodb.net/";
+    let client = Client::with_uri_str(conn_str)
+        .await
+        .expect("Failed to establish database connection.");
+    let db = client.database("TauriClassroom");
+    sync_indexes::<UserCollConf>(&db)
+        .await
+        .expect("Failed to sync indexes.");
+    sync_indexes::<SubjectCollConf>(&db)
+        .await
+        .expect("Failed to sync indexes.");
+    sync_indexes::<CourseCollConf>(&db)
+        .await
+        .expect("Failed to sync indexes.");
+
+    let repo = db.repository::<Subject>();
+    let courses_repo = db.repository::<Course>();
+
+    let subject = repo
+        .find_one(doc! { field!(name in Subject): "Matematica"})
+        .await
+        .unwrap()
+        .unwrap();
+
+    let curs = Course {
+        subject_id: SubjectObjectId::new(subject.id, &repo).await.unwrap(),
+        teacher_id: "".to_string(),
+        class_id: ".".to_string(),
+        time_period: TimePeriod::new(chrono::offset::Utc::now(), chrono::offset::Utc::now()),
+    };
+
+    courses_repo
+        .insert_one(curs)
+        .await
+        .expect("FAILED AT ADDING COURSE");
+}

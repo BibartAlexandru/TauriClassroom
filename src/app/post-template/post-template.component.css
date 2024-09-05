@@ -70,12 +70,6 @@ a {
   height: min-content;
 }
 
-/*TODO: VEZI DACA-TI PLACE ASTA*/
-/* .courses-page :first-child .post-content {
-    border-radius: 2.5rem var(--NORMAL-BORDER-RADIUS) var(--NORMAL-BORDER-RADIUS)
-      var(--NORMAL-BORDER-RADIUS);
-  } */
-
 .title-date-row {
   display: flex;
   justify-content: space-between;
