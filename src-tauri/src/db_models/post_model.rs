@@ -14,7 +14,7 @@ impl CollectionConfig for PostCollConf {
 
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub struct Post {
-    pub id: ObjectId,
+    pub _id: ObjectId,
     pub text: String,
     pub title: String,
     pub author_id: ObjectId, //todo
@@ -32,7 +32,7 @@ impl Post {
         author_id: ObjectId,
     ) -> Result<Self, mongodm::mongo::error::Error> {
         Ok(Self {
-            id: ObjectId::new(),
+            _id: ObjectId::new(),
             text: text,
             title: title,
             author_id: author_id,

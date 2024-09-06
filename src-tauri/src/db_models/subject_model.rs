@@ -6,6 +6,8 @@ use mongodm::prelude::ObjectId;
 use mongodm::{sync_indexes, CollectionConfig, Index, IndexOption, Indexes, Model, ToRepository};
 use serde::{Deserialize, Serialize};
 
+use super::CollectionChecker;
+
 pub struct SubjectCollConf {}
 
 impl CollectionConfig for SubjectCollConf {
@@ -19,8 +21,7 @@ impl CollectionConfig for SubjectCollConf {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Subject {
-    #[serde(rename = "_id")]
-    pub id: ObjectId,
+    pub _id: ObjectId,
     pub name: String,
 }
 
@@ -33,17 +34,8 @@ pub struct SubjectObjectId {
     id: ObjectId,
 }
 
-impl SubjectObjectId {
-    pub async fn new(
-        obj_id: ObjectId,
-        subject_collection: &Collection<Subject>,
-    ) -> Result<Self, mongodm::mongo::error::Error> {
-        match subject_collection
-            .find_one(doc! { field!(id in Subject): obj_id})
-            .await
-        {
-            Ok(_) => return Ok(Self { id: obj_id }),
-            Err(e) => return Err(e),
-        }
+impl CollectionChecker<SubjectObjectId, Subject> for SubjectObjectId {
+    fn new_without_check(obj_id: ObjectId) -> SubjectObjectId {
+        Self { id: obj_id }
     }
 }

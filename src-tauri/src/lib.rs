@@ -54,20 +54,25 @@ pub async fn testare_db() {
     let courses_repo = db.repository::<Course>();
 
     let subject = repo
-        .find_one(doc! { field!(name in Subject): "Matematica"})
+        .find_one(doc! { field!(name in Subject): "NotExist"})
         .await
-        .unwrap()
         .unwrap();
 
-    let curs = Course {
-        subject_id: SubjectObjectId::new(subject.id, &repo).await.unwrap(),
-        teacher_id: "".to_string(),
-        class_id: ".".to_string(),
-        time_period: TimePeriod::new(chrono::offset::Utc::now(), chrono::offset::Utc::now()),
-    };
+    //println!("{:?}", subject);
+    let o_id = ObjectId::parse_str("66d9a695e5a15ce4ab9d4b19").unwrap();
+    let a = SubjectObjectId::new(o_id, &repo).await.unwrap();
 
-    courses_repo
-        .insert_one(curs)
-        .await
-        .expect("FAILED AT ADDING COURSE");
+    println!("{:?}", a);
+
+    // let curs = Course {
+    //     subject_id: SubjectObjectId::new(subject.id, &repo).await.unwrap(),
+    //     teacher_id: "".to_string(),
+    //     class_id: ".".to_string(),
+    //     time_period: TimePeriod::new(chrono::offset::Utc::now(), chrono::offset::Utc::now()),
+    // };
+
+    // courses_repo
+    //     .insert_one(curs)
+    //     .await
+    //     .expect("FAILED AT ADDING COURSE");
 }

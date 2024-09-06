@@ -1,15 +1,17 @@
-use super::subject_model::Subject;
+use super::class_model::ClassObjectId;
 use super::subject_model::SubjectObjectId;
+use super::user_model::TeacherObjectId;
+use super::CollectionChecker;
 use chrono::{DateTime, Utc};
 use mongodm::{
     field,
     mongo::{
         bson::{doc, oid::ObjectId},
         options::ClientOptions,
-        Client,
+        Client, Collection,
     },
 };
-use mongodm::{sync_indexes, CollectionConfig, Index, IndexOption, Indexes, Model, ToRepository};
+use mongodm::{CollectionConfig, Index, Indexes, Model};
 use serde::{Deserialize, Serialize};
 
 pub struct CourseCollConf {}
@@ -41,12 +43,24 @@ impl TimePeriod {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Course {
+    pub _id: ObjectId,
     pub subject_id: SubjectObjectId,
-    pub teacher_id: String, //todo
-    pub class_id: String,   //todo
+    pub teacher_id: TeacherObjectId,
+    pub class_id: ClassObjectId,
     pub time_period: TimePeriod,
 }
 
 impl Model for Course {
     type CollConf = CourseCollConf;
+}
+
+#[derive(Debug, Serialize, Deserialize, PartialEq)]
+pub struct CourseObjectId {
+    id: ObjectId,
+}
+
+impl CollectionChecker<CourseObjectId, Course> for CourseObjectId {
+    fn new_without_check(obj_id: ObjectId) -> CourseObjectId {
+        Self { id: obj_id }
+    }
 }

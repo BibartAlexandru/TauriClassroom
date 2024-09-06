@@ -14,7 +14,7 @@ impl CollectionConfig for CommentCollConf {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Comment {
-    id: ObjectId,
+    _id: ObjectId,
     author_id: ObjectId,
     text: String,
     date: DateTime,
