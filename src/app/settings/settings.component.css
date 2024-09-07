@@ -1,0 +1,21 @@
+.settings-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--NORMAL-GAP);
+}
+
+a {
+  padding: var(--SMALL-PADDING-X);
+  color: var(--TEXT-COLOR);
+  text-decoration: none;
+  font-size: var(--NORMAL-FONT-SIZE);
+}
+
+a:hover {
+  background-color: var(--BACKGROUND-SECONDARY-LIGHT);
+}
+
+:host {
+  padding: var(--NORMAL-PADDING-X);
+  border-right: var(--NORMAL-BORDER);
+}

@@ -15,6 +15,7 @@ body {
   --EXTRA-SMALL-FONT-SIZE: 0.6rem;
   --SMALL-FONT-SIZE: 0.8rem;
   --NORMAL-FONT-SIZE: 1rem;
+  --LARGE-FONT-SIZE: 1.5rem;
 
   /*PADDINGS*/
   --EXTRA-SMALL-PADDING-X: 0.25rem;
@@ -29,6 +30,7 @@ body {
     calc(var(--NORMAL-PADDING-Y) / 2) var(--NORMAL-PADDING-X);
 
   /*GAPS*/
+  --LARGE-GAP: 2rem;
   --NORMAL-GAP: 1rem;
   --SMALL-GAP: 0.5rem;
   --EXTRA-SMALL-GAP: 0.25rem;
@@ -79,4 +81,18 @@ h1 {
 
 .round-border {
   border-radius: 50%;
+}
+
+.text-input {
+  align-self: center;
+  grid-area: 1/3/2/4;
+  border-radius: 1rem;
+  border: var(--THIN-BORDER);
+  font-size: var(--SMALL-FONT-SIZE);
+  padding: 0 var(--NORMAL-PADDING-X);
+  height: 2rem;
+}
+
+.text-input:focus {
+  outline: 0;
 }

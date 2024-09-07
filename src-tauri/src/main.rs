@@ -5,13 +5,13 @@ use dezmostenireapopeascatauri_lib::testare_db;
 
 use tokio;
 
-/* OLD MAIN
+//OLD MAIN
 fn main() {
-    //dezmostenireapopeascatauri_lib::run()
+    db_things();
+    dezmostenireapopeascatauri_lib::run()
 }
-*/
 
 #[tokio::main]
-async fn main() {
-    testare_db().await;
+async fn db_things() {
+    //testare_db().await;
 }

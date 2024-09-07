@@ -5,8 +5,8 @@
   position: fixed;
   left: 0;
   z-index: 2;
-  overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
   /* filter: var(--DROP-SHADOW); */
 }
 
@@ -20,7 +20,8 @@
 }
 
 .courses-sidebar.not-docked {
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: scroll;
   border-radius: 0;
   gap: var(--NORMAL-GAP);
   border-right: var(--NORMAL-BORDER);
@@ -45,6 +46,7 @@
   align-items: center;
   gap: var(--NORMAL-GAP);
   padding: var(--NORMAL-PADDING-Y) var(--NORMAL-PADDING-X);
+  /* overflow-y: auto; */
 }
 
 .course-anchor {

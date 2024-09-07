@@ -4,6 +4,8 @@ import { HomeComponent } from "./home/home.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { SearchPageComponent } from "./search-page/search-page.component";
 import { ProfileComponent } from "./profile/profile.component";
+import { SettingsComponent } from "./settings/settings.component";
+import { EditSubjectComponent } from "./edit-subject/edit-subject.component";
 
 export const routes: Routes = [
   {
@@ -29,5 +31,17 @@ export const routes: Routes = [
   {
     path: "profile/:id",
     component: ProfileComponent,
+  },
+  {
+    path: "settings",
+    component: SettingsComponent,
+  },
+  {
+    path: "create-subject",
+    component: EditSubjectComponent,
+  },
+  {
+    path: "edit-subject/:id",
+    component: EditSubjectComponent,
   },
 ];

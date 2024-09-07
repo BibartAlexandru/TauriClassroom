@@ -8,10 +8,9 @@
   height: VAR(--NAV-BAR-HEIGHT);
   display: grid;
   place-content: center;
-  grid-template-columns: min(25%, 7rem) min(25%, 7rem) min(25%, 7rem) min(
-      25%,
-      7rem
-    );
+  grid-template-columns:
+    min(20%, 7rem) min(20%, 7rem) min(20%, 7rem) min(20%, 7rem)
+    min(20%, 7rem);
   grid-template-rows: 100%;
   filter: var(--DROP-SHADOW);
 }

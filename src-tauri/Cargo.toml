@@ -23,9 +23,9 @@ tauri-plugin-shell = "2.0.0-rc"
 serde_json = "1"
 serde = "1.0.188"
 futures = "0.3.28"
-tokio = {version = "1.32.0", features = ["full"]}
+tokio = {version = "1.32.0", features = ["full"] }
 mongodm = "0.10.0"
-chrono = {version ="0.4.38" , features = ["serde"]}
+chrono = {version ="0.4.38", features = ["serde"] }
 
 [dependencies.mongodb]
 version = "3.1.0"

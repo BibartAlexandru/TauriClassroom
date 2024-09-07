@@ -4,6 +4,8 @@ use mongodm::{prelude::ObjectId, CollectionConfig};
 use mongodm::{sync_indexes, Index, IndexOption, Indexes, Model, ToRepository};
 use serde::{Deserialize, Serialize};
 
+use crate::UserObjectId;
+
 pub struct CommentCollConf {}
 
 impl CollectionConfig for CommentCollConf {
@@ -15,7 +17,7 @@ impl CollectionConfig for CommentCollConf {
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Comment {
     _id: ObjectId,
-    author_id: ObjectId,
+    author_id: UserObjectId,
     text: String,
     date: DateTime,
 }

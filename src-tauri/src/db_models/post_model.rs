@@ -4,6 +4,8 @@ use mongodm::prelude::ObjectId;
 use mongodm::{sync_indexes, CollectionConfig, Index, IndexOption, Indexes, Model, ToRepository};
 use serde::{Deserialize, Serialize};
 
+use crate::UserObjectId;
+
 pub struct PostCollConf {}
 
 impl CollectionConfig for PostCollConf {
@@ -17,7 +19,7 @@ pub struct Post {
     pub _id: ObjectId,
     pub text: String,
     pub title: String,
-    pub author_id: ObjectId, //todo
+    pub author_id: UserObjectId,
 }
 
 impl Model for Post {
@@ -29,7 +31,7 @@ impl Post {
         //todo
         text: String,
         title: String,
-        author_id: ObjectId,
+        author_id: UserObjectId,
     ) -> Result<Self, mongodm::mongo::error::Error> {
         Ok(Self {
             _id: ObjectId::new(),

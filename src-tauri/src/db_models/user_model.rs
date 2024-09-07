@@ -1,3 +1,4 @@
+use super::file_model::FileObjectId;
 use super::CollectionChecker;
 use mongodm::field;
 use mongodm::mongo::{
@@ -33,7 +34,7 @@ pub struct User {
     pub email: String,
     pub password: String,
     pub _type: UserType,
-    pub img_id: String, // todo
+    pub img_id: FileObjectId,
     pub lansat: bool,
 }
 
@@ -63,5 +64,41 @@ impl CollectionChecker<TeacherObjectId, User> for TeacherObjectId {
             Ok(None) => return Err("No such teacher id:".to_string() + obj_id.to_string().as_str()),
             Err(e) => return Err(e.to_string()),
         }
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
+pub struct StudentObjectId {
+    id: ObjectId,
+}
+
+impl CollectionChecker<StudentObjectId, User> for StudentObjectId {
+    fn new_without_check(obj_id: ObjectId) -> StudentObjectId {
+        Self { id: obj_id }
+    }
+    async fn new(obj_id: ObjectId, coll: &Collection<User>) -> Result<Self, String> {
+        match coll
+            .find_one(doc! {
+            field!(_id in User): obj_id,
+            field!(_type in User):"STUDENT"})
+            .await
+        {
+            Ok(Some(_)) => {
+                return Ok(Self::new_without_check(obj_id));
+            }
+            Ok(None) => return Err("No such student id:".to_string() + obj_id.to_string().as_str()),
+            Err(e) => return Err(e.to_string()),
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
+pub struct UserObjectId {
+    id: ObjectId,
+}
+
+impl CollectionChecker<UserObjectId, User> for UserObjectId {
+    fn new_without_check(obj_id: ObjectId) -> UserObjectId {
+        Self { id: obj_id }
     }
 }

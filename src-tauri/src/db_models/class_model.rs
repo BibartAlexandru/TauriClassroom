@@ -8,6 +8,8 @@ use mongodm::prelude::ObjectId;
 use mongodm::{sync_indexes, CollectionConfig, Index, IndexOption, Indexes, Model, ToRepository};
 use serde::{Deserialize, Serialize};
 
+use crate::StudentObjectId;
+
 use super::CollectionChecker;
 
 pub struct ClassCollConf;
@@ -21,7 +23,7 @@ impl CollectionConfig for ClassCollConf {
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Class {
     _id: ObjectId,
-    student_ids: Vec<ObjectId>,
+    student_ids: Vec<StudentObjectId>,
 }
 
 impl Model for Class {

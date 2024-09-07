@@ -4,6 +4,31 @@ fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
+#[derive(Serialize, Deserialize, Debug, PartialEq)]
+pub struct ISubject {
+    pub _id: String,
+    pub name: String,
+}
+
+#[tauri::command]
+async fn get_subjects() -> Vec<ISubject> {
+    let db_instance = DbInstance::new().await;
+    let subjects_repo = db_instance.db.repository::<Subject>();
+    let subjects = subjects_repo
+        .find(doc! {})
+        .await
+        .expect("FAILED AT FINDING SUBJECTS");
+    let subjects: Vec<Subject> = subjects.try_collect().await.unwrap();
+    let subjects: Vec<ISubject> = subjects
+        .into_iter()
+        .map(|s| ISubject {
+            _id: s._id.to_string(),
+            name: s.name,
+        })
+        .collect();
+    subjects
+}
+
 #[tauri::command]
 fn get_random_message(prev_message: &str) -> String {
     match prev_message {
@@ -17,15 +42,22 @@ fn get_random_message(prev_message: &str) -> String {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
-        .invoke_handler(tauri::generate_handler![greet, get_random_message])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            get_random_message,
+            get_subjects
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
 
+mod db_instance;
 mod db_models;
 use chrono::DateTime;
+use db_instance::*;
 use db_models::*;
 use db_models::{course_model::*, subject_model::*, user_model::*};
+use futures::{FutureExt, StreamExt, TryStreamExt};
 use mongodm::field;
 use mongodm::mongo::{bson::doc, options::ClientOptions, Client};
 use mongodm::prelude::ObjectId;

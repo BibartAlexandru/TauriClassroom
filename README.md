@@ -16,3 +16,10 @@ Plugins:
 - parametrii folosesc snake_case notation in Rust, dar cand ii trimiti din TypeScript prin invoke, trebuie sa folosesti camelCase. Ex:
   invoke<String>("get_random_message",{prevMessage : "MESSAGE"});
 - Si in Rust semnatura functiei e fn get_random_message(prev_message: &str) -> String
+
+## TODO
+
+- Add create Subject page for Admin
+- Add create Account page for Admin
+- Add create class page for Admin(anul X, specializarea Y)
+- Add create Course page for Teachers

@@ -3,6 +3,9 @@ use mongodm::prelude::ObjectId;
 use mongodm::{sync_indexes, CollectionConfig, Index, IndexOption, Indexes, Model, ToRepository};
 use serde::{Deserialize, Serialize};
 
+use crate::UserObjectId;
+
+use super::file_model::FileObjectId;
 use super::CollectionChecker;
 
 pub struct UploadCollConf {}
@@ -16,8 +19,8 @@ impl CollectionConfig for UploadCollConf {
 #[derive(Debug, Deserialize, Serialize, PartialEq)]
 pub struct Upload {
     pub _id: ObjectId,
-    pub file_ids: Vec<ObjectId>,
-    pub user_ids: Vec<ObjectId>,
+    pub file_ids: Vec<FileObjectId>,
+    pub user_ids: Vec<UserObjectId>,
     pub grade: String,
 }
 

@@ -1,3 +1,5 @@
+use crate::CourseObjectId;
+
 use super::post_model::Post;
 use mongodm::mongo::{bson::doc, options::ClientOptions, Client};
 use mongodm::prelude::{In, ObjectId};
@@ -13,7 +15,7 @@ impl CollectionConfig for InfoCollConf {
 }
 #[derive(Serialize, Debug, Deserialize, PartialEq)]
 pub struct Info {
-    pub course_id: ObjectId,
+    pub course_id: CourseObjectId,
     pub post: Post,
 }
 

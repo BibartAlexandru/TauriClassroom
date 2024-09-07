@@ -1,3 +1,6 @@
+use crate::CourseObjectId;
+
+use super::file_model::FileObjectId;
 use super::post_model::Post;
 use mongodm::mongo::{bson::doc, options::ClientOptions, Client};
 use mongodm::prelude::ObjectId;
@@ -14,8 +17,8 @@ impl CollectionConfig for MaterialCollConf {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Material {
-    pub course_id: ObjectId,
-    pub file_ids: Vec<ObjectId>,
+    pub course_id: CourseObjectId,
+    pub file_ids: Vec<FileObjectId>,
     pub post: Post,
 }
 
