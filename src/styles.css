@@ -36,6 +36,7 @@ body {
   --EXTRA-SMALL-GAP: 0.25rem;
 
   /*ICONS*/
+  --SMALL-ICON-SIZE: 0.75rem;
   --NORMAL-ICON-SIZE: 1rem;
   --MEDIUM-ICON-SIZE: 1.75rem;
   --LARGE-ICON-SIZE: 3rem;
@@ -61,12 +62,21 @@ body {
   --ACCENT-PRIMARY: rgb(123, 178, 241);
   --TEXT-COLOR-PRIMARY: black;
   --TEXT-COLOR-PRIMARY-REVERSE: white;
+  --SELECTED-ROW: rgb(175, 219, 250);
+  --SELECTED-ROW-BORDER: rgb(114 135 227);
+
+  --bs-body-bg: var(--BACKGROUND-PRIMARY) !important;
 
   background-color: var(--BACKGROUND-PRIMARY);
 }
 
 h1 {
   font-size: calc(1.2rem + 0.3vw);
+}
+
+.small-icon {
+  height: var(--SMALL-ICON-SIZE);
+  object-fit: contain;
 }
 
 .normal-icon {
@@ -91,8 +101,30 @@ h1 {
   font-size: var(--SMALL-FONT-SIZE);
   padding: 0 var(--NORMAL-PADDING-X);
   height: 2rem;
+  background-color: var(--BACKGROUND-PRIMARY);
 }
 
 .text-input:focus {
   outline: 0;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd):not(:hover) > * {
+  /* background-color: var(--BACKGROUND-SECONDARY-LIGHT) !important; */
+  /* box-shadow: none !important; */
+}
+
+/* .table > tbody > tr:hover > * {
+  background-color: var(--BACKGROUND-SECONDARY) !important;
+  box-shadow: none !important;
+} */
+
+.selected-row > * {
+  background-color: var(--SELECTED-ROW) !important;
+}
+
+.table-row-border {
+  border: 2px solid var(--SELECTED-ROW-BORDER);
+}
+
+.table-row-border-bottom {
 }

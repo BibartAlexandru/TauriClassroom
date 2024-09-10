@@ -22,6 +22,7 @@ export class EditSubjectComponent {
     name: "",
   };
   subjects: ISubject[] = [];
+  selectedSubjectIndex: number | null = null;
   constructor(
     private activatedRoute: ActivatedRoute,
     private subjectsService: SubjectsService
@@ -42,8 +43,23 @@ export class EditSubjectComponent {
     });
   }
 
+  selectSubject(index: number) {
+    this.selectedSubjectIndex = index;
+    console.log(`selected row: ${this.selectedSubjectIndex}`);
+  }
+
   onSave() {
     console.log(`Saving subject: ${this.subject.name}`);
     this.subject.name = "";
+  }
+
+  getRowClass(index: number): string {
+    let res =
+      index === this.selectedSubjectIndex
+        ? "selected-row table-row-border"
+        : "";
+    if (index + 1 === this.selectedSubjectIndex)
+      res += "table-row-border-bottom";
+    return res;
   }
 }

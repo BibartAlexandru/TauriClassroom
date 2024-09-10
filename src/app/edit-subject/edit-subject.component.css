@@ -44,5 +44,23 @@ form > button {
 }
 
 .table-container {
-  width: 50%;
+  /* width: 50%; */
+  overflow-y: auto;
+  height: 15rem;
+  /* border: solid 3px red; */
+}
+
+.plus-btn-row {
+  /* display: flex; */
+  /* width: 100%; */
+  border: var(--NORMAL-BORDER);
+  text-align: center;
+}
+
+table tbody tr:last-of-type {
+  /* background-color: purple; */
+}
+
+.button-td {
+  text-align: center;
 }

@@ -13,16 +13,14 @@
         name="name-input"
       />
     </div>
-    <button type="submit" class="btn btn-outline-secondary">
-      Create Course
-    </button>
+    <button type="submit" class="btn btn-outline-dark">Create Course</button>
   </form>
 </div>
 <ng-template #editMode>
   <h1>IN EDIT MODE</h1>
 </ng-template>
-<div class="table-conatiner">
-  <table class="table table-striped table-hover">
+<div class="table-container">
+  <table class="table table-striped table-hover mh-100">
     <thead class="thead-light">
       <tr>
         <th scope="col">id</th>
@@ -30,9 +28,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let subject of subjects">
+      <tr
+        *ngFor="let subject of subjects; let i = index"
+        style="cursor: pointer"
+        (click)="selectSubject(i)"
+        [ngClass]="getRowClass(i)"
+      >
         <th scope="row">{{ subject._id }}</th>
         <td>{{ subject.name }}</td>
+      </tr>
+      <tr class="w-100" style="cursor: pointer">
+        <td colspan="100%" class="w-100 button-td">
+          <img src="/assets/plus.svg" class="small-icon" alt="" />
+        </td>
       </tr>
     </tbody>
   </table>
