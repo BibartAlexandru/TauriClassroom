@@ -1,7 +1,7 @@
 .input-row {
   display: flex;
   gap: var(--NORMAL-GAP);
-  padding: var(--SMALL-PADDING-X);
+  /* padding: var(--SMALL-PADDING-X); */
   align-items: center;
 }
 
@@ -47,14 +47,8 @@ form > button {
   /* width: 50%; */
   overflow-y: auto;
   height: 15rem;
+  width: 100%;
   /* border: solid 3px red; */
-}
-
-.plus-btn-row {
-  /* display: flex; */
-  /* width: 100%; */
-  border: var(--NORMAL-BORDER);
-  text-align: center;
 }
 
 table tbody tr:last-of-type {
@@ -63,4 +57,32 @@ table tbody tr:last-of-type {
 
 .button-td {
   text-align: center;
+  padding: var(--NORMAL-GAP) 0 0 0;
+  background-color: var(--BACKGROUND-PRIMARY) !important;
+  border-bottom: 0;
+}
+
+.button-td {
+  box-shadow: none;
+}
+
+.plus-img {
+  /* display: block; */
+  vertical-align: middle;
+  /* object-fit: none; */
+}
+
+.plus-btn {
+  width: 50%;
+  /* border-radius: 0; */
+  border: var(--NORMAL-BORDER);
+  filter: none;
+}
+
+.plus-btn:active > * {
+  filter: invert(100%);
+}
+
+.plus-btn:hover {
+  background-color: var(--BACKGROUND-SECONDARY-LIGHT);
 }

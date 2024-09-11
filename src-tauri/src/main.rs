@@ -2,12 +2,11 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use dezmostenireapopeascatauri_lib::testare_db;
-
 use tokio;
 
 //OLD MAIN
 fn main() {
-    db_things();
+    // db_things();
     dezmostenireapopeascatauri_lib::run()
 }
 

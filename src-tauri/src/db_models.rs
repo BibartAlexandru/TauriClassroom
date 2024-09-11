@@ -16,6 +16,21 @@ pub mod upload_model;
 pub mod upload_restrictions;
 pub mod user_model;
 
+pub use assignment_model::*;
+pub use class_model::*;
+pub use comment_model::*;
+pub use course_model::*;
+pub use file_model::*;
+pub use grade_system::*;
+pub use info_model::*;
+pub use material_model::*;
+pub use message_model::*;
+pub use news_model::*;
+pub use post_model::*;
+pub use subject_model::*;
+pub use upload_model::*;
+pub use upload_restrictions::*;
+pub use user_model::*;
 pub trait CollectionChecker<R, T>
 where
     T: Model,

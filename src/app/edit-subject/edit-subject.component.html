@@ -1,7 +1,4 @@
-<div
-  *ngIf="dialogState === EditComponentStates.CREATE; else editMode"
-  class="create-subject"
->
+<div class="create-subject">
   <form action="" (ngSubmit)="onSave()">
     <div class="input-row">
       <label for="name-input">Subject name</label>
@@ -13,12 +10,15 @@
         name="name-input"
       />
     </div>
-    <button type="submit" class="btn btn-outline-dark">Create Course</button>
+    <button type="submit" class="btn btn-outline-dark">
+      {{
+        dialogState === EditComponentStates.CREATE
+          ? "Create course"
+          : "Save course"
+      }}
+    </button>
   </form>
 </div>
-<ng-template #editMode>
-  <h1>IN EDIT MODE</h1>
-</ng-template>
 <div class="table-container">
   <table class="table table-striped table-hover mh-100">
     <thead class="thead-light">
@@ -39,7 +39,9 @@
       </tr>
       <tr class="w-100" style="cursor: pointer">
         <td colspan="100%" class="w-100 button-td">
-          <img src="/assets/plus.svg" class="small-icon" alt="" />
+          <button class="btn btn-outline-dark plus-btn" (click)="onPlusClick()">
+            <img src="/assets/plus.svg" class="normal-icon plus-img" alt="" />
+          </button>
         </td>
       </tr>
     </tbody>

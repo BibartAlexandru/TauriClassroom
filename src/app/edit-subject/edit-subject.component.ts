@@ -6,6 +6,7 @@ import { ICourse } from "../models/course.model";
 import { ISubject } from "../models/subject.model";
 import { FormsModule } from "@angular/forms";
 import { SubjectsService } from "../services/subjects/subjects.service";
+import { invoke } from "@tauri-apps/api/core";
 
 @Component({
   selector: "app-edit-subject",
@@ -46,11 +47,36 @@ export class EditSubjectComponent {
   selectSubject(index: number) {
     this.selectedSubjectIndex = index;
     console.log(`selected row: ${this.selectedSubjectIndex}`);
+    this.dialogState = EditComponentStates.EDIT;
+    this.subject.name = this.subjects[index].name;
   }
 
-  onSave() {
-    console.log(`Saving subject: ${this.subject.name}`);
+  onPlusClick() {
+    this.selectedSubjectIndex = null;
+    this.dialogState = EditComponentStates.CREATE;
     this.subject.name = "";
+  }
+
+  async onSave() {
+    let ok: boolean = false;
+    if (this.selectedSubjectIndex != null) {
+      ok = await invoke<boolean>("update_subject_name", {
+        objId: this.subjects[this.selectedSubjectIndex]._id,
+        newName: this.subject.name,
+      });
+    } else {
+      ok = await invoke<boolean>("create_subject", {
+        name: this.subject.name,
+      });
+    }
+    if (!ok) {
+      console.error("Failed to update/create subject.");
+    } else {
+      this.subjects[this.selectedSubjectIndex as number].name =
+        this.subject.name;
+      this.subject.name = "";
+      this.selectedSubjectIndex = null;
+    }
   }
 
   getRowClass(index: number): string {

@@ -1,32 +1,18 @@
+mod dao;
+mod db_instance;
+mod db_models;
+mod dto;
+use dao::*;
+use db_models::*;
+use mongodm::field;
+use mongodm::mongo::{bson::doc, Client};
+use mongodm::prelude::ObjectId;
+use mongodm::{sync_indexes, ToRepository};
+
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
 fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-pub struct ISubject {
-    pub _id: String,
-    pub name: String,
-}
-
-#[tauri::command]
-async fn get_subjects() -> Vec<ISubject> {
-    let db_instance = DbInstance::new().await;
-    let subjects_repo = db_instance.db.repository::<Subject>();
-    let subjects = subjects_repo
-        .find(doc! {})
-        .await
-        .expect("FAILED AT FINDING SUBJECTS");
-    let subjects: Vec<Subject> = subjects.try_collect().await.unwrap();
-    let subjects: Vec<ISubject> = subjects
-        .into_iter()
-        .map(|s| ISubject {
-            _id: s._id.to_string(),
-            name: s.name,
-        })
-        .collect();
-    subjects
 }
 
 #[tauri::command]
@@ -45,25 +31,12 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             greet,
             get_random_message,
-            get_subjects
+            get_subjects,
+            update_subject_name
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
-
-mod db_instance;
-mod db_models;
-use chrono::DateTime;
-use db_instance::*;
-use db_models::*;
-use db_models::{course_model::*, subject_model::*, user_model::*};
-use futures::{FutureExt, StreamExt, TryStreamExt};
-use mongodm::field;
-use mongodm::mongo::{bson::doc, options::ClientOptions, Client};
-use mongodm::prelude::ObjectId;
-use mongodm::{sync_indexes, CollectionConfig, Index, IndexOption, Indexes, Model, ToRepository};
-use serde::{Deserialize, Serialize};
-use std::borrow::Cow;
 
 pub async fn testare_db() {
     let conn_str =

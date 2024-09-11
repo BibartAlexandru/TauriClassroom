@@ -8,6 +8,7 @@ use mongodm::prelude::ObjectId;
 use mongodm::{sync_indexes, CollectionConfig, Index, IndexOption, Indexes, Model, ToRepository};
 use serde::{Deserialize, Serialize};
 use std::borrow::Cow;
+use tokio::sync::{Mutex, OnceCell};
 
 pub struct DbInstance {
     pub client: Client,
@@ -15,7 +16,16 @@ pub struct DbInstance {
 }
 
 impl DbInstance {
-    pub async fn new() -> Self {
+    //TODO MAKE SINGLETON
+    // pub async fn new() -> &'static Mutex<DbInstance> {
+    //     static INSTANCE: OnceCell<Mutex<DbInstance>> = OnceCell::const_new();
+    //     INSTANCE.get_or_init(|| {
+    //         let db_instance = tokio::runtime::Handle::current().block_on(DbInstance::initialize());
+    //         Mutex::new(db_instance)
+    //     })
+    // }
+
+    pub async fn initialize() -> DbInstance {
         let conn_str =
             "mongodb+srv://mateciuceduard69:J4CEJ3nPVhLxerUQ@fakeclassroom.x5tz5.mongodb.net/";
         let client = Client::with_uri_str(conn_str)
