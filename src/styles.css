@@ -128,3 +128,35 @@ h1 {
 
 .table-row-border-bottom {
 }
+
+.empty-input-anim {
+  animation: empty-input-animation 1000ms linear 0ms 1;
+}
+
+td,
+th {
+  vertical-align: baseline;
+}
+
+@keyframes empty-input-animation {
+  0% {
+    border-color: red;
+    border-width: var(--NORMAL-BORDER-WIDTH);
+  }
+  5% {
+    transform: translateX(-1rem);
+  }
+  10% {
+    transform: translateX(1rem);
+  }
+  15% {
+    transform: translateX(-0.5rem);
+  }
+  20% {
+    transform: translateX(0%);
+  }
+  100% {
+    border-color: var(--BACKGROUND-SECONDARY);
+    border-width: var(--SMALL-BORDER-WIDTH);
+  }
+}

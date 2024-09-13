@@ -7,17 +7,21 @@ import { ISubject } from "../models/subject.model";
 import { FormsModule } from "@angular/forms";
 import { SubjectsService } from "../services/subjects/subjects.service";
 import { invoke } from "@tauri-apps/api/core";
+import { timeout } from "rxjs";
+import { PopupComponent } from "../popup/popup.component";
 
 @Component({
   selector: "app-edit-subject",
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PopupComponent],
   templateUrl: "./edit-subject.component.html",
   styleUrl: "./edit-subject.component.css",
 })
 export class EditSubjectComponent {
   EditComponentStates = EditComponentStates;
   dialogState = EditComponentStates.CREATE;
+  popupVisible = false;
+  popupText: string = "";
   subject: ISubject = {
     _id: "",
     name: "",
@@ -37,11 +41,30 @@ export class EditSubjectComponent {
     });
   }
 
+  onClickOutsideTable(event: Event) {
+    if (event.target === null) return;
+    let target = event.target as HTMLElement;
+    let tableContainer = document.getElementById(
+      "edit-subject-table-container"
+    ) as HTMLDivElement;
+    if (target !== tableContainer && !tableContainer.contains(target)) {
+      this.dialogState = EditComponentStates.CREATE;
+      this.selectedSubjectIndex = null;
+      this.subject.name = "";
+      console.log("CLICK OUTSIDE TABLE!");
+    }
+  }
+
   ngOnInit() {
+    document.addEventListener("click", this.onClickOutsideTable.bind(this));
     this.subjectsService.getSubjects().subscribe((subjects) => {
       this.subjects = subjects;
       console.log(subjects);
     });
+  }
+
+  ngOnDestroy() {
+    document.removeEventListener("click", this.onClickOutsideTable);
   }
 
   selectSubject(index: number) {
@@ -57,26 +80,69 @@ export class EditSubjectComponent {
     this.subject.name = "";
   }
 
+  inputShakeAnimation() {
+    let input = document.getElementById("name-input") as HTMLInputElement;
+    input.classList.add("empty-input-anim");
+    setTimeout(() => {
+      input.classList.remove("empty-input-anim");
+    }, 1000);
+  }
+
+  async onDelete(event: Event, index: number) {
+    event.stopPropagation();
+    this.popupVisible = true;
+    this.popupText = `Are you sure you want to delete the ${this.subjects[index].name}`;
+  }
+
   async onSave() {
     let ok: boolean = false;
-    if (this.selectedSubjectIndex != null) {
-      ok = await invoke<boolean>("update_subject_name", {
-        objId: this.subjects[this.selectedSubjectIndex]._id,
-        newName: this.subject.name,
-      });
-    } else {
-      ok = await invoke<boolean>("create_subject", {
-        name: this.subject.name,
-      });
+    let newName = this.subject.name;
+    let selectedCourseObjId =
+      this.selectedSubjectIndex === null
+        ? null
+        : this.subjects[this.selectedSubjectIndex]._id;
+    this.subject.name = "";
+    let subjIndex = this.selectedSubjectIndex;
+    switch (this.dialogState as EditComponentStates) {
+      case EditComponentStates.WAITING:
+        return;
+      case EditComponentStates.CREATE:
+        if (newName.length === 0) {
+          this.inputShakeAnimation();
+          return;
+        }
+        invoke<[boolean, string]>("create_subject", {
+          name: newName,
+        }).then(([ok, createdObjId]) => {
+          this.dialogState = EditComponentStates.CREATE;
+          if (ok) {
+            this.subjects.push({
+              _id: createdObjId,
+              name: newName,
+            } as ISubject);
+          } else console.error("Failed to create subject.");
+        });
+        break;
+      case EditComponentStates.EDIT:
+        if (newName.length === 0) {
+          this.inputShakeAnimation();
+          return;
+        }
+        if (subjIndex === null) return; //can't be null
+        invoke<boolean>("update_subject_name", {
+          objId: selectedCourseObjId,
+          newName: newName,
+        }).then((ok) => {
+          this.dialogState = EditComponentStates.CREATE;
+          console.log("finished saving!");
+          if (ok) {
+            this.subjects[subjIndex as number].name = newName;
+          } else console.error("Failed to update subject.");
+        });
+        break;
     }
-    if (!ok) {
-      console.error("Failed to update/create subject.");
-    } else {
-      this.subjects[this.selectedSubjectIndex as number].name =
-        this.subject.name;
-      this.subject.name = "";
-      this.selectedSubjectIndex = null;
-    }
+    this.selectedSubjectIndex = null;
+    this.dialogState = EditComponentStates.WAITING;
   }
 
   getRowClass(index: number): string {

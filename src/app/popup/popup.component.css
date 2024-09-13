@@ -1,0 +1,52 @@
+:host {
+  display: grid;
+  place-content: center;
+  background-color: var(--BACKGROUND-PRIMARY);
+  border: var(--NORMAL-BORDER);
+  padding: var(--NORMAL-PADDING-X);
+  height: 10rem;
+  width: 20rem;
+  position: fixed;
+  bottom: 20%;
+  animation: popup-enter 200ms linear 0ms 1;
+}
+
+:host h1 {
+  text-align: center;
+}
+
+.buttons-grid {
+  justify-self: center;
+  width: 60%;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 50% 50%;
+  gap: var(--NORMAL-GAP);
+}
+
+@keyframes popup-enter {
+  0% {
+    transform: translateY(+100%);
+  }
+
+  75% {
+    transform: translateY(-1.5rem);
+  }
+
+  90% {
+    transform: translateY(1rem);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes popup-leave {
+  60% {
+    transform: translateY(-1.5rem);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

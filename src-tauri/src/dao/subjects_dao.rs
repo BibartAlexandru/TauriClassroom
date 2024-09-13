@@ -1,3 +1,5 @@
+use std::ops::Sub;
+
 use crate::db_instance;
 
 use super::super::db_instance::DbInstance;
@@ -8,8 +10,7 @@ use mongodm::prelude::ObjectId;
 use mongodm::ToRepository;
 use mongodm::{doc, field};
 
-#[tauri::command]
-pub async fn get_subjects() -> Vec<ISubject> {
+pub async fn dao_get_subjects() -> Vec<ISubject> {
     let db_instance = DbInstance::initialize().await;
     let subjects_repo = db_instance.db.repository::<Subject>();
     let subjects = subjects_repo
@@ -27,8 +28,7 @@ pub async fn get_subjects() -> Vec<ISubject> {
     subjects
 }
 
-#[tauri::command]
-pub async fn update_subject_name(obj_id: String, new_name: String) -> bool {
+pub async fn dao_update_subject_name(obj_id: String, new_name: String) -> bool {
     let db_instance = DbInstance::initialize().await;
     let subjects_repo = db_instance.db.repository::<Subject>();
     let id_res = ObjectId::parse_str(obj_id);
@@ -62,4 +62,20 @@ pub async fn update_subject_name(obj_id: String, new_name: String) -> bool {
         }
     };
     ok
+}
+
+pub async fn dao_create_subject(name: String) -> Option<ObjectId> {
+    let db_instance = DbInstance::initialize().await;
+    let repo = db_instance.db.repository::<Subject>();
+    let new_sub = Subject {
+        _id: ObjectId::new(),
+        name: name,
+    };
+    match repo.insert_one(&new_sub).await {
+        Err(e) => {
+            println!("{:?}", e);
+            return None;
+        }
+        Ok(_) => return Some(new_sub._id),
+    }
 }

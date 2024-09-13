@@ -2,12 +2,14 @@ mod dao;
 mod db_instance;
 mod db_models;
 mod dto;
+mod tauri_commands;
 use dao::*;
 use db_models::*;
 use mongodm::field;
 use mongodm::mongo::{bson::doc, Client};
 use mongodm::prelude::ObjectId;
 use mongodm::{sync_indexes, ToRepository};
+use tauri_commands::*;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -32,7 +34,8 @@ pub fn run() {
             greet,
             get_random_message,
             get_subjects,
-            update_subject_name
+            update_subject_name,
+            create_subject
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -25,6 +25,7 @@ label {
   text-align: center;
   line-height: normal;
   font-size: var(--NORMAL-FONT-SIZE);
+  white-space: nowrap;
   /* align-self: center; */
 }
 
@@ -85,4 +86,12 @@ table tbody tr:last-of-type {
 
 .plus-btn:hover {
   background-color: var(--BACKGROUND-SECONDARY-LIGHT);
+}
+
+.disabled-table-container {
+  filter: opacity(50%);
+}
+
+.disabled-table-container > * {
+  pointer-events: none;
 }
