@@ -1,5 +1,15 @@
-<h1>{{ text }}</h1>
-<div class="buttons-grid">
-  <button class="btn btn-outline-success">Yes</button>
-  <button class="btn btn-outline-danger">No</button>
+<div
+  [ngClass]="
+    playEnterAnim
+      ? 'enter-anim popup'
+      : playExitAnim
+      ? 'exit-anim popup'
+      : 'popup'
+  "
+>
+  <h1>{{ text }}</h1>
+  <div class="buttons-grid">
+    <button class="btn btn-outline-success" (click)="onConfirm()">Yes</button>
+    <button class="btn btn-outline-danger" (click)="onCancel()">No</button>
+  </div>
 </div>

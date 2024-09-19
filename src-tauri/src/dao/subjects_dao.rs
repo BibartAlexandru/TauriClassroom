@@ -79,3 +79,21 @@ pub async fn dao_create_subject(name: String) -> Option<ObjectId> {
         Ok(_) => return Some(new_sub._id),
     }
 }
+
+pub async fn dao_delete_subject(obj_id: String) -> Result<(), String> {
+    let db_instance = DbInstance::initialize().await;
+    let repo = db_instance.db.repository::<Subject>();
+    let valid_id = ObjectId::parse_str(obj_id);
+    let mut actual_id: ObjectId;
+    match valid_id {
+        Ok(id) => actual_id = id,
+        Err(e) => return Err(e.to_string()),
+    }
+    let ok = repo
+        .find_one_and_delete(doc! {field!(_id in Subject): actual_id})
+        .await;
+    match ok {
+        Ok(_) => return Ok(()),
+        Err(e) => return Err(e.to_string()),
+    }
+}

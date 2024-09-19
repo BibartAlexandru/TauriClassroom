@@ -1,5 +1,9 @@
 <div class="create-subject">
-  <app-popup *ngIf="popupVisible === true" [text]="popupText"></app-popup>
+  <app-popup
+    *ngIf="popupVisible === true"
+    [text]="popupText"
+    (click)="onDeletePopupClick($event)"
+  ></app-popup>
   <form action="" (ngSubmit)="onSave()">
     <div class="input-row">
       <label for="name-input">Subject name</label>
@@ -21,6 +25,7 @@
     <button
       type="submit"
       class="btn btn-outline-dark"
+      id="save-btn"
       [disabled]="dialogState === EditComponentStates.WAITING"
     >
       {{
@@ -31,45 +36,54 @@
     </button>
   </form>
 </div>
-<div
-  id="edit-subject-table-container"
-  class="table-container"
-  [ngClass]="
-    dialogState === EditComponentStates.WAITING
-      ? 'disabled-table-container'
-      : ''
-  "
->
-  <table class="table table-striped table-hover mh-100">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let subject of subjects; let i = index"
-        style="cursor: pointer"
-        (click)="selectSubject(i)"
-        [ngClass]="getRowClass(i)"
-      >
-        <th scope="row">{{ subject._id }}</th>
-        <td>{{ subject.name }}</td>
-        <td>
-          <button class="btn btn-outline-danger" (click)="onDelete($event, i)">
-            Delete
-          </button>
-        </td>
-      </tr>
-      <tr class="w-100" style="cursor: pointer">
-        <td colspan="100%" class="w-100 button-td">
-          <button class="btn btn-outline-dark plus-btn" (click)="onPlusClick()">
-            <img src="/assets/plus.svg" class="normal-icon plus-img" alt="" />
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="table-related">
+  <div
+    id="edit-subject-table-container"
+    class="table-container"
+    [ngClass]="
+      dialogState === EditComponentStates.WAITING
+        ? 'disabled-table-container'
+        : ''
+    "
+  >
+    <table class="table table-striped table-hover mh-100">
+      <colgroup>
+        <col style="width: 10rem" />
+        <col style="width: auto" />
+        <col style="width: 6rem" />
+      </colgroup>
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let subject of subjects; let i = index"
+          style="cursor: pointer"
+          (click)="selectSubject(i)"
+          [ngClass]="getRowClass(i)"
+        >
+          <th scope="row" class="id-trimmer">
+            {{ subject._id }}
+          </th>
+          <td>{{ subject.name }}</td>
+          <td class="btn-cell">
+            <button
+              class="btn btn-outline-danger"
+              (click)="onDelete($event, i)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr class="cool-hr" />
+  <button class="btn btn-outline-dark plus-btn" (click)="onPlusClick()">
+    <img src="/assets/plus.svg" class="normal-icon plus-img" alt="" />
+  </button>
 </div>

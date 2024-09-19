@@ -35,7 +35,8 @@ pub fn run() {
             get_random_message,
             get_subjects,
             update_subject_name,
-            create_subject
+            create_subject,
+            delete_subject
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

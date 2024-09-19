@@ -18,3 +18,11 @@ pub async fn create_subject(name: String) -> (bool, String) {
         None => return (false, "".to_string()),
     }
 }
+
+#[tauri::command]
+pub async fn delete_subject(obj_id: String) -> bool {
+    match dao::dao_delete_subject(obj_id).await {
+        Ok(_) => true,
+        Err(_) => false,
+    }
+}

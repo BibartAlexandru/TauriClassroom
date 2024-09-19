@@ -1,4 +1,4 @@
-:host {
+.popup {
   display: grid;
   place-content: center;
   background-color: var(--BACKGROUND-PRIMARY);
@@ -7,8 +7,10 @@
   height: 10rem;
   width: 20rem;
   position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 20%;
-  animation: popup-enter 200ms linear 0ms 1;
+  z-index: 5;
 }
 
 :host h1 {
@@ -24,29 +26,38 @@
   gap: var(--NORMAL-GAP);
 }
 
+.enter-anim {
+  animation: popup-enter 200ms linear 0ms 1;
+}
+
+.exit-anim {
+  animation: popup-leave 200ms linear 0ms 1;
+  animation-fill-mode: forwards;
+}
+
 @keyframes popup-enter {
   0% {
-    transform: translateY(+100%);
+    transform: translate(-50%, +100%);
   }
 
   75% {
-    transform: translateY(-1.5rem);
+    transform: translate(-50%, -1.5rem);
   }
 
   90% {
-    transform: translateY(1rem);
+    transform: translate(-50%, 1rem);
   }
 
   100% {
-    transform: translateY(0%);
+    transform: translate(-50%, 0%);
   }
 }
 
 @keyframes popup-leave {
   60% {
-    transform: translateY(-1.5rem);
+    transform: translate(-50%, -1.5rem);
   }
   100% {
-    transform: translateY(100%);
+    transform: translate(-50%, 50vh);
   }
 }

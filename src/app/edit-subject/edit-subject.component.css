@@ -74,9 +74,10 @@ table tbody tr:last-of-type {
 }
 
 .plus-btn {
-  width: 50%;
+  width: 45%;
   /* border-radius: 0; */
   border: var(--NORMAL-BORDER);
+  margin-top: var(--NORMAL-GAP);
   filter: none;
 }
 
@@ -94,4 +95,28 @@ table tbody tr:last-of-type {
 
 .disabled-table-container > * {
   pointer-events: none;
+}
+
+.table-related {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cool-hr {
+  margin: 0;
+  display: block;
+  width: 100%;
+  border-color: var(#000);
+}
+
+.id-trimmer {
+  width: 0.1rem !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-cell {
+  text-align: end;
 }

@@ -133,6 +133,11 @@ h1 {
   animation: empty-input-animation 1000ms linear 0ms 1;
 }
 
+table {
+  table-layout: fixed;
+  width: 100% !important;
+}
+
 td,
 th {
   vertical-align: baseline;

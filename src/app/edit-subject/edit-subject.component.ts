@@ -9,7 +9,6 @@ import { SubjectsService } from "../services/subjects/subjects.service";
 import { invoke } from "@tauri-apps/api/core";
 import { timeout } from "rxjs";
 import { PopupComponent } from "../popup/popup.component";
-
 @Component({
   selector: "app-edit-subject",
   standalone: true,
@@ -28,6 +27,8 @@ export class EditSubjectComponent {
   };
   subjects: ISubject[] = [];
   selectedSubjectIndex: number | null = null;
+  subjectToDeleteIndex: number | null = null;
+  clicksOutsideTable: number = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     private subjectsService: SubjectsService
@@ -42,12 +43,25 @@ export class EditSubjectComponent {
   }
 
   onClickOutsideTable(event: Event) {
+    if (this.selectedSubjectIndex === null) return;
     if (event.target === null) return;
     let target = event.target as HTMLElement;
     let tableContainer = document.getElementById(
       "edit-subject-table-container"
     ) as HTMLDivElement;
-    if (target !== tableContainer && !tableContainer.contains(target)) {
+    let allowedClicks: HTMLElement[] = [];
+    allowedClicks.push(document.getElementById("name-input") as HTMLElement);
+    allowedClicks.push(document.getElementById("save-btn") as HTMLElement);
+    if (
+      target !== tableContainer &&
+      !tableContainer.contains(target) &&
+      allowedClicks.find((val) => val === target) === undefined
+    ) {
+      if (this.clicksOutsideTable == 0) {
+        this.clicksOutsideTable = 1;
+        return;
+      }
+      this.clicksOutsideTable = 0;
       this.dialogState = EditComponentStates.CREATE;
       this.selectedSubjectIndex = null;
       this.subject.name = "";
@@ -88,10 +102,42 @@ export class EditSubjectComponent {
     }, 1000);
   }
 
-  async onDelete(event: Event, index: number) {
+  onDelete(event: Event, index: number) {
     event.stopPropagation();
-    this.popupVisible = true;
     this.popupText = `Are you sure you want to delete the ${this.subjects[index].name}`;
+    this.popupVisible = true;
+    this.subjectToDeleteIndex = index;
+  }
+
+  onDeletePopupClick(event: string) {
+    switch (event) {
+      case "yes":
+        this.dialogState = EditComponentStates.WAITING;
+        invoke<boolean>("delete_subject", {
+          objId: this.subjects[this.subjectToDeleteIndex as number]._id,
+        }).then((ok) => {
+          this.dialogState = EditComponentStates.CREATE;
+          if (!ok) {
+            console.error("Deletion failed");
+            this.subjectToDeleteIndex = null;
+            return;
+          }
+          this.subjects = this.subjects.filter(
+            (s, index) => index !== this.subjectToDeleteIndex
+          );
+          this.subjectToDeleteIndex = null;
+        });
+        break;
+      case "no":
+        this.subjectToDeleteIndex = null;
+        break;
+      default:
+        return;
+    }
+
+    setTimeout(() => {
+      this.popupVisible = false;
+    }, 1000);
   }
 
   async onSave() {
