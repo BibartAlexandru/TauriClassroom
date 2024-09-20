@@ -6,6 +6,7 @@ import { SearchPageComponent } from "./search-page/search-page.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { EditSubjectComponent } from "./edit-subject/edit-subject.component";
+import { AdminTableComponent } from "./admin-table/admin-table.component";
 
 export const routes: Routes = [
   {
@@ -43,5 +44,9 @@ export const routes: Routes = [
   {
     path: "edit-subject/:id",
     component: EditSubjectComponent,
+  },
+  {
+    path: "profile",
+    component: ProfileComponent,
   },
 ];

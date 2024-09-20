@@ -1,0 +1,54 @@
+<app-popup
+  *ngIf="popupVisible === true"
+  [text]="popupText"
+  (click)="onDeletePopupClick($event)"
+></app-popup>
+
+<div class="table-related">
+  <div
+    id="edit-subject-table-container"
+    class="table-container"
+    [ngClass]="disableTable === true ? 'disabled-table-container' : ''"
+  >
+    <table class="table table-striped table-hover mh-100">
+      <colgroup>
+        <col style="width: 10rem" />
+        <col style="width: auto" />
+        <col style="width: 6rem" />
+      </colgroup>
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of items; let i = index"
+          style="cursor: pointer"
+          (click)="selectItem(i)"
+          [ngClass]="getRowClass(i)"
+        >
+          <th scope="row" class="id-trimmer">
+            {{ item._id }}
+          </th>
+          <td *ngFor="let attr of displayedAttributes">{{ item[attr] }}</td>
+          <td class="btn-cell">
+            <button
+              class="btn btn-outline-danger"
+              (click)="onDelete($event, i)"
+              [disabled]="popupVisible"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr class="cool-hr" />
+  <button class="btn btn-outline-dark plus-btn" (click)="onPlusClick()">
+    <img src="/assets/plus.svg" class="normal-icon plus-img" alt="" />
+  </button>
+</div>

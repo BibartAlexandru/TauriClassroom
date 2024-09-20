@@ -7,12 +7,13 @@ import { ISubject } from "../models/subject.model";
 import { FormsModule } from "@angular/forms";
 import { SubjectsService } from "../services/subjects/subjects.service";
 import { invoke } from "@tauri-apps/api/core";
-import { timeout } from "rxjs";
+import { Subject, timeout } from "rxjs";
 import { PopupComponent } from "../popup/popup.component";
+import { AdminTableComponent } from "../admin-table/admin-table.component";
 @Component({
   selector: "app-edit-subject",
   standalone: true,
-  imports: [CommonModule, FormsModule, PopupComponent],
+  imports: [CommonModule, FormsModule, PopupComponent, AdminTableComponent],
   templateUrl: "./edit-subject.component.html",
   styleUrl: "./edit-subject.component.css",
 })
@@ -42,48 +43,20 @@ export class EditSubjectComponent {
     });
   }
 
-  onClickOutsideTable(event: Event) {
-    if (this.selectedSubjectIndex === null) return;
-    if (event.target === null) return;
-    let target = event.target as HTMLElement;
-    let tableContainer = document.getElementById(
-      "edit-subject-table-container"
-    ) as HTMLDivElement;
-    let allowedClicks: HTMLElement[] = [];
-    allowedClicks.push(document.getElementById("name-input") as HTMLElement);
-    allowedClicks.push(document.getElementById("save-btn") as HTMLElement);
-    if (
-      target !== tableContainer &&
-      !tableContainer.contains(target) &&
-      allowedClicks.find((val) => val === target) === undefined
-    ) {
-      if (this.clicksOutsideTable == 0) {
-        this.clicksOutsideTable = 1;
-        return;
-      }
-      this.clicksOutsideTable = 0;
-      this.dialogState = EditComponentStates.CREATE;
-      this.selectedSubjectIndex = null;
-      this.subject.name = "";
-      console.log("CLICK OUTSIDE TABLE!");
-    }
+  onClickOutsideTable2(event: boolean) {
+    this.dialogState = EditComponentStates.CREATE;
+    this.subject.name = "";
   }
 
   ngOnInit() {
-    document.addEventListener("click", this.onClickOutsideTable.bind(this));
     this.subjectsService.getSubjects().subscribe((subjects) => {
       this.subjects = subjects;
       console.log(subjects);
     });
   }
 
-  ngOnDestroy() {
-    document.removeEventListener("click", this.onClickOutsideTable);
-  }
-
-  selectSubject(index: number) {
-    this.selectedSubjectIndex = index;
-    console.log(`selected row: ${this.selectedSubjectIndex}`);
+  selectSubject(index: number | null) {
+    if (index === null) return;
     this.dialogState = EditComponentStates.EDIT;
     this.subject.name = this.subjects[index].name;
   }
@@ -107,6 +80,21 @@ export class EditSubjectComponent {
     this.popupText = `Are you sure you want to delete the ${this.subjects[index].name}`;
     this.popupVisible = true;
     this.subjectToDeleteIndex = index;
+  }
+
+  onConfirmDelete(toDelete: any) {
+    toDelete = toDelete as ISubject;
+    this.dialogState = EditComponentStates.WAITING;
+    invoke<boolean>("delete_subject", {
+      objId: toDelete._id,
+    }).then((ok) => {
+      this.dialogState = EditComponentStates.CREATE;
+      if (!ok) {
+        console.error("Deletion failed");
+        return;
+      }
+      this.subjects = this.subjects.filter((s) => s._id !== toDelete._id);
+    });
   }
 
   onDeletePopupClick(event: string) {
@@ -141,7 +129,6 @@ export class EditSubjectComponent {
   }
 
   async onSave() {
-    let ok: boolean = false;
     let newName = this.subject.name;
     let selectedCourseObjId =
       this.selectedSubjectIndex === null
@@ -174,6 +161,7 @@ export class EditSubjectComponent {
           this.inputShakeAnimation();
           return;
         }
+        console.log(`Subjs index : ${subjIndex}`);
         if (subjIndex === null) return; //can't be null
         invoke<boolean>("update_subject_name", {
           objId: selectedCourseObjId,
@@ -189,15 +177,5 @@ export class EditSubjectComponent {
     }
     this.selectedSubjectIndex = null;
     this.dialogState = EditComponentStates.WAITING;
-  }
-
-  getRowClass(index: number): string {
-    let res =
-      index === this.selectedSubjectIndex
-        ? "selected-row table-row-border"
-        : "";
-    if (index + 1 === this.selectedSubjectIndex)
-      res += "table-row-border-bottom";
-    return res;
   }
 }
