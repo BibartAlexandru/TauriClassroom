@@ -74,3 +74,8 @@ table tbody tr:last-of-type {
 .btn-cell {
   text-align: end;
 }
+
+.centered {
+  text-align: center;
+  vertical-align: middle;
+}

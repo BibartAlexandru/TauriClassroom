@@ -7,7 +7,6 @@ import { ISubject } from "../models/subject.model";
 import { FormsModule } from "@angular/forms";
 import { SubjectsService } from "../services/subjects/subjects.service";
 import { invoke } from "@tauri-apps/api/core";
-import { Subject, timeout } from "rxjs";
 import { PopupComponent } from "../popup/popup.component";
 import { AdminTableComponent } from "../admin-table/admin-table.component";
 @Component({
@@ -19,7 +18,7 @@ import { AdminTableComponent } from "../admin-table/admin-table.component";
 })
 export class EditSubjectComponent {
   EditComponentStates = EditComponentStates;
-  dialogState = EditComponentStates.CREATE;
+  dialogState = EditComponentStates.WAITING;
   popupVisible = false;
   popupText: string = "";
   subject: ISubject = {
@@ -34,24 +33,26 @@ export class EditSubjectComponent {
     private activatedRoute: ActivatedRoute,
     private subjectsService: SubjectsService
   ) {
-    activatedRoute.paramMap.subscribe((params) => {
-      if (params.get("id") !== null) {
-        console.log(params.get("id"));
-        this.dialogState = EditComponentStates.EDIT;
-      }
-      console.log(EditComponentStates[this.dialogState]);
-    });
+    // activatedRoute.paramMap.subscribe((params) => {
+    //   if (params.get("id") !== null) {
+    //     console.log(params.get("id"));
+    //     this.dialogState = EditComponentStates.EDIT;
+    //   }
+    //   console.log(EditComponentStates[this.dialogState]);
+    // });
   }
 
   onClickOutsideTable2(event: boolean) {
     this.dialogState = EditComponentStates.CREATE;
     this.subject.name = "";
+    this.selectedSubjectIndex = null;
   }
 
   ngOnInit() {
     this.subjectsService.getSubjects().subscribe((subjects) => {
       this.subjects = subjects;
       console.log(subjects);
+      this.dialogState = EditComponentStates.CREATE;
     });
   }
 
@@ -59,6 +60,7 @@ export class EditSubjectComponent {
     if (index === null) return;
     this.dialogState = EditComponentStates.EDIT;
     this.subject.name = this.subjects[index].name;
+    this.selectedSubjectIndex = index;
   }
 
   onPlusClick() {
@@ -94,43 +96,13 @@ export class EditSubjectComponent {
         return;
       }
       this.subjects = this.subjects.filter((s) => s._id !== toDelete._id);
+      this.selectedSubjectIndex = null;
     });
-  }
-
-  onDeletePopupClick(event: string) {
-    switch (event) {
-      case "yes":
-        this.dialogState = EditComponentStates.WAITING;
-        invoke<boolean>("delete_subject", {
-          objId: this.subjects[this.subjectToDeleteIndex as number]._id,
-        }).then((ok) => {
-          this.dialogState = EditComponentStates.CREATE;
-          if (!ok) {
-            console.error("Deletion failed");
-            this.subjectToDeleteIndex = null;
-            return;
-          }
-          this.subjects = this.subjects.filter(
-            (s, index) => index !== this.subjectToDeleteIndex
-          );
-          this.subjectToDeleteIndex = null;
-        });
-        break;
-      case "no":
-        this.subjectToDeleteIndex = null;
-        break;
-      default:
-        return;
-    }
-
-    setTimeout(() => {
-      this.popupVisible = false;
-    }, 1000);
   }
 
   async onSave() {
     let newName = this.subject.name;
-    let selectedCourseObjId =
+    let selectedSubjObjId =
       this.selectedSubjectIndex === null
         ? null
         : this.subjects[this.selectedSubjectIndex]._id;
@@ -164,7 +136,7 @@ export class EditSubjectComponent {
         console.log(`Subjs index : ${subjIndex}`);
         if (subjIndex === null) return; //can't be null
         invoke<boolean>("update_subject_name", {
-          objId: selectedCourseObjId,
+          objId: selectedSubjObjId,
           newName: newName,
         }).then((ok) => {
           this.dialogState = EditComponentStates.CREATE;

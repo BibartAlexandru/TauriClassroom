@@ -23,7 +23,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="items.length > 0; else noItems">
         <tr
           *ngFor="let item of items; let i = index"
           style="cursor: pointer"
@@ -45,10 +45,44 @@
           </td>
         </tr>
       </tbody>
+      <ng-template #noItems>
+        <!-- NO ITEMS-->
+        <tbody *ngIf="disableTable !== true; else waiting">
+          <tr>
+            <td class="centered" colspan="3" style="height: 10rem">
+              <img
+                src="/assets/no_items.svg"
+                alt="no items"
+                class="large-icon"
+              />
+              <h1>No items!</h1>
+            </td>
+          </tr>
+        </tbody>
+        <ng-template #waiting>
+          <!-- WAITING-->
+          <tbody>
+            <tr>
+              <td class="centered" colspan="3" style="height: 10rem">
+                <img
+                  src="/assets/loading.gif"
+                  alt="loading"
+                  class="large-icon"
+                />
+                <h1>Waiting for the data!</h1>
+              </td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </ng-template>
     </table>
   </div>
   <hr class="cool-hr" />
-  <button class="btn btn-outline-dark plus-btn" (click)="onPlusClick()">
+  <button
+    class="btn btn-outline-dark plus-btn"
+    (click)="onPlusClick()"
+    [disabled]="disableTable === true"
+  >
     <img src="/assets/plus.svg" class="normal-icon plus-img" alt="" />
   </button>
 </div>

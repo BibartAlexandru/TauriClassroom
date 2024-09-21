@@ -1,7 +1,7 @@
+import { TableStates } from "./../enums/table-states";
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { TableStates } from "../enums/table-states";
 import { PopupComponent } from "../popup/popup.component";
 
 @Component({
@@ -21,13 +21,14 @@ export class AdminTableComponent {
   @Output() clickedOutsideTable = new EventEmitter<boolean>();
   @Output() clickedPlus = new EventEmitter<boolean>();
   @Output() confirmedDelete = new EventEmitter<any>();
-  tableState: TableStates = TableStates.NORMAL;
+  TableStates = TableStates;
   clicksOutsideTable = 0;
   popupText: string = "";
   popupVisible: boolean = false;
   itemToDeleteIndex: number | null = null;
 
   onClickOutsideTable(event: Event) {
+    /*
     if (this.selectedItemIndex === null) return;
     if (event.target === null) return;
     let target = event.target as HTMLElement;
@@ -39,20 +40,23 @@ export class AdminTableComponent {
       let element = document.getElementById(id);
       if (element !== null) allowedClicks.push(element as HTMLElement);
     }
+    let popup = document.getElementsByTagName("app-popup")[0] as HTMLElement;
     if (
       target !== tableContainer &&
       !tableContainer.contains(target) &&
-      allowedClicks.find((val) => val === target) === undefined
+      allowedClicks.find((val) => val === target) === undefined &&
+      popup === undefined
     ) {
+      //CLICK OUTSIDE
       if (this.clicksOutsideTable == 0) {
         this.clicksOutsideTable = 1;
         return;
       }
       this.clicksOutsideTable = 0;
-      this.selectedItemIndex = null;
       this.clickedOutsideTable.emit(true);
       console.log("CLICK OUTSIDE TABLE!");
     }
+      */
   }
 
   ngOnInit() {
@@ -64,13 +68,11 @@ export class AdminTableComponent {
   }
 
   selectItem(index: number) {
-    this.selectedItemIndex = index;
     console.log(`selected row: ${this.selectedItemIndex}`);
     this.selectedItem.emit(index);
   }
 
   onPlusClick() {
-    this.selectedItemIndex = null;
     this.clickedPlus.emit(true);
   }
 
@@ -92,7 +94,6 @@ export class AdminTableComponent {
   onDeletePopupClick(event: string) {
     switch (event) {
       case "yes":
-        this.tableState = TableStates.DISABLED;
         this.confirmedDelete.emit(this.items[this.itemToDeleteIndex as number]);
         break;
       case "no":

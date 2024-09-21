@@ -89,6 +89,11 @@ h1 {
   object-fit: contain;
 }
 
+.large-icon {
+  height: var(--LARGE-ICON-SIZE);
+  object-fit: contain;
+}
+
 .round-border {
   border-radius: 50%;
 }
