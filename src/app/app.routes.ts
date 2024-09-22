@@ -7,6 +7,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { EditSubjectComponent } from "./edit-subject/edit-subject.component";
 import { AdminTableComponent } from "./admin-table/admin-table.component";
+import { EditAccountComponent } from "./edit-account/edit-account.component";
 
 export const routes: Routes = [
   {
@@ -48,5 +49,9 @@ export const routes: Routes = [
   {
     path: "profile",
     component: ProfileComponent,
+  },
+  {
+    path: "create-account",
+    component: EditAccountComponent,
   },
 ];

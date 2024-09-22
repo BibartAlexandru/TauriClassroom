@@ -1,5 +1,6 @@
 <div class="create-subject">
   <form action="" (ngSubmit)="onSave()">
+    <!--NAME-->
     <div class="input-row">
       <label for="name-input">Subject name</label>
       <input
@@ -19,6 +20,44 @@
         "
       />
     </div>
+    <!--PASSWORD-->
+    <div class="input-row">
+      <label for="password-input">Password</label>
+      <input
+        type="text"
+        class="text-input"
+        [(ngModel)]="subject.name"
+        id="password-input"
+        name="password-input"
+        [disabled]="dialogState === EditComponentStates.WAITING"
+      />
+    </div>
+    <!--EMAIL-->
+    <div class="input-row">
+      <label for="email-input">Email</label>
+      <input
+        type="text"
+        class="text-input"
+        [(ngModel)]="subject.name"
+        id="email-input"
+        name="email-input"
+        [disabled]="dialogState === EditComponentStates.WAITING"
+      />
+    </div>
+    <!--USER TYPE-->
+    <div class="input-row">
+      <label for="type-input">Type</label>
+      <select
+        type="list"
+        class="text-input cool-select"
+        id="type-input"
+        name="type-input"
+        [(ngModel)]="usertype"
+        [disabled]="dialogState === EditComponentStates.WAITING"
+      >
+        <option *ngFor="let type of UserTypes">{{ type }}</option>
+      </select>
+    </div>
     <button
       type="submit"
       class="btn btn-outline-dark"
@@ -27,8 +66,8 @@
     >
       {{
         dialogState === EditComponentStates.CREATE
-          ? "Create course"
-          : "Save course"
+          ? "Create account"
+          : "Save account"
       }}
     </button>
   </form>

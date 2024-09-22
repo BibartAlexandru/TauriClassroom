@@ -38,7 +38,7 @@ form {
   width: min(100%, 20rem);
   /* border: var(--NORMAL-BORDER);s */
   /* padding: var(--NORMAL-PADDING-X);
-  border-radius: 1rem; */
+    border-radius: 1rem; */
 }
 
 form > button {

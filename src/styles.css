@@ -107,6 +107,17 @@ h1 {
   padding: 0 var(--NORMAL-PADDING-X);
   height: 2rem;
   background-color: var(--BACKGROUND-PRIMARY);
+  width: 181px;
+}
+
+.cool-select {
+}
+
+.cool-select::after {
+  background-color: red;
+  color: red;
+  content: "SALUT";
+  font-size: 3rem;
 }
 
 .text-input:focus {
