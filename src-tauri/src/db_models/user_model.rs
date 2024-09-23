@@ -29,6 +29,7 @@ impl CollectionConfig for UserCollConf {
 }
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct User {
+    #[serde(rename = "_id")]
     pub _id: ObjectId,
     pub name: String,
     pub email: String,

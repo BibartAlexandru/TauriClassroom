@@ -79,3 +79,7 @@ table tbody tr:last-of-type {
   text-align: center;
   vertical-align: middle;
 }
+
+th {
+  text-transform: capitalize;
+}

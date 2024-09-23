@@ -19,8 +19,9 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">id</th>
-          <th scope="col">Name</th>
-          <th scope="col"></th>
+          <th scope="col" *ngFor="let attr of displayedAttributes">
+            {{ attr }}
+          </th>
         </tr>
       </thead>
       <tbody *ngIf="items.length > 0; else noItems">

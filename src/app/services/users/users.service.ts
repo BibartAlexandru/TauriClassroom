@@ -10,17 +10,17 @@ export class UsersService {
   users: IUser[] = [
     {
       name: "Joe",
-      id: 0,
+      _id: "0",
       imageSrc: "assets/default_profile.jpg",
     },
     {
       name: "BBtei",
-      id: 1,
+      _id: "1",
       imageSrc: "assets/default_profile.jpg",
     },
     {
       name: "SICarpPhishing 🐟",
-      id: 2,
+      _id: "2",
       imageSrc: "assets/default_profile.jpg",
     },
   ];

@@ -15,10 +15,8 @@ export class AdminTableComponent {
   @Input({ required: true }) disableTable: boolean = false;
   @Input({ required: true }) items: any[] = [];
   @Input({ required: true }) displayedAttributes: string[] = [];
-  @Input({ required: true }) allowedClickIds: string[] = [];
   @Input({ required: true }) selectedItemIndex: number | null = null;
   @Output() selectedItem = new EventEmitter<number | null>();
-  @Output() clickedOutsideTable = new EventEmitter<boolean>();
   @Output() clickedPlus = new EventEmitter<boolean>();
   @Output() confirmedDelete = new EventEmitter<any>();
   TableStates = TableStates;
@@ -27,48 +25,7 @@ export class AdminTableComponent {
   popupVisible: boolean = false;
   itemToDeleteIndex: number | null = null;
 
-  onClickOutsideTable(event: Event) {
-    /*
-    if (this.selectedItemIndex === null) return;
-    if (event.target === null) return;
-    let target = event.target as HTMLElement;
-    let tableContainer = document.getElementById(
-      "edit-subject-table-container"
-    ) as HTMLDivElement;
-    let allowedClicks: HTMLElement[] = [];
-    for (let id of this.allowedClickIds) {
-      let element = document.getElementById(id);
-      if (element !== null) allowedClicks.push(element as HTMLElement);
-    }
-    let popup = document.getElementsByTagName("app-popup")[0] as HTMLElement;
-    if (
-      target !== tableContainer &&
-      !tableContainer.contains(target) &&
-      allowedClicks.find((val) => val === target) === undefined &&
-      popup === undefined
-    ) {
-      //CLICK OUTSIDE
-      if (this.clicksOutsideTable == 0) {
-        this.clicksOutsideTable = 1;
-        return;
-      }
-      this.clicksOutsideTable = 0;
-      this.clickedOutsideTable.emit(true);
-      console.log("CLICK OUTSIDE TABLE!");
-    }
-      */
-  }
-
-  ngOnInit() {
-    document.addEventListener("click", this.onClickOutsideTable.bind(this));
-  }
-
-  ngOnDestroy() {
-    document.removeEventListener("click", this.onClickOutsideTable);
-  }
-
   selectItem(index: number) {
-    console.log(`selected row: ${this.selectedItemIndex}`);
     this.selectedItem.emit(index);
   }
 

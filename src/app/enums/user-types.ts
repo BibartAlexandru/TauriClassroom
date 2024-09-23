@@ -1,5 +1,5 @@
 export enum UserTypes {
-  ADMIN,
-  STUDENT,
-  TEACHER,
+  ADMIN = 0,
+  STUDENT = 1,
+  TEACHER = 2,
 }

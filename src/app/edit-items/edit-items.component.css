@@ -122,7 +122,3 @@ table tbody tr:last-of-type {
 .btn-cell {
   text-align: end;
 }
-
-option {
-  text-transform: capitalize;
-}

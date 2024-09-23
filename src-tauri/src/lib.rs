@@ -3,7 +3,6 @@ mod db_instance;
 mod db_models;
 mod dto;
 mod tauri_commands;
-use dao::*;
 use db_models::*;
 use mongodm::field;
 use mongodm::mongo::{bson::doc, Client};
@@ -36,7 +35,8 @@ pub fn run() {
             get_subjects,
             update_subject_name,
             create_subject,
-            delete_subject
+            delete_subject,
+            get_users
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

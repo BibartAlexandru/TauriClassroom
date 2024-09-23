@@ -12,7 +12,7 @@ import { IUser } from "../models/user.model";
 export class UserComponent {
   @Input({ required: true }) user: IUser = {
     name: "Missing",
-    id: -1,
+    _id: "-1",
     imageSrc: "",
   };
 }

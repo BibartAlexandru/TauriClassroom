@@ -29,6 +29,12 @@ pub struct FileObjectId {
     id: ObjectId,
 }
 
+impl ToString for FileObjectId {
+    fn to_string(&self) -> String {
+        return self.id.to_string();
+    }
+}
+
 impl CollectionChecker<FileObjectId, File> for FileObjectId {
     fn new_without_check(obj_id: ObjectId) -> FileObjectId {
         Self { id: obj_id }

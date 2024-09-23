@@ -1,11 +1,11 @@
 <div class="create-subject">
   <form action="" (ngSubmit)="onSaveClick()">
     <div class="input-row">
-      <label for="name-input">Subject name</label>
+      <label for="name-input">Item name</label>
       <input
         type="text"
         class="text-input"
-        [(ngModel)]="item.name"
+        [(ngModel)]="item['name']"
         id="name-input"
         name="name-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
@@ -24,9 +24,7 @@
       [disabled]="dialogState === EditComponentStates.WAITING"
     >
       {{
-        dialogState === EditComponentStates.CREATE
-          ? "Create subject"
-          : "Save subject"
+        dialogState === EditComponentStates.CREATE ? "Create item" : "Save item"
       }}
     </button>
   </form>

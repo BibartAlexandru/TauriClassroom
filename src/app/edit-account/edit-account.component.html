@@ -1,12 +1,12 @@
 <div class="create-subject">
-  <form action="" (ngSubmit)="onSave()">
+  <form action="" (ngSubmit)="onSaveClick()">
     <!--NAME-->
     <div class="input-row">
-      <label for="name-input">Subject name</label>
+      <label for="name-input">Username</label>
       <input
         type="text"
         class="text-input"
-        [(ngModel)]="subject.name"
+        [(ngModel)]="item.name"
         id="name-input"
         name="name-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
@@ -15,9 +15,7 @@
         src="assets/loading.gif"
         class="medium-icon"
         alt="loading gif"
-        *ngIf="
-          dialogState === EditComponentStates.WAITING && subjects.length > 0
-        "
+        *ngIf="dialogState === EditComponentStates.WAITING && items.length > 0"
       />
     </div>
     <!--PASSWORD-->
@@ -26,7 +24,7 @@
       <input
         type="text"
         class="text-input"
-        [(ngModel)]="subject.name"
+        [(ngModel)]="item.name"
         id="password-input"
         name="password-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
@@ -38,7 +36,7 @@
       <input
         type="text"
         class="text-input"
-        [(ngModel)]="subject.name"
+        [(ngModel)]="item.name"
         id="email-input"
         name="email-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
@@ -55,7 +53,24 @@
         [(ngModel)]="usertype"
         [disabled]="dialogState === EditComponentStates.WAITING"
       >
-        <option *ngFor="let type of UserTypes">{{ type }}</option>
+        <option *ngFor="let type of userTypesArray" [ngValue]="type">
+          {{ UserTypes[type] }}
+        </option>
+      </select>
+    </div>
+    <!--LANSAT-->
+    <div class="input-row">
+      <label for="lansat-input">Lansat</label>
+      <select
+        type="list"
+        class="text-input cool-select"
+        id="lansat-input"
+        name="lansat-input"
+        [(ngModel)]="lansat"
+        [disabled]="dialogState === EditComponentStates.WAITING"
+      >
+        <option [ngValue]="true">Yes</option>
+        <option [ngValue]="false">No</option>
       </select>
     </div>
     <button
@@ -75,12 +90,10 @@
 
 <app-admin-table
   [disableTable]="dialogState === EditComponentStates.WAITING"
-  [displayedAttributes]="['name']"
-  [allowedClickIds]="['name-input', 'save-btn']"
-  [selectedItemIndex]="selectedSubjectIndex"
-  [items]="subjects"
+  [displayedAttributes]="['name', 'password', 'email', 'type', 'lansat']"
+  [selectedItemIndex]="selectedItemIndex"
+  [items]="items"
   (clickedPlus)="onPlusClick()"
-  (clickedOutsideTable)="onClickOutsideTable2($event)"
   (confirmedDelete)="onConfirmDelete($event)"
-  (selectedItem)="selectSubject($event)"
+  (selectedItem)="selectItem($event)"
 ></app-admin-table>
