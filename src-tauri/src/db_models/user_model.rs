@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use super::file_model::FileObjectId;
 use super::CollectionChecker;
 use mongodm::field;
@@ -17,6 +19,13 @@ pub enum UserType {
     TEACHER,
     ADMIN,
 }
+
+impl Display for UserType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
 pub struct UserCollConf;
 
 impl CollectionConfig for UserCollConf {

@@ -85,7 +85,7 @@ export abstract class EditItemsComponent<
       case EditComponentStates.CREATE:
         this.createSaveItem({ ...this.item } as T).then((ok) => {
           this.dialogState = EditComponentStates.CREATE;
-          this.clearAllInputs();
+          if (ok) this.clearAllInputs();
         });
         break;
       case EditComponentStates.EDIT:

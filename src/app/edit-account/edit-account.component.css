@@ -123,6 +123,7 @@ table tbody tr:last-of-type {
   text-align: end;
 }
 
+select,
 option {
   text-transform: capitalize;
 }

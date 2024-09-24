@@ -87,13 +87,6 @@ export class EditSubjectComponent extends EditItemsComponent<ISubject> {
     super();
   }
 
-  // ngOnInit() {
-  //   this.subjectsService.getSubjects().subscribe((subjects) => {
-  //     this.subjects = subjects;
-  //     console.log(subjects);
-  //   });
-  // }
-
   inputShakeAnimation() {
     let input = document.getElementById("name-input") as HTMLInputElement;
     input.classList.add("empty-input-anim");
@@ -101,55 +94,4 @@ export class EditSubjectComponent extends EditItemsComponent<ISubject> {
       input.classList.remove("empty-input-anim");
     }, 1000);
   }
-
-  // async onSaveClick() {
-  //   let newName = this.subject.name;
-  //   let selectedSubjObjId =
-  //     this.selectedSubjectIndex === null
-  //       ? null
-  //       : this.subjects[this.selectedSubjectIndex]._id;
-  //   this.subject.name = "";
-  //   let subjIndex = this.selectedSubjectIndex;
-  //   switch (this.dialogState as EditComponentStates) {
-  //     case EditComponentStates.WAITING:
-  //       return;
-  //     case EditComponentStates.CREATE:
-  //       if (newName.length === 0) {
-  //         this.inputShakeAnimation();
-  //         return;
-  //       }
-  //       invoke<[boolean, string]>("create_subject", {
-  //         name: newName,
-  //       }).then(([ok, createdObjId]) => {
-  //         this.dialogState = EditComponentStates.CREATE;
-  //         if (ok) {
-  //           this.subjects.push({
-  //             _id: createdObjId,
-  //             name: newName,
-  //           } as ISubject);
-  //         } else console.error("Failed to create subject.");
-  //       });
-  //       break;
-  //     case EditComponentStates.EDIT:
-  //       if (newName.length === 0) {
-  //         this.inputShakeAnimation();
-  //         return;
-  //       }
-  //       console.log(`Subjs index : ${subjIndex}`);
-  //       if (subjIndex === null) return; //can't be null
-  //       invoke<boolean>("update_subject_name", {
-  //         objId: selectedSubjObjId,
-  //         newName: newName,
-  //       }).then((ok) => {
-  //         this.dialogState = EditComponentStates.CREATE;
-  //         console.log("finished saving!");
-  //         if (ok) {
-  //           this.subjects[subjIndex as number].name = newName;
-  //         } else console.error("Failed to update subject.");
-  //       });
-  //       break;
-  //   }
-  //   this.selectedSubjectIndex = null;
-  //   this.dialogState = EditComponentStates.WAITING;
-  // }
 }

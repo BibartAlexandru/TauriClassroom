@@ -36,7 +36,11 @@ pub fn run() {
             update_subject_name,
             create_subject,
             delete_subject,
-            get_users
+            get_users,
+            create_user,
+            edit_user,
+            delte_user,
+            edit_user
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

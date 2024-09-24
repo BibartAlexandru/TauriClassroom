@@ -24,7 +24,7 @@
       <input
         type="text"
         class="text-input"
-        [(ngModel)]="item.name"
+        [(ngModel)]="item.password"
         id="password-input"
         name="password-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
@@ -36,7 +36,7 @@
       <input
         type="text"
         class="text-input"
-        [(ngModel)]="item.name"
+        [(ngModel)]="item.email"
         id="email-input"
         name="email-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
@@ -50,11 +50,11 @@
         class="text-input cool-select"
         id="type-input"
         name="type-input"
-        [(ngModel)]="usertype"
+        [(ngModel)]="item._type"
         [disabled]="dialogState === EditComponentStates.WAITING"
       >
         <option *ngFor="let type of userTypesArray" [ngValue]="type">
-          {{ UserTypes[type] }}
+          {{ type.toLowerCase() }}
         </option>
       </select>
     </div>
@@ -66,7 +66,7 @@
         class="text-input cool-select"
         id="lansat-input"
         name="lansat-input"
-        [(ngModel)]="lansat"
+        [(ngModel)]="item.lansat"
         [disabled]="dialogState === EditComponentStates.WAITING"
       >
         <option [ngValue]="true">Yes</option>

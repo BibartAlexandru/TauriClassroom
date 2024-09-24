@@ -50,7 +50,11 @@
         <!-- NO ITEMS-->
         <tbody *ngIf="disableTable !== true; else waiting">
           <tr>
-            <td class="centered" colspan="3" style="height: 10rem">
+            <td
+              class="centered"
+              [attr.colspan]="displayedAttributes.length + 1"
+              style="height: 10rem"
+            >
               <img
                 src="/assets/no_items.svg"
                 alt="no items"
@@ -64,7 +68,11 @@
           <!-- WAITING-->
           <tbody>
             <tr>
-              <td class="centered" colspan="3" style="height: 10rem">
+              <td
+                class="centered"
+                [attr.colspan]="displayedAttributes.length + 1"
+                style="height: 10rem"
+              >
                 <img
                   src="/assets/loading.gif"
                   alt="loading"
