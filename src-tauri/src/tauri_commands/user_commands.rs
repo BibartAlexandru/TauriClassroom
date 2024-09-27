@@ -12,7 +12,7 @@ pub struct IUser {
     pub name: String,
     pub email: String,
     pub password: String,
-    pub _type: UserType,
+    pub user_type: UserType,
     pub img_id: String,
     pub lansat: bool,
 }
@@ -30,7 +30,7 @@ pub async fn get_users() -> (bool, Vec<IUser>) {
                         name: user.name,
                         email: user.email,
                         password: user.password,
-                        _type: user._type,
+                        user_type: user.user_type,
                         img_id: user.img_id.to_string(),
                         lansat: user.lansat,
                     })
@@ -60,14 +60,14 @@ pub async fn edit_user(user: IUser) -> bool {
     match dao_edit_user(user).await {
         Ok(_) => true,
         Err(e) => {
-            print!("{}", e);
+            println!("Failed at editing user: {}", e);
             false
         }
     }
 }
 
 #[tauri::command]
-pub async fn delte_user(obj_id: String) -> bool {
+pub async fn delete_user(obj_id: String) -> bool {
     match dao_delete_user(obj_id).await {
         Ok(_) => return true,
         Err(e) => {

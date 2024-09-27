@@ -5,7 +5,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  _type: string;
+  user_type: string;
   img_id: string;
   lansat: boolean;
 }

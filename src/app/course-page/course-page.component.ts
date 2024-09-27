@@ -49,8 +49,8 @@ export class CoursePageComponent {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {
-      const courseID: number = Number(params.get("id"));
-      if (isNaN(courseID)) {
+      const courseID = String(params.get("id"));
+      if (isNaN(Number(courseID))) {
         console.error(
           `Expected id parameter to be a number on route courses/:id. Actual value: ${params.get(
             "id"
@@ -70,14 +70,14 @@ export class CoursePageComponent {
 
   fetchInfo() {
     if (this.course === null) return;
-    this.postsService.getPostsFromCourse(this.course.id).subscribe((posts) => {
+    this.postsService.getPostsFromCourse(this.course._id).subscribe((posts) => {
       this.posts = posts;
     });
   }
 
   fetchMaterials() {
     if (this.course === null) return;
-    this.postsService.getCourseInfoPosts(this.course.id).subscribe((posts) => {
+    this.postsService.getCourseInfoPosts(this.course._id).subscribe((posts) => {
       this.posts = posts as ICoursePagePost[];
     });
   }

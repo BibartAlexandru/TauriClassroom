@@ -22,7 +22,11 @@ pub enum UserType {
 
 impl Display for UserType {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{:?}", self)
+        match self {
+            UserType::ADMIN => write!(f, "ADMIN"),
+            UserType::STUDENT => write!(f, "STUDENT"),
+            UserType::TEACHER => write!(f, "TEACHER"),
+        }
     }
 }
 
@@ -43,7 +47,7 @@ pub struct User {
     pub name: String,
     pub email: String,
     pub password: String,
-    pub _type: UserType,
+    pub user_type: UserType,
     pub img_id: FileObjectId,
     pub lansat: bool,
 }
@@ -51,7 +55,6 @@ pub struct User {
 impl Model for User {
     type CollConf = UserCollConf;
 }
-
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct TeacherObjectId {
     id: ObjectId,
@@ -65,7 +68,7 @@ impl CollectionChecker<TeacherObjectId, User> for TeacherObjectId {
         match coll
             .find_one(doc! {
             field!(_id in User): obj_id,
-            field!(_type in User):"TEACHER"})
+            field!(user_type in User):"TEACHER"})
             .await
         {
             Ok(Some(_)) => {
@@ -90,7 +93,7 @@ impl CollectionChecker<StudentObjectId, User> for StudentObjectId {
         match coll
             .find_one(doc! {
             field!(_id in User): obj_id,
-            field!(_type in User):"STUDENT"})
+            field!(user_type in User):"STUDENT"})
             .await
         {
             Ok(Some(_)) => {

@@ -12,7 +12,7 @@ export class SharedVariablesService {
   isCoursesSidebarDocked: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(true);
   constructor(private courseService: CoursesService) {
-    courseService.getCourseWithId(0).subscribe((course) => {
+    courseService.getCourseWithId("0").subscribe((course) => {
       this.openedCourse.next(course);
     });
   }

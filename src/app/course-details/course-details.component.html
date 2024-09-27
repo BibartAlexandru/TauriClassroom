@@ -1,5 +1,5 @@
 <div class="course-details">
-  <h1>{{ currentCourse === null ? "" : currentCourse.name }}</h1>
+  <h1>{{ currentCourse === null ? "" : currentCourse._id }}</h1>
   <div class="options">
     <h2
       [ngClass]="getOptionsClass(CoursePageStates.INFO)"

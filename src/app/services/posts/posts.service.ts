@@ -5,6 +5,7 @@ import { PostType } from "../../enums/post-types";
 import { ICoursePagePost } from "../../models/course-post.model";
 import { ICourse } from "../../models/course.model";
 import { PostTemplate } from "../../models/post.template";
+import { ISubject } from "../../models/subject.model";
 
 @Injectable({
   providedIn: "root",
@@ -12,17 +13,76 @@ import { PostTemplate } from "../../models/post.template";
 export class PostsService {
   currentDate = new Date(Date.now());
   courses: ICourse[] = [
-    { name: "Maths", id: 0 },
-    { name: "Physics", id: 1 },
-    { name: "English", id: 2 },
-    { name: "Juggling", id: 3 },
-    { name: "Biology", id: 4 },
-    { name: "Astronomy", id: 5 },
-    { name: "Programming1", id: 6 },
-    { name: "Programming2", id: 7 },
-    { name: "Psychology", id: 8 },
-    { name: "Literature", id: 9 },
-    { name: "Help", id: 10 },
+    {
+      _id: "0",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "1",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "2",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "3",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "4",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "5",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "6",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "7",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "8",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "9",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
   ];
   posts: ICoursePagePost[] = [
     {
@@ -53,7 +113,7 @@ export class PostsService {
       date: DateFormatter.formatDate(new Date()),
       author: "Joe Dad",
       title: "Joe mama",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare turpis neque, eget imperdiet enim mollis sed. Proin semper, ex id luctus rutrum, erat ligula congue est, nec rutrum mauris nibh ac augue. Fusce commodo hendrerit commodo. Suspendisse aliquet, lectus a suscipit dapibus, risus mauris congue odio, a cursus neque ipsum tempus est. Vivamus id sodales diam. Duis sit amet varius metus, vel porta lacus. Proin lectus libero, dictum sed tincidunt et, euismod at nunc. Donec vitae arcu dolor. In at turpis pulvinar orci euismod ultricies sed nec est. Praesent eu rutrum dolor. Aenean sed lectus tincidunt, pharetra nibh at, bibendum velit. Integer venenatis pharetra ex sit amet accumsan. Curabitur aliquet massa arcu, vitae laoreet sapien porttitor sit amet. Ut molestie elementum turpis, vitae cursus augue porta sed. Curabitur blandit finibus pretium. Pellentesque ullamcorper quam justo, a commodo ligula accumsan sed.",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare turpis neque, eget imperdiet enim mollis sed. Proin semper, ex_id luctus rutrum, erat ligula congue est, nec rutrum mauris nibh ac augue. Fusce commodo hendrerit commodo. Suspendisse aliquet, lectus a suscipit dapibus, risus mauris congue odio, a cursus neque ipsum tempus est. Vivamus_id sodales diam. Duis sit amet varius metus, vel porta lacus. Proin lectus libero, dictum sed tincidunt et, euismod at nunc. Donec vitae arcu dolor. In at turpis pulvinar orci euismod ultricies sed nec est. Praesent eu rutrum dolor. Aenean sed lectus tincidunt, pharetra nibh at, bibendum velit. Integer venenatis pharetra ex sit amet accumsan. Curabitur aliquet massa arcu, vitae laoreet sapien porttitor sit amet. Ut molestie elementum turpis, vitae cursus augue porta sed. Curabitur blandit finibus pretium. Pellentesque ullamcorper quam justo, a commodo ligula accumsan sed.",
       course: this.courses[1],
       comments: [],
     },
@@ -113,9 +173,9 @@ export class PostsService {
     return of(this.posts);
   }
 
-  getPostsFromCourse(courseID: number): Observable<ICoursePagePost[]> {
+  getPostsFromCourse(courseID: string): Observable<ICoursePagePost[]> {
     const postsFromCourse = this.posts.filter(
-      (post) => post.course.id == courseID
+      (post) => post.course._id == courseID
     );
     return of([...postsFromCourse]);
   }
@@ -137,7 +197,7 @@ export class PostsService {
     ]);
   }
 
-  getCourseInfoPosts(courseID: number): Observable<PostTemplate[]> {
+  getCourseInfoPosts(courseID: string): Observable<PostTemplate[]> {
     //TODO: Call Rust function
     return of([this.materialPost]);
   }

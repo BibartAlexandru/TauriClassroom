@@ -15,7 +15,7 @@ export class UsersService {
       img_id: "assets/default_profile.jpg",
       email: "",
       password: "",
-      _type: UserTypes[UserTypes.TEACHER],
+      user_type: UserTypes[UserTypes.TEACHER],
       lansat: false,
     },
     {
@@ -24,7 +24,7 @@ export class UsersService {
       img_id: "assets/default_profile.jpg",
       email: "",
       password: "",
-      _type: UserTypes[UserTypes.TEACHER],
+      user_type: UserTypes[UserTypes.TEACHER],
       lansat: false,
     },
     {
@@ -33,7 +33,7 @@ export class UsersService {
       img_id: "assets/default_profile.jpg",
       email: "",
       password: "",
-      _type: UserTypes[UserTypes.TEACHER],
+      user_type: UserTypes[UserTypes.TEACHER],
       lansat: false,
     },
   ];

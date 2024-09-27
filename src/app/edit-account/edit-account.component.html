@@ -11,12 +11,6 @@
         name="name-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
       />
-      <img
-        src="assets/loading.gif"
-        class="medium-icon"
-        alt="loading gif"
-        *ngIf="dialogState === EditComponentStates.WAITING && items.length > 0"
-      />
     </div>
     <!--PASSWORD-->
     <div class="input-row">
@@ -50,7 +44,7 @@
         class="text-input cool-select"
         id="type-input"
         name="type-input"
-        [(ngModel)]="item._type"
+        [(ngModel)]="item.user_type"
         [disabled]="dialogState === EditComponentStates.WAITING"
       >
         <option *ngFor="let type of userTypesArray" [ngValue]="type">

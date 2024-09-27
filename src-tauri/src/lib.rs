@@ -39,7 +39,7 @@ pub fn run() {
             get_users,
             create_user,
             edit_user,
-            delte_user,
+            delete_user,
             edit_user
         ])
         .run(tauri::generate_context!())

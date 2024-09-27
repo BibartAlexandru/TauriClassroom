@@ -1,14 +1,20 @@
 <div class="create-subject">
   <form action="" (ngSubmit)="onSaveClick()">
     <div class="input-row">
-      <label for="name-input">Subject name</label>
+      <label for="name-input">Item name</label>
       <input
         type="text"
         class="text-input"
-        [(ngModel)]="item.name"
+        [(ngModel)]="item['_id']"
         id="name-input"
         name="name-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
+      />
+      <img
+        src="assets/loading.gif"
+        class="medium-icon"
+        alt="loading gif"
+        *ngIf="dialogState === EditComponentStates.WAITING && items.length > 0"
       />
     </div>
     <button
@@ -18,9 +24,7 @@
       [disabled]="dialogState === EditComponentStates.WAITING"
     >
       {{
-        dialogState === EditComponentStates.CREATE
-          ? "Create subject"
-          : "Save subject"
+        dialogState === EditComponentStates.CREATE ? "Create item" : "Save item"
       }}
     </button>
   </form>

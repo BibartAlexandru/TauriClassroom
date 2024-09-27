@@ -37,6 +37,7 @@ export class EditAccountComponent extends EditItemsComponent<IUser> {
     console.error("Failed to create user.");
     return Promise.resolve(false);
   }
+
   override async editSaveItem(item: IUser, index: number): Promise<boolean> {
     if (
       item.email.length === 0 ||
@@ -49,6 +50,7 @@ export class EditAccountComponent extends EditItemsComponent<IUser> {
     let ok = await invoke<boolean>("edit_user", { user: item });
     if (ok) {
       this.items[index] = item;
+      return Promise.resolve(true);
     }
     console.error("Failed to edit user.");
     return Promise.resolve(false);
@@ -65,7 +67,7 @@ export class EditAccountComponent extends EditItemsComponent<IUser> {
     this.item.name = this.items[index].name;
     this.item.password = this.items[index].password;
     this.item.email = this.items[index].email;
-    this.item._type = this.items[index]._type;
+    this.item.user_type = this.items[index].user_type;
     this.item.lansat = this.items[index].lansat;
   }
 
@@ -118,7 +120,7 @@ export class EditAccountComponent extends EditItemsComponent<IUser> {
     ];
     this.item = {
       _id: "",
-      _type: UserTypes[UserTypes.TEACHER],
+      user_type: UserTypes[UserTypes.TEACHER],
       name: "",
       email: "",
       password: "",

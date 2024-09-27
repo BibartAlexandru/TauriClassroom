@@ -47,7 +47,8 @@ export class AppComponent {
   containsCourseSidebar(): boolean {
     return (
       this.routerOutlerRoute === "/" ||
-      this.routerOutlerRoute.includes("course")
+      (this.routerOutlerRoute.includes("course") &&
+        this.routerOutlerRoute !== "/create-course")
     );
   }
 

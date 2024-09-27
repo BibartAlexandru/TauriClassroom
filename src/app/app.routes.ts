@@ -8,6 +8,7 @@ import { SettingsComponent } from "./settings/settings.component";
 import { EditSubjectComponent } from "./edit-subject/edit-subject.component";
 import { AdminTableComponent } from "./admin-table/admin-table.component";
 import { EditAccountComponent } from "./edit-account/edit-account.component";
+import { EditCourseComponent } from "./edit-course/edit-course.component";
 
 export const routes: Routes = [
   {
@@ -53,5 +54,9 @@ export const routes: Routes = [
   {
     path: "create-account",
     component: EditAccountComponent,
+  },
+  {
+    path: "create-course",
+    component: EditCourseComponent,
   },
 ];

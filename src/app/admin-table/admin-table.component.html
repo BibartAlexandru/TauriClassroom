@@ -24,7 +24,7 @@
           </th>
         </tr>
       </thead>
-      <tbody *ngIf="items.length > 0; else noItems">
+      <tbody *ngIf="items.length > 0 && disableTable === false; else noItems">
         <tr
           *ngFor="let item of items; let i = index"
           style="cursor: pointer"
@@ -70,7 +70,7 @@
             <tr>
               <td
                 class="centered"
-                [attr.colspan]="displayedAttributes.length + 1"
+                [attr.colspan]="displayedAttributes.length + 2"
                 style="height: 10rem"
               >
                 <img

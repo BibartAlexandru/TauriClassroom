@@ -48,7 +48,7 @@ pub async fn dao_create_user(user: IUser) -> Result<ObjectId, String> {
         name: user.name,
         email: user.email,
         password: user.password,
-        _type: user._type,
+        user_type: user.user_type,
         img_id: img_obj_id,
         lansat: user.lansat,
     };
@@ -105,7 +105,7 @@ pub async fn dao_edit_user(user: IUser) -> Result<(), String> {
         name: user.name,
         email: user.email,
         password: user.password,
-        _type: user._type,
+        user_type: user.user_type,
         img_id: img_id,
         lansat: user.lansat,
     };
@@ -113,17 +113,22 @@ pub async fn dao_edit_user(user: IUser) -> Result<(), String> {
         .find_one_and_update(
             doc! {field!(_id in User): actual_user._id},
             doc! {
-                "$set": {field!(name in User): actual_user.name},
-                "$set": {field!(email in User): actual_user.email},
-                "$set": {field!(password in User): actual_user.password},
-                "$set": {field!(_type in User): actual_user._type.to_string()},
-                "$set": {field!(img_id in User): actual_user.img_id},
-                "$set": {field!(lansat in User): actual_user.lansat},
+                "$set": {
+                    field!(name in User): actual_user.name,
+                    field!(email in User): actual_user.email,
+                    field!(password in User): actual_user.password,
+                    field!(user_type in User): actual_user.user_type.to_string(),
+                    field!(img_id in User): actual_user.img_id,
+                    field!(lansat in User): actual_user.lansat
+                }
             },
         )
         .await;
     match ok {
-        Ok(_) => return Ok(()),
+        Ok(Some(_)) => {
+            return Ok(());
+        }
+        Ok(None) => return Err("Attempted to edit a non-existing user".to_string()),
         Err(e) => return Err(e.to_string()),
     }
 }

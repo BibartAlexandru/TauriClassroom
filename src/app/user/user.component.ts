@@ -16,7 +16,7 @@ export class UserComponent {
     _id: "-1",
     email: "",
     password: "",
-    _type: UserTypes[UserTypes.ADMIN],
+    user_type: UserTypes[UserTypes.ADMIN],
     img_id: "",
     lansat: false,
   };

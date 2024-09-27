@@ -6,24 +6,24 @@
     <a
       class="course-anchor"
       *ngFor="let course of courses; let i = index"
-      [routerLink]="['/course', course.id]"
+      [routerLink]="['/course', course._id]"
       [ngStyle]="getRandomColorStyle()"
-      [ngClass]="course.id === openedCourse?.id ? 'bordered' : ''"
+      [ngClass]="course._id === openedCourse?._id ? 'bordered' : ''"
       (click)="onCourseIconClick(i)"
     >
-      <h2 class="course-name-letter">{{ course.name.charAt(0) }}</h2></a
+      <h2 class="course-name-letter">{{ course._id.charAt(0) }}</h2></a
     >
   </div>
   <ng-template #selectedCourse>
     <div class="icons-contianer">
       <a
-        [routerLink]="['/course', openedCourse?.id]"
+        [routerLink]="['/course', openedCourse?._id]"
         class="course-anchor"
         [ngStyle]="getRandomColorStyle()"
         (click)="onCourseIconClick(0)"
       >
         <h2 class="course-name-letter">
-          {{ openedCourse?.name?.charAt(0) }}
+          {{ openedCourse?._id?.charAt(0) }}
         </h2></a
       >
     </div>

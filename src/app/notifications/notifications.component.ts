@@ -31,7 +31,7 @@ export class NotificationsComponent {
         this.router.navigate(["/", "news"]);
         break;
       default:
-        this.router.navigate(["/course", post.course?.id, post.id]);
+        this.router.navigate(["/course", post.course?._id, post.id]);
     }
   }
 }

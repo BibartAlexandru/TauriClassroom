@@ -9,24 +9,83 @@ export class CoursesService {
   constructor() {}
 
   courses: ICourse[] = [
-    { name: "Maths", id: 0 },
-    { name: "Physics", id: 1 },
-    { name: "English", id: 2 },
-    { name: "Juggling", id: 3 },
-    { name: "Biology", id: 4 },
-    { name: "Astronomy", id: 5 },
-    { name: "Programming1", id: 6 },
-    { name: "Programming2", id: 7 },
-    { name: "Psychology", id: 8 },
-    { name: "Literature", id: 9 },
-    { name: "Help", id: 10 },
+    {
+      _id: "0",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "1",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "2",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "3",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "4",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "5",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "6",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "7",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "8",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
+    {
+      _id: "9",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    },
   ];
 
   getCourses(): Observable<ICourse[]> {
     return of(
       this.courses.sort((c1, c2) => {
-        if (c1.name < c2.name) return -1;
-        if (c1.name > c2.name) return 1;
+        if (c1._id < c2._id) return -1;
+        if (c1._id > c2._id) return 1;
         return 0;
       })
     );
@@ -35,13 +94,25 @@ export class CoursesService {
   //TODO: This is an example, replace it at some point
   getCourseWithName(name: string): Observable<ICourse> {
     for (let i = 0; i < this.courses.length; i++)
-      if (this.courses[i].name === name) return of(this.courses[i]);
-    return of({ name: "NOT_FOUND", id: -1 });
+      if (this.courses[i]._id === name) return of(this.courses[i]);
+    return of({
+      _id: "-1",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    });
   }
 
-  getCourseWithId(id: number): Observable<ICourse> {
+  getCourseWithId(id: string): Observable<ICourse> {
     for (let i = 0; i < this.courses.length; i++)
-      if (this.courses[i].id === id) return of(this.courses[i]);
-    return of({ name: "NOT_FOUND", id: -1 });
+      if (this.courses[i]._id === id) return of(this.courses[i]);
+    return of({
+      _id: "-1",
+      subject_id: "0",
+      teacher_id: "0",
+      class_id: "0",
+      time_period: { start: new Date(Date.now()), end: new Date(Date.now()) },
+    });
   }
 }
