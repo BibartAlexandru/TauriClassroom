@@ -23,6 +23,7 @@ impl CollectionConfig for ClassCollConf {
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct Class {
     _id: ObjectId,
+    name: String,
     student_ids: Vec<StudentObjectId>,
 }
 
@@ -33,6 +34,12 @@ impl Model for Class {
 #[derive(Deserialize, Serialize, Debug, PartialEq)]
 pub struct ClassObjectId {
     id: ObjectId,
+}
+
+impl ToString for ClassObjectId {
+    fn to_string(&self) -> String {
+        return self.id.to_string();
+    }
 }
 
 impl CollectionChecker<ClassObjectId, Class> for ClassObjectId {

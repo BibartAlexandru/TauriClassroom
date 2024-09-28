@@ -1,7 +1,7 @@
 import { EditComponentStates } from "./../enums/edit-component-states";
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ICourse } from "../models/course.model";
 import { ISubject } from "../models/subject.model";
 import { FormsModule } from "@angular/forms";
@@ -83,8 +83,8 @@ export class EditSubjectComponent extends EditItemsComponent<ISubject> {
     return Promise.resolve(ok);
   }
 
-  constructor(private subjectsService: SubjectsService) {
-    super();
+  constructor(private subjectsService: SubjectsService, router: Router) {
+    super(router);
   }
 
   inputShakeAnimation() {

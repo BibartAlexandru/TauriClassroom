@@ -80,6 +80,12 @@ impl CollectionChecker<TeacherObjectId, User> for TeacherObjectId {
     }
 }
 
+impl ToString for TeacherObjectId {
+    fn to_string(&self) -> String {
+        return self.id.to_string();
+    }
+}
+
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct StudentObjectId {
     id: ObjectId,

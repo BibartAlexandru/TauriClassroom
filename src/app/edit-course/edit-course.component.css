@@ -122,3 +122,36 @@ table tbody tr:last-of-type {
 .btn-cell {
   text-align: end;
 }
+.back-btn {
+  position: fixed;
+  left: var(--NORMAL-PADDING-X);
+  top: var(--NORMAL-PADDING-X);
+  box-sizing: border-box;
+}
+.back-btn:hover > img {
+  filter: invert(100%);
+}
+
+.date-inputs-row {
+  display: grid;
+  align-content: center;
+  justify-content: space-between;
+  width: 181px;
+  grid-template-columns: 45% 45%;
+  grid-template-rows: 100%;
+  column-gap: var(--SMALL-GAP);
+}
+
+#start-date-input {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+}
+
+#end-date-input {
+  grid-area: 1 / 2 / 2 / 3;
+  width: 100%;
+}
+
+p {
+  margin: 0;
+}

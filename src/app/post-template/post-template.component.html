@@ -22,7 +22,7 @@
       {{ post.author }}
     </h4>
     <ng-template #courseName>
-      <h4 class="course-name">{{ post.course?.name }}</h4>
+      <h4 class="course-name">{{ post.course?._id }}</h4>
     </ng-template>
   </div>
   <div

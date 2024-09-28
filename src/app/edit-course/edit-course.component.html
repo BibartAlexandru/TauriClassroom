@@ -1,21 +1,88 @@
 <div class="create-subject">
+  <button class="btn btn-outline-dark back-btn" (click)="onBack()">
+    <img
+      src="assets/left_arrow.svg"
+      alt="back button arrow"
+      class="normal-icon"
+    />
+  </button>
   <form action="" (ngSubmit)="onSaveClick()">
+    <!--SUBJECT-->
     <div class="input-row">
-      <label for="name-input">Item name</label>
-      <input
+      <label for="subject-input">Subject name</label>
+      <select
         type="text"
         class="text-input"
-        [(ngModel)]="item['_id']"
-        id="name-input"
-        name="name-input"
+        [ngModel]="
+          currCourseSubjIndex === -1 ? '' : subjects[currCourseSubjIndex].name
+        "
+        id="subject-input"
+        name="subject-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
-      />
-      <img
-        src="assets/loading.gif"
-        class="medium-icon"
-        alt="loading gif"
-        *ngIf="dialogState === EditComponentStates.WAITING && items.length > 0"
-      />
+      >
+        <option [ngValue]="subj.name" *ngFor="let subj of subjects">
+          {{ subj.name }}
+        </option>
+      </select>
+    </div>
+    <!--TEACHER-->
+    <div class="input-row">
+      <label for="teacher-input">Teacher</label>
+      <select
+        type="text"
+        class="text-input"
+        [ngModel]="
+          currCourseTeacherIndex === -1
+            ? ''
+            : teachers[currCourseTeacherIndex].name
+        "
+        id="teacher-input"
+        name="teacher-input"
+        [disabled]="dialogState === EditComponentStates.WAITING"
+      >
+        <option [ngValue]="tch.name" *ngFor="let tch of teachers">
+          {{ tch.name }}
+        </option>
+      </select>
+    </div>
+    <!--CLASS-->
+    <div class="input-row">
+      <label for="class-input">Class</label>
+      <select
+        type="text"
+        class="text-input"
+        [ngModel]="
+          currCourseClassIndex === -1 ? '' : classes[currCourseClassIndex].name
+        "
+        id="class-input"
+        name="class-input"
+        [disabled]="dialogState === EditComponentStates.WAITING"
+      >
+        <option [ngValue]="cls.name" *ngFor="let cls of classes">
+          {{ cls.name }}
+        </option>
+      </select>
+    </div>
+    <div class="input-row">
+      <p>Time Period</p>
+      <div class="date-inputs-row">
+        <input
+          type="date"
+          class="text-input"
+          [(ngModel)]="item['_id']"
+          id="start-date-input"
+          name="start-date-input"
+          [disabled]="dialogState === EditComponentStates.WAITING"
+        />
+        <input
+          type="date"
+          class="text-input"
+          [(ngModel)]="item['_id']"
+          id="end-date-input"
+          name="end-date-input"
+          [disabled]="dialogState === EditComponentStates.WAITING"
+        />
+      </div>
     </div>
     <button
       type="submit"

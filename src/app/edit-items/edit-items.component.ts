@@ -1,7 +1,7 @@
 import { ISubject } from "./../models/subject.model";
 import { Component } from "@angular/core";
 import { EditComponentStates } from "../enums/edit-component-states";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { invoke } from "@tauri-apps/api/core";
 import { SubjectsService } from "../services/subjects/subjects.service";
 import { CommonModule } from "@angular/common";
@@ -29,6 +29,8 @@ export abstract class EditItemsComponent<
   items: T[] = [];
   selectedItemIndex: number | null = null;
   itemToDeleteIndex: number | null = null;
+
+  constructor(protected router: Router) {}
 
   ngOnInit() {
     this.fetchItems().then(() => {
@@ -112,5 +114,9 @@ export abstract class EditItemsComponent<
     }
     this.selectedItemIndex = null;
     this.dialogState = EditComponentStates.WAITING;
+  }
+
+  onBack() {
+    this.router.navigate(["/settings"]);
   }
 }

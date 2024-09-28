@@ -1,4 +1,11 @@
 <div class="create-subject">
+  <button class="btn btn-outline-dark back-btn" (click)="onBack()">
+    <img
+      src="assets/left_arrow.svg"
+      alt="back button arrow"
+      class="normal-icon"
+    />
+  </button>
   <form action="" (ngSubmit)="onSaveClick()">
     <div class="input-row">
       <label for="name-input">Item name</label>
@@ -9,12 +16,6 @@
         id="name-input"
         name="name-input"
         [disabled]="dialogState === EditComponentStates.WAITING"
-      />
-      <img
-        src="assets/loading.gif"
-        class="medium-icon"
-        alt="loading gif"
-        *ngIf="dialogState === EditComponentStates.WAITING && items.length > 0"
       />
     </div>
     <button

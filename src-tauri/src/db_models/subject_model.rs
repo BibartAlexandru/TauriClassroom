@@ -1,4 +1,5 @@
 use std::error::Error;
+use std::fmt::Display;
 
 use mongodm::field;
 use mongodm::mongo::{bson::doc, options::ClientOptions, Client, Collection};
@@ -32,6 +33,12 @@ impl Model for Subject {
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct SubjectObjectId {
     id: ObjectId,
+}
+
+impl ToString for SubjectObjectId {
+    fn to_string(&self) -> String {
+        return self.id.to_string();
+    }
 }
 
 impl CollectionChecker<SubjectObjectId, Subject> for SubjectObjectId {

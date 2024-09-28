@@ -40,7 +40,10 @@ pub fn run() {
             create_user,
             edit_user,
             delete_user,
-            edit_user
+            edit_user,
+            get_courses,
+            edit_course,
+            delete_course
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

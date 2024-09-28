@@ -127,3 +127,13 @@ select,
 option {
   text-transform: capitalize;
 }
+
+.back-btn {
+  position: fixed;
+  left: var(--NORMAL-PADDING-X);
+  top: var(--NORMAL-PADDING-X);
+  box-sizing: border-box;
+}
+.back-btn:hover > img {
+  filter: invert(100%);
+}
